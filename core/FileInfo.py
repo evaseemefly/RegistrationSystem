@@ -47,6 +47,21 @@ class ExcelOper:
             return  targetFilePath
             # pass
 
+        def
+
+        def checkTargetFileExist(self,path):
+            '''
+            ！！可改为装饰器模式
+            :param path:
+            :return:
+            '''
+            # 判断指定文件是否存在
+            if os.path.exists(path):
+                return True
+            else :
+                return False
+
+
     def getFinalPath(self,now_date):
 
         pass
