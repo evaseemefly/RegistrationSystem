@@ -10,11 +10,14 @@ import numpy as np
 import pandas as pd
 import datetime
 import time
+from conf import settings
 
 class ExcelOper:
-    def __init__(self):
+    def __init__(self,source_dir,target_dir):
         # ftp根目录
-        self.ftpdirpath=conf.settings.FtpSourcePath
+        # self.ftpdirpath=conf.settings.FtpSourcePath
+        self.ftpdirpath = source_dir
+        self.savedirpath=target_dir
         self._derpartement_dirs=[]
         # self.__privated_dirs=[]
         # self._protected_dirs=[]
@@ -37,7 +40,9 @@ class ExcelOper:
                     result= engineer.construct_derpartmentData(self,target_date,self.ftpdirpath,derpartment_name)
                 else:
                     result=self.merageDataFrame(result,engineer.construct_derpartmentData(self,target_date,self.ftpdirpath,derpartment_name))
+
         return result
+
 
 
     @property
@@ -198,6 +203,25 @@ class ExcelOper:
             return True
         else:
             return False
+
+    def getSavePath(self,now_date):
+        '''
+        获取要保存的文件路径
+        :return:
+        '''
+        finial_dir=os.path.join(self.savedirpath,str(now_date.year))
+        finial_filename="%s%s%s.csv"%(settings.RESULT_FILE_NAME,str(now_date.year),str(now_date.month))
+        finial_fullname=os.path.join(finial_dir,finial_filename)
+        # 判断指定路径是否存在，不存在则创建
+        if os.path.exists(finial_dir)!=True:
+            os.mkdir(finial_dir)
+        # 判断指定文件是否存在若不存在则创建
+        if os.path.isfile(finial_fullname)==False:
+            fp = open(finial_fullname, 'w')
+            fp.close()
+        return finial_fullname
+        # pass
+
 
 
     def getFinalPath(self,now_date):
