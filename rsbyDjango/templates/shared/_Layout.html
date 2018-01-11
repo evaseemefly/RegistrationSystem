@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+{#    <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,200,500,600,700' rel='stylesheet' type='text/css'>#}
+    <link href="/static/css/bootstrap/bootstrap.css" rel="stylesheet">
+    <link href="/static/css/card/default.css" rel="stylesheet">
+    <link href="/static/css/card/font-awesome.min.css" rel="stylesheet">
+    <link href="/static/css/card/default.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/card/material-cards.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+
+        html {
+            position: relative;
+            min-height: 100%;
+        }
+
+        body {
+            background-color: #ECEFF1;
+            color: #37474F;
+            font-family: 'Raleway', sans-serif;
+            font-weight: 300;
+            font-size: 16px;
+        }
+
+        h1, h2, h3 {
+            font-weight: 200;
+        }
+
+    </style>
+</head>
+<body>
+	<div class="htmleaf-container">
+		<header class="htmleaf-header">
+			<h1>国家海洋环境预报中心 <span>九楼值班平台</span></h1>
+		</header>
+        <div >
+{#            { % block content %}#}
+{#            { %  endblock %}#}
+            {% block content %}
+            {% endblock %}
+        </div>
+	</div>
+
+    <script>
+         $(function() {
+	        $('.material-card').materialCard({
+	            icon_close: 'fa-chevron-left',
+	            icon_open: 'fa-thumbs-o-up',
+	            icon_spin: 'fa-spin-fast',
+	            card_activator: 'click'
+	        });
+
+	//        $('.active-with-click .material-card').materialCard();
+
+	        window.setTimeout(function() {
+	            $('.material-card:eq(1)').materialCard('open');
+	        }, 2000);
+
+	        $('.material-card').on('shown.material-card show.material-card hide.material-card hidden.material-card', function (event) {
+	            console.log(event.type, event.namespace, $(this));
+	        });
+
+	    });
+    </script>
+</body>
+</html>
