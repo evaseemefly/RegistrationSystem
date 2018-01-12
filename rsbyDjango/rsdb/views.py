@@ -36,5 +36,5 @@ def getPersonList(request):
     # data=serialize("json",person_list)
     dict_data={"now_date":datetime.now().strftime('%y-%m-%d'),"persons":person_list}
     test_json=json.dumps(dict_data,default=lambda obj:obj.__dict__,ensure_ascii=False)
-    return HttpResponse(data,content_type="application/json")
+    return HttpResponse(test_json,content_type="application/json")
 
