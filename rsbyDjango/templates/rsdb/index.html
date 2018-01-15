@@ -7,13 +7,14 @@
 		            <small>测试测试</small></h1>
 		    </div>
 		    <div class="row active-with-click">
-		        <div class="col-md-4 col-sm-6 col-xs-12">
+                <div v-for="person in persons" >
+                    <div class="col-md-4 col-sm-6 col-xs-12">
 		            <article class="material-card Indigo">
 		                <h2>
-		                    <span>值班员A</span>
+		                    <span>{{ person.name }}</span>
 		                    <strong>
 		                        <i class="fa fa-fw fa-star"></i>
-		                        风暴潮
+		                        {{ person.derpartment }}
 		                    </strong>
 		                </h2>
 		                <div class="mc-content">
@@ -36,161 +37,163 @@
 		                </div>
 		            </article>
 		        </div>
-		        <div class="col-md-4 col-sm-6 col-xs-12">
-		            <article class="material-card Indigo">
-		                <h2>
-		                    <span>值班员B</span>
-		                    <strong>
-		                        <i class="fa fa-fw fa-star"></i>
-		                        海浪
-		                    </strong>
-		                </h2>
-		                <div class="mc-content">
-		                    <div class="img-container">
-		                        <img class="img-responsive" src="/static/img/thumb-sean-penn.jpg">
-		                    </div>
-		                    <div class="mc-description">
-		                        联系电话
-		                    </div>
-		                </div>
-		                <a class="mc-btn-action">
-		                    <i class="fa fa-bars"></i>
-		                </a>
-		                <div class="mc-footer">
-		                    <h4>
-		                        Social
-		                    </h4>
-		                    <a class="fa fa-fw fa-facebook"></a>
-		                    <a class="fa fa-fw fa-twitter"></a>
-		                    <a class="fa fa-fw fa-linkedin"></a>
-		                    <a class="fa fa-fw fa-google-plus"></a>
-		                </div>
-		            </article>
-		        </div>
-		        <div class="col-md-4 col-sm-6 col-xs-12">
-		            <article class="material-card Indigo">
-		                <h2>
-		                    <span>值班员C</span>
-		                    <strong>
-		                        <i class="fa fa-fw fa-star"></i>
-		                        海冰
-		                    </strong>
-		                </h2>
-		                <div class="mc-content">
-		                    <div class="img-container">
-		                        <img class="img-responsive" src="/static/img/thumb-clint-eastwood.jpg">
-		                    </div>
-		                    <div class="mc-description">
-		                        He rose to international fame with his role as the Man with No Name in Sergio Leone's Dollars trilogy of spaghetti Westerns during the 1960s ...
-		                    </div>
-		                </div>
-		                <a class="mc-btn-action">
-		                    <i class="fa fa-bars"></i>
-		                </a>
-		                <div class="mc-footer">
-		                    <h4>
-		                        Social
-		                    </h4>
-		                    <a class="fa fa-fw fa-facebook"></a>
-		                    <a class="fa fa-fw fa-twitter"></a>
-		                    <a class="fa fa-fw fa-linkedin"></a>
-		                    <a class="fa fa-fw fa-google-plus"></a>
-		                </div>
-		            </article>
-		        </div>
-		    	<div class="col-md-4 col-sm-6 col-xs-12">
-		            <article class="material-card Indigo">
-		                <h2>
-		                    <span>值班员B</span>
-		                    <strong>
-		                        <i class="fa fa-fw fa-star"></i>
-		                        三维组
-		                    </strong>
-		                </h2>
-		                <div class="mc-content">
-		                    <div class="img-container">
-		                        <img class="img-responsive" src="/static/img/thumb-sean-penn.jpg">
-		                    </div>
-		                    <div class="mc-description">
-		                        联系电话
-		                    </div>
-		                </div>
-		                <a class="mc-btn-action">
-		                    <i class="fa fa-bars"></i>
-		                </a>
-		                <div class="mc-footer">
-		                    <h4>
-		                        Social
-		                    </h4>
-		                    <a class="fa fa-fw fa-facebook"></a>
-		                    <a class="fa fa-fw fa-twitter"></a>
-		                    <a class="fa fa-fw fa-linkedin"></a>
-		                    <a class="fa fa-fw fa-google-plus"></a>
-		                </div>
-		            </article>
-		        </div>
-		        <div class="col-md-4 col-sm-6 col-xs-12">
-		            <article class="material-card Indigo">
-		                <h2>
-		                    <span>值班员B</span>
-		                    <strong>
-		                        <i class="fa fa-fw fa-star"></i>
-		                        生态组
-		                    </strong>
-		                </h2>
-		                <div class="mc-content">
-		                    <div class="img-container">
-		                        <img class="img-responsive" src="/static/img/thumb-sean-penn.jpg">
-		                    </div>
-		                    <div class="mc-description">
-		                        联系电话
-		                    </div>
-		                </div>
-		                <a class="mc-btn-action">
-		                    <i class="fa fa-bars"></i>
-		                </a>
-		                <div class="mc-footer">
-		                    <h4>
-		                        Social
-		                    </h4>
-		                    <a class="fa fa-fw fa-facebook"></a>
-		                    <a class="fa fa-fw fa-twitter"></a>
-		                    <a class="fa fa-fw fa-linkedin"></a>
-		                    <a class="fa fa-fw fa-google-plus"></a>
-		                </div>
-		            </article>
-		        </div>
-		        <div class="col-md-4 col-sm-6 col-xs-12">
-		            <article class="material-card Indigo">
-		                <h2>
-		                    <span>值班员B</span>
-		                    <strong>
-		                        <i class="fa fa-fw fa-star"></i>
-		                        应急组
-		                    </strong>
-		                </h2>
-		                <div class="mc-content">
-		                    <div class="img-container">
-		                        <img class="img-responsive" src="/static/img/thumb-sean-penn.jpg">
-		                    </div>
-		                    <div class="mc-description">
-		                        联系电话
-		                    </div>
-		                </div>
-		                <a class="mc-btn-action">
-		                    <i class="fa fa-bars"></i>
-		                </a>
-		                <div class="mc-footer">
-		                    <h4>
-		                        Social
-		                    </h4>
-		                    <a class="fa fa-fw fa-facebook"></a>
-		                    <a class="fa fa-fw fa-twitter"></a>
-		                    <a class="fa fa-fw fa-linkedin"></a>
-		                    <a class="fa fa-fw fa-google-plus"></a>
-		                </div>
-		            </article>
-		        </div>
+                </div>
+
+{#		        <div class="col-md-4 col-sm-6 col-xs-12">#}
+{#		            <article class="material-card Indigo">#}
+{#		                <h2>#}
+{#		                    <span>值班员B</span>#}
+{#		                    <strong>#}
+{#		                        <i class="fa fa-fw fa-star"></i>#}
+{#		                        海浪#}
+{#		                    </strong>#}
+{#		                </h2>#}
+{#		                <div class="mc-content">#}
+{#		                    <div class="img-container">#}
+{#		                        <img class="img-responsive" src="/static/img/thumb-sean-penn.jpg">#}
+{#		                    </div>#}
+{#		                    <div class="mc-description">#}
+{#		                        联系电话#}
+{#		                    </div>#}
+{#		                </div>#}
+{#		                <a class="mc-btn-action">#}
+{#		                    <i class="fa fa-bars"></i>#}
+{#		                </a>#}
+{#		                <div class="mc-footer">#}
+{#		                    <h4>#}
+{#		                        Social#}
+{#		                    </h4>#}
+{#		                    <a class="fa fa-fw fa-facebook"></a>#}
+{#		                    <a class="fa fa-fw fa-twitter"></a>#}
+{#		                    <a class="fa fa-fw fa-linkedin"></a>#}
+{#		                    <a class="fa fa-fw fa-google-plus"></a>#}
+{#		                </div>#}
+{#		            </article>#}
+{#		        </div>#}
+{#		        <div class="col-md-4 col-sm-6 col-xs-12">#}
+{#		            <article class="material-card Indigo">#}
+{#		                <h2>#}
+{#		                    <span>值班员C</span>#}
+{#		                    <strong>#}
+{#		                        <i class="fa fa-fw fa-star"></i>#}
+{#		                        海冰#}
+{#		                    </strong>#}
+{#		                </h2>#}
+{#		                <div class="mc-content">#}
+{#		                    <div class="img-container">#}
+{#		                        <img class="img-responsive" src="/static/img/thumb-clint-eastwood.jpg">#}
+{#		                    </div>#}
+{#		                    <div class="mc-description">#}
+{#		                        He rose to international fame with his role as the Man with No Name in Sergio Leone's Dollars trilogy of spaghetti Westerns during the 1960s ...#}
+{#		                    </div>#}
+{#		                </div>#}
+{#		                <a class="mc-btn-action">#}
+{#		                    <i class="fa fa-bars"></i>#}
+{#		                </a>#}
+{#		                <div class="mc-footer">#}
+{#		                    <h4>#}
+{#		                        Social#}
+{#		                    </h4>#}
+{#		                    <a class="fa fa-fw fa-facebook"></a>#}
+{#		                    <a class="fa fa-fw fa-twitter"></a>#}
+{#		                    <a class="fa fa-fw fa-linkedin"></a>#}
+{#		                    <a class="fa fa-fw fa-google-plus"></a>#}
+{#		                </div>#}
+{#		            </article>#}
+{#		        </div>#}
+{#		    	<div class="col-md-4 col-sm-6 col-xs-12">#}
+{#		            <article class="material-card Indigo">#}
+{#		                <h2>#}
+{#		                    <span>值班员B</span>#}
+{#		                    <strong>#}
+{#		                        <i class="fa fa-fw fa-star"></i>#}
+{#		                        三维组#}
+{#		                    </strong>#}
+{#		                </h2>#}
+{#		                <div class="mc-content">#}
+{#		                    <div class="img-container">#}
+{#		                        <img class="img-responsive" src="/static/img/thumb-sean-penn.jpg">#}
+{#		                    </div>#}
+{#		                    <div class="mc-description">#}
+{#		                        联系电话#}
+{#		                    </div>#}
+{#		                </div>#}
+{#		                <a class="mc-btn-action">#}
+{#		                    <i class="fa fa-bars"></i>#}
+{#		                </a>#}
+{#		                <div class="mc-footer">#}
+{#		                    <h4>#}
+{#		                        Social#}
+{#		                    </h4>#}
+{#		                    <a class="fa fa-fw fa-facebook"></a>#}
+{#		                    <a class="fa fa-fw fa-twitter"></a>#}
+{#		                    <a class="fa fa-fw fa-linkedin"></a>#}
+{#		                    <a class="fa fa-fw fa-google-plus"></a>#}
+{#		                </div>#}
+{#		            </article>#}
+{#		        </div>#}
+{#		        <div class="col-md-4 col-sm-6 col-xs-12">#}
+{#		            <article class="material-card Indigo">#}
+{#		                <h2>#}
+{#		                    <span>值班员B</span>#}
+{#		                    <strong>#}
+{#		                        <i class="fa fa-fw fa-star"></i>#}
+{#		                        生态组#}
+{#		                    </strong>#}
+{#		                </h2>#}
+{#		                <div class="mc-content">#}
+{#		                    <div class="img-container">#}
+{#		                        <img class="img-responsive" src="/static/img/thumb-sean-penn.jpg">#}
+{#		                    </div>#}
+{#		                    <div class="mc-description">#}
+{#		                        联系电话#}
+{#		                    </div>#}
+{#		                </div>#}
+{#		                <a class="mc-btn-action">#}
+{#		                    <i class="fa fa-bars"></i>#}
+{#		                </a>#}
+{#		                <div class="mc-footer">#}
+{#		                    <h4>#}
+{#		                        Social#}
+{#		                    </h4>#}
+{#		                    <a class="fa fa-fw fa-facebook"></a>#}
+{#		                    <a class="fa fa-fw fa-twitter"></a>#}
+{#		                    <a class="fa fa-fw fa-linkedin"></a>#}
+{#		                    <a class="fa fa-fw fa-google-plus"></a>#}
+{#		                </div>#}
+{#		            </article>#}
+{#		        </div>#}
+{#		        <div class="col-md-4 col-sm-6 col-xs-12">#}
+{#		            <article class="material-card Indigo">#}
+{#		                <h2>#}
+{#		                    <span>值班员B</span>#}
+{#		                    <strong>#}
+{#		                        <i class="fa fa-fw fa-star"></i>#}
+{#		                        应急组#}
+{#		                    </strong>#}
+{#		                </h2>#}
+{#		                <div class="mc-content">#}
+{#		                    <div class="img-container">#}
+{#		                        <img class="img-responsive" src="/static/img/thumb-sean-penn.jpg">#}
+{#		                    </div>#}
+{#		                    <div class="mc-description">#}
+{#		                        联系电话#}
+{#		                    </div>#}
+{#		                </div>#}
+{#		                <a class="mc-btn-action">#}
+{#		                    <i class="fa fa-bars"></i>#}
+{#		                </a>#}
+{#		                <div class="mc-footer">#}
+{#		                    <h4>#}
+{#		                        Social#}
+{#		                    </h4>#}
+{#		                    <a class="fa fa-fw fa-facebook"></a>#}
+{#		                    <a class="fa fa-fw fa-twitter"></a>#}
+{#		                    <a class="fa fa-fw fa-linkedin"></a>#}
+{#		                    <a class="fa fa-fw fa-google-plus"></a>#}
+{#		                </div>#}
+{#		            </article>#}
+{#		        </div>#}
 
 
 		    <!--</div>-->
@@ -199,4 +202,30 @@
 		</section>
 
 
+{% endblock %}
+
+{% block bottom-js  %}
+    <script>
+        var vm
+        $(function () {
+            var url="http://127.0.0.1:8000/getperson"
+            //页面加载时ajax到获取人员list的方法
+            $.ajax({
+                type: "GET",
+					url: url,
+					dataType: "json",
+					success: function(data) {
+                    //成功后解析
+                        data
+                        vm=new Vue({
+                            el:'#app',
+                            data:{
+                                items:data.persons
+                            }
+                        })
+                    }
+
+            })
+        })
+    </script>
 {% endblock %}

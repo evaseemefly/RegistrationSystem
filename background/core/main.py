@@ -7,21 +7,30 @@ import numpy as np
 import pandas as pd
 from conf import settings as st
 from core import Persistence
+from core import Scheduler
 
 def main():
 
     '''
-    1、读取并合并当月的所有部门的相关dataframe并生成合并后的dataframe并使用excel与pickle进行持久化保存
+        2018-1-14 测试作业调度
     :return:
     '''
-    temp_date=datetime(2018,1,1)
-    result_targetPath = os.path.join(settings.TARGET_DIR_PATH,
-                              "%s%s.csv" % (temp_date.year, temp_date.month))
-    ftpdir=st.FtpSourcePath
-    savedir=st.TARGET_DIR_PATH
-    full_name=None
-    excel_operate =FileInfo.ExcelOper(ftpdir,savedir)
-    result= excel_operate.build()
+
+    '''
+    1、读取并合并当月的所有部门的相关dataframe并生成合并后的dataframe并使用excel与pickle进行持久化保存
+    2018-1-14 测试作业调度暂时注释掉（有用）
+    :return:
+    '''
+
+
+    # temp_date=datetime(2018,1,1)
+    # result_targetPath = os.path.join(settings.TARGET_DIR_PATH,
+    #                           "%s%s.csv" % (temp_date.year, temp_date.month))
+    # ftpdir=st.FtpSourcePath
+    # savedir=st.TARGET_DIR_PATH
+    # full_name=None
+    # excel_operate =FileInfo.ExcelOper(ftpdir,savedir)
+    # result= excel_operate.build()
 
 
     '''
