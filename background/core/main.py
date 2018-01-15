@@ -9,6 +9,7 @@ from conf import settings as st
 from core import Persistence
 from core import Scheduler
 
+
 def main():
 
     '''
@@ -43,6 +44,12 @@ def main():
     # pickle_instance=Persistence.Pickle_Persistence(result,r'C:\Users\evase\Documents\git仓库\RegistrationSystem\result\pk1.pk1')
     # pickle_instance.to_persistence()
     # pickle_result=pickle_instance.read_persistence(r'C:\Users\evase\Documents\git仓库\RegistrationSystem\result\pk1.pk1')
+
+    '''
+    2018-1-15:
+    改为作业调度的方式启动
+    '''
+    Scheduler.run()
     pass
     # result.to_csv(result_targetPath)
 
