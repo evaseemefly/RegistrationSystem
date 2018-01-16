@@ -137,3 +137,10 @@ STATICFILES_DIRS = [
 TEMPLATE_DIRS = (
     os.path.join(BASE_TEMPLATE_DIRS,  'templates'),
 )
+
+REDIS_IP='127.0.0.1'
+REDIS_PORT=6379
+#redis过期时间
+REDIS_EX=85400
+
+NAME_DaySavedInRedis='dailydata'
