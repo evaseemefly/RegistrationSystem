@@ -8,8 +8,18 @@ BASE_DIR=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # TARGET_DIR_PATH=r"E:\03协同开发\九楼值班显示平台\result"
 
 #surface book
-FtpSourcePath=r"C:\Users\evase\Documents\git仓库\RegistrationSystem\ftpdir"
-TARGET_DIR_PATH=r"C:\Users\evase\Documents\git仓库\RegistrationSystem\result"
+FtpSourcePath=r"D:\git仓库\RegistrationSystem\background\ftpdir"
+TARGET_DIR_PATH=r"D:\git仓库\RegistrationSystem\background\result"
 
 #最终输出的文件的前缀
 RESULT_FILE_NAME='MERAGE_'
+RESULT_FILE_EXT='.pk1'
+
+LOG_DIR=r'../log'
+
+REDIS_IP='127.0.0.1'
+REDIS_PORT=6379
+#redis过期时间
+REDIS_EX=85400
+
+NAME_DaySavedInRedis='dailydata'

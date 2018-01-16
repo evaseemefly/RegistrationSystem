@@ -49,11 +49,11 @@ class ExcelOper:
                 else:
                     result=self.merageDataFrame(result,engineer.construct_derpartmentData(self,target_date,self.ftpdirpath,derpartment_name))
         # 分别存储至excel与pickle中
-        excel_pers=Persistence.Persistence_Environment(Persistence.Excel_Persistence(result,self.getSavePath(target_date,'excel')))
-        excel_pers.make_persistence()
+        excel_pers=Persistence.Persistence_Environment(Persistence.Excel_Persistence(self.getSavePath(target_date,'excel')))
+        excel_pers.make_persistence(result)
         #
-        pickle_pers=Persistence.Persistence_Environment(Persistence.Pickle_Persistence(result,self.getSavePath(target_date,'pickle')))
-        pickle_pers.make_persistence()
+        pickle_pers=Persistence.Persistence_Environment(Persistence.Pickle_Persistence(self.getSavePath(target_date,'pickle')))
+        pickle_pers.make_persistence(result)
         return result
 
 
@@ -228,7 +228,7 @@ class ExcelOper:
         finial_dir=os.path.join(self.savedirpath,str(now_date.year))
         # 最终持久化保存的全路径
         finial_filename=None
-        str_year=now_date.strftime('%y')
+        str_year=now_date.strftime('%Y')
         str_month=now_date.strftime('%m')
         if persistence_type=='excel':
             finial_filename="%s%s%s.csv"%(settings.RESULT_FILE_NAME,str_year,str_month)
@@ -247,13 +247,13 @@ class ExcelOper:
         return finial_fullname
         # pass
 
-    def getSavePath_Pickle(self,now_date):
-        pass
+    # def getSavePath_Pickle(self,now_date):
+    #     pass
 
 
-    def getFinalPath(self,now_date):
-
-        pass
+    # def getFinalPath(self,now_date):
+    #
+    #     pass
 
     # def getLen(self):
     #     return self.__length

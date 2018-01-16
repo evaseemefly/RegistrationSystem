@@ -50,7 +50,7 @@ def main():
     改为作业调度的方式启动
     '''
     Scheduler.run()
-    pass
+    # pass
     # result.to_csv(result_targetPath)
 
     # excel_oper= FileInfo.ExcelOper()
