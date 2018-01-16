@@ -1,0 +1,71 @@
+{% extends "shared/_Layout.html" %}
+
+{% block content %}
+    <section class="container">
+		    <div class="page-header">
+		        <h1>暂时不添加<br>
+		            <small>测试测试</small></h1>
+		    </div>
+		    <div class="row active-with-click">
+                <div v-for="person in persons" >
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+		            <article class="material-card Indigo">
+		                <h2>
+		                    <span>{{ person.name }}</span>
+		                    <strong>
+		                        <i class="fa fa-fw fa-star"></i>
+		                        {{ person.derpartment }}
+		                    </strong>
+		                </h2>
+		                <div class="mc-content">
+
+		                    <div class="img-container">
+		                        <img class="img-responsive" src="/static/img/thumb-christopher-walken.jpg">
+		                    </div>
+		                    <div class="mc-description">
+		                        联系电话
+		                    </div>
+		                </div>
+		                <!--不在显示点赞图片及对应的a标签-->
+		                <!--<a class="mc-btn-action">
+		                    <i class="fa fa-bars"></i>
+		                </a>-->
+		                <div class="mc-footer">
+		                    <h4>
+		                        Social
+		                    </h4>
+		                </div>
+		            </article>
+		        </div>
+                </div>
+		     </div>
+		</section>
+
+
+{% endblock %}
+
+{% block bottom-js  %}
+    <script>
+        var vm
+        $(function () {
+            var url="http://127.0.0.1:8000/getperson"
+            //页面加载时ajax到获取人员list的方法
+            $.ajax({
+                type: "GET",
+					url: url,
+					dataType: "json",
+					success: function(data) {
+                    //成功后解析
+                        data
+                        vm=new Vue({
+                            el:'#app',
+                            data:{
+                                items:data.persons
+                            }
+                        })
+                    }
+
+            })
+        })
+    </script>
+{% endblock %}

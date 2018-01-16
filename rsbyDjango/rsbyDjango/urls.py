@@ -20,5 +20,5 @@ from rsdb import views
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^home',views.home),
-    url(r'^getperson',views.getPersonList)
+    url(r'^getPersonList',views.getPersonList)
 ]

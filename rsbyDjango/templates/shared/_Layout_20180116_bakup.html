@@ -6,9 +6,7 @@
 {#    <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,200,500,600,700' rel='stylesheet' type='text/css'>#}
     <link href="/static/css/bootstrap/bootstrap.css" rel="stylesheet">
     <link href="/static/css/card/default.css" rel="stylesheet">
-{#    <link href="/static/css/card/font-aswesome.min.css" rel="stylesheet">#}
-{#    <link href="/static/css/card/font-aswesome.min.css" rel="stylesheet">#}
-    <link href="http://cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/static/css/card/font-awesome.min.css" rel="stylesheet">
     <!-- 卡片样式-->
     <link href="/static/css/card/default.css" rel="stylesheet" type="text/css">
     <link href="/static/css/card/material-cards.css" rel="stylesheet" type="text/css">
@@ -18,14 +16,13 @@
         	描述：
         	loading特效
         -->
-	<link rel="stylesheet" type="text/css" href="/static/css/loading/normalize.css" />
-	<link rel="stylesheet" type="text/css" href="/static/css/loading/demo.css" />
+	<link rel="stylesheet" type="text/css" href="/staticcss/loading/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="/staticcss/loading/demo.css" />
     <!--必要样式-->
-    <link rel="stylesheet" type="text/css" href="/static/css/loading/component.css" />
-    <script src="/static/js/loading/snap.svg-min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/staticcss/loading/component.css" />
+    <script src="/staticjs/loading/snap.svg-min.js"></script>
 
-    <script src="/static/js/jquery/jquery-2.1.1.min.js"></script>
-    <script src="/static/js/card/jquery.material-cards.js"></script>
+    <script src="/static/js/jquery/jquery-3.2.1.js"></script>
     <script src="/static/js/bootstrap/bootstrap.js"></script>
     <script src="/static/js/vue/vue.js"></script>
 
@@ -34,8 +31,8 @@
         	时间：2018-01-12
         	描述：loading需要
         -->
-		<script src="/static/js/loading/classie.js"></script>
-		<script src="/static/js/loading/svgLoader.js"></script>
+		<script src="js/loading/classie.js"></script>
+		<script src="js/loading/svgLoader.js"></script>
     <style type="text/css">
 
         html {
@@ -60,7 +57,7 @@
     </style>
 </head>
 <body>
-	<div id="pagewrap" class="htmleaf-container">
+	<div class="htmleaf-container">
 		<header class="htmleaf-header">
 			<h1>国家海洋环境预报中心 <span>九楼值班平台</span></h1>
 		</header>
@@ -73,25 +70,25 @@
 	</div>
 
     <script>
-     {#    $(function() {#}
-	{#        $('.material-card').materialCard({#}
-	{#            icon_close: 'fa-chevron-left',#}
-	{#            icon_open: 'fa-thumbs-o-up',#}
-	{#            icon_spin: 'fa-spin-fast',#}
-	{#            card_activator: 'click'#}
-	{#        });#}
-    {##}
-	{#//        $('.active-with-click .material-card').materialCard();#}
-    {##}
-	{#        window.setTimeout(function() {#}
-	{#            $('.material-card:eq(1)').materialCard('open');#}
-	{#        }, 2000);#}
-    {##}
-	{#        $('.material-card').on('shown.material-card show.material-card hide.material-card hidden.material-card', function (event) {#}
-	{#            console.log(event.type, event.namespace, $(this));#}
-	{#        });#}
-    {##}
-	{#    });#}
+         $(function() {
+	        $('.material-card').materialCard({
+	            icon_close: 'fa-chevron-left',
+	            icon_open: 'fa-thumbs-o-up',
+	            icon_spin: 'fa-spin-fast',
+	            card_activator: 'click'
+	        });
+
+	//        $('.active-with-click .material-card').materialCard();
+
+	        window.setTimeout(function() {
+	            $('.material-card:eq(1)').materialCard('open');
+	        }, 2000);
+
+	        $('.material-card').on('shown.material-card show.material-card hide.material-card hidden.material-card', function (event) {
+	            console.log(event.type, event.namespace, $(this));
+	        });
+
+	    });
     </script>
     {% block  bottom-js %}
 
