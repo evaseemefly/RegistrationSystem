@@ -2,112 +2,123 @@
 
 {% block content %}
     <section class="container">
-				<div class="page-header">
-					<h1>暂时不添加<br>
-		            <small>测试测试</small></h1>
-				</div>
-				<div class="row active-with-click">
-					<div id="app">
-						<div v-for="item in items">
-							<div class="col-md-4 col-sm-6 col-xs-12">
-								<article class="material-card" v-bind:class="item.color">
-									<h2>
-		                    <span>{{item.name}}</span>
-		                    <strong>
-		                        <i class="fa fa-fw fa-star"></i>
-		                        风暴潮
-		                    </strong>
-		                </h2>
-									<div class="mc-content">
+        <div class="page-header">
+            <h1>暂时不添加<br>
+                <small>测试测试</small></h1>
+        </div>
+        <div class="row active-with-click">
+            <div id="app">
+{#                以下段落不被django视图引擎渲染#}
+                {% verbatim myblock %}
+                <div v-for="item in items">
+                    <div class="col-md-4 col-sm-6 col-xs-12">
+                        <article class="material-card" v-bind:class="item.color">
+                            <h2>
+                                <span>
+                                     {{ item.name }}
+                                </span>
+                                <strong>
+                                    <i class="fa fa-fw fa-star"></i>
+                                    {{ item.department }}
+                                </strong>
+                            </h2>
+                            <div class="mc-content">
 
-										<div class="img-container">
-											<img class="img-responsive" src="/static/img/thumb-christopher-walken.jpg">
-										</div>
-										<div class="mc-description">
-											联系电话
-										</div>
-									</div>
+                                <div class="img-container">
+                                    <img class="img-responsive" src="/static/img/thumb-christopher-walken.jpg">
+                                </div>
+                                <div class="mc-description">
+                                    联系电话
+                                </div>
+                            </div>
 
-									<div class="mc-footer">
-										<h4>
-		                        Social
-		                    </h4>
-									</div>
-								</article>
-							</div>
-						</div>
-					</div>
+                            <div class="mc-footer">
+                                <h4>
+                                    Social
+                                </h4>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                {% endverbatim myblock %}
+            </div>
 
-				</div>
-			</section>
+        </div>
+    </section>
     <div id="loader" class="pageload-overlay" data-opening="M -18 -26.90625 L -18 86.90625 L 98 86.90625 L 98 -26.90625 L -18 -26.90625 Z M 40 29.96875 C 40.01804 29.96875 40.03125 29.98196 40.03125 30 C 40.03125 30.01804 40.01804 30.03125 40 30.03125 C 39.98196 30.03125 39.96875 30.01804 39.96875 30 C 39.96875 29.98196 39.98196 29.96875 40 29.96875 Z">
-				<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 80 60" preserveAspectRatio="xMidYMid slice">
-					<path d="M -18 -26.90625 L -18 86.90625 L 98 86.90625 L 98 -26.90625 L -18 -26.90625 Z M 40 -25.6875 C 70.750092 -25.6875 95.6875 -0.7500919 95.6875 30 C 95.6875 60.750092 70.750092 85.6875 40 85.6875 C 9.2499078 85.6875 -15.6875 60.750092 -15.6875 30 C -15.6875 -0.7500919 9.2499078 -25.6875 40 -25.6875 Z" />
-				</svg>
-			</div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 80 60" preserveAspectRatio="xMidYMid slice">
+            <path d="M -18 -26.90625 L -18 86.90625 L 98 86.90625 L 98 -26.90625 L -18 -26.90625 Z M 40 -25.6875 C 70.750092 -25.6875 95.6875 -0.7500919 95.6875 30 C 95.6875 60.750092 70.750092 85.6875 40 85.6875 C 9.2499078 85.6875 -15.6875 60.750092 -15.6875 30 C -15.6875 -0.7500919 9.2499078 -25.6875 40 -25.6875 Z" />
+        </svg>
+    </div>
 {% endblock %}
 
 {% block bottom-js  %}
     <script>
         var dic = new Array();
-			dic["主班"] = "Indigo"
-			dic["副班"] = "Deep-Purple"
-			dic["警报班"] = "Pink"
+        dic["主班"] = "Indigo"
+        dic["副班"] = "Deep-Purple"
+        dic["警报班"] = "Pink"
 
-			$(function() {
-				var url = "data.json"
-				var vm
-				//页面加载时ajax到获取人员list的方法
-				$.ajax({
-					type: "GET",
-					url: "getPersonList",
-					dataType: "json",
-					success: function(data) {
-					    //注意此时返回的data中包含now_date与persons
-						finial_objs = [];
-                        //分别取出时间与persons
-                        now_date=data.now_date
-                        persons=data.persons
-						$(persons).each(function(index, element) {
-							element.color = dic[element.job];
-							finial_objs.push(element)
-						})
+        function myrefresh(){
+            window.location.reload();
+        }
 
-						//成功后解析
-						vm = new Vue({
-							el: '#app',
-							data: {
-								items: finial_objs
-							}
-						})
-					}
+        $(function() {
+            var url = "data.json"
+            var vm
+            //页面加载时ajax到获取人员list的方法
+            $.ajax({
+                type: "GET",
+                url: "getPersonList",
+                dataType: "json",
+                success: function(data) {
+                    //注意此时返回的data中包含now_date与persons
+                    finial_objs = [];
+                    //分别取出时间与persons
+                    now_date=data.now_date
+                    persons=data.persons
+                    $(persons).each(function(index, element) {
+                        element.color = dic[element.job];
+                        finial_objs.push(element)
+                    })
 
-				})
+                    //成功后解析
+                    vm = new Vue({
+                        el: '#app',
+                        data: {
+                            items: finial_objs
+                        }
+                    })
+                }
 
-				var myloading = function() {
-					//				var pageWrap = document.getElementById('pagewrap')
-					//					pages = [].slice.call(pageWrap.querySelectorAll('div.container')),
-					//					currentPage = 0,
-					//					triggerLoading = [].slice.call(pageWrap.querySelectorAll('a.pageload-link')),
-					loader = new SVGLoader(document.getElementById('loader'), {
-						speedIn: 300,
-						easingIn: mina.easeinout
-					});
+            })
 
-					loader.show();
-					// after some time hide loader
-					setTimeout(function() {
-						loader.hide();
+            var myloading = function() {
+                //				var pageWrap = document.getElementById('pagewrap')
+                //					pages = [].slice.call(pageWrap.querySelectorAll('div.container')),
+                //					currentPage = 0,
+                //					triggerLoading = [].slice.call(pageWrap.querySelectorAll('a.pageload-link')),
+                loader = new SVGLoader(document.getElementById('loader'), {
+                    speedIn: 300,
+                    easingIn: mina.easeinout
+                });
 
-						//					classie.removeClass(pages[0], 'show');
-						// update..
-						//					currentPage = currentPage ? 0 : 1;
-						//					classie.addClass(pages[0], 'show');
+                loader.show();
+                // after some time hide loader
+                setTimeout(function() {
+                    loader.hide();
 
-					}, 2000);
-				}
-				myloading()
-			});
+                    //					classie.removeClass(pages[0], 'show');
+                    // update..
+                    //					currentPage = currentPage ? 0 : 1;
+                    //					classie.addClass(pages[0], 'show');
+
+                }, 2000);
+            }
+            myloading()
+
+            //setTimeout(myrefresh(),60000)
+        });
 
     </script>
 {% endblock %}

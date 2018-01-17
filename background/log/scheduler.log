@@ -1668,3 +1668,57 @@ FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\evase\\Docum
 2017-12-16 17:37:00,358 - Image.py[line:391] - DEBUG: Importing XpmImagePlugin
 2017-12-16 17:37:00,360 - Image.py[line:391] - DEBUG: Importing XVThumbImagePlugin
 2017-12-16 17:37:42,329 - base.py[line:144] - INFO: Job "job_load2reids (trigger: cron[hour='17', minute='37'], next run at: 2017-12-17 17:37:00 CST)" executed successfully
+2018-01-17 09:18:42,820 - base.py[line:865] - INFO: Added job "job_merageExcel" to job store "default"
+2018-01-17 09:18:42,822 - base.py[line:865] - INFO: Added job "job_load2reids" to job store "default"
+2018-01-17 09:18:42,823 - base.py[line:158] - INFO: Scheduler started
+2018-01-17 09:18:42,823 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-17 09:18:42,823 - base.py[line:1004] - DEBUG: Next wakeup is due at 2018-01-17 09:20:00+08:00 (in 77.176643 seconds)
+2018-01-17 09:20:00,009 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-17 09:20:00,019 - base.py[line:1004] - DEBUG: Next wakeup is due at 2018-01-18 09:20:00+08:00 (in 86399.990366 seconds)
+2018-01-17 09:20:00,022 - base.py[line:123] - INFO: Running job "job_load2reids (trigger: cron[hour='9', minute='20'], next run at: 2018-01-18 09:20:00 CST)" (scheduled at 2018-01-17 09:20:00+08:00)
+2018-01-17 09:20:00,256 - Image.py[line:391] - DEBUG: Importing BmpImagePlugin
+2018-01-17 09:20:00,273 - Image.py[line:391] - DEBUG: Importing BufrStubImagePlugin
+2018-01-17 09:20:00,274 - Image.py[line:391] - DEBUG: Importing CurImagePlugin
+2018-01-17 09:20:00,276 - Image.py[line:391] - DEBUG: Importing DcxImagePlugin
+2018-01-17 09:20:00,279 - Image.py[line:391] - DEBUG: Importing DdsImagePlugin
+2018-01-17 09:20:00,281 - Image.py[line:391] - DEBUG: Importing EpsImagePlugin
+2018-01-17 09:20:00,335 - Image.py[line:391] - DEBUG: Importing FitsStubImagePlugin
+2018-01-17 09:20:00,337 - Image.py[line:391] - DEBUG: Importing FliImagePlugin
+2018-01-17 09:20:00,339 - Image.py[line:391] - DEBUG: Importing FpxImagePlugin
+2018-01-17 09:20:00,353 - Image.py[line:391] - DEBUG: Importing FtexImagePlugin
+2018-01-17 09:20:00,355 - Image.py[line:391] - DEBUG: Importing GbrImagePlugin
+2018-01-17 09:20:00,357 - Image.py[line:391] - DEBUG: Importing GifImagePlugin
+2018-01-17 09:20:00,363 - Image.py[line:391] - DEBUG: Importing GribStubImagePlugin
+2018-01-17 09:20:00,365 - Image.py[line:391] - DEBUG: Importing Hdf5StubImagePlugin
+2018-01-17 09:20:00,367 - Image.py[line:391] - DEBUG: Importing IcnsImagePlugin
+2018-01-17 09:20:00,375 - Image.py[line:391] - DEBUG: Importing IcoImagePlugin
+2018-01-17 09:20:00,377 - Image.py[line:391] - DEBUG: Importing ImImagePlugin
+2018-01-17 09:20:00,386 - Image.py[line:391] - DEBUG: Importing ImtImagePlugin
+2018-01-17 09:20:00,388 - Image.py[line:391] - DEBUG: Importing IptcImagePlugin
+2018-01-17 09:20:00,390 - Image.py[line:391] - DEBUG: Importing JpegImagePlugin
+2018-01-17 09:20:00,414 - Image.py[line:391] - DEBUG: Importing Jpeg2KImagePlugin
+2018-01-17 09:20:00,417 - Image.py[line:391] - DEBUG: Importing McIdasImagePlugin
+2018-01-17 09:20:00,418 - Image.py[line:391] - DEBUG: Importing MicImagePlugin
+2018-01-17 09:20:00,420 - Image.py[line:391] - DEBUG: Importing MpegImagePlugin
+2018-01-17 09:20:00,421 - Image.py[line:391] - DEBUG: Importing MpoImagePlugin
+2018-01-17 09:20:00,422 - Image.py[line:391] - DEBUG: Importing MspImagePlugin
+2018-01-17 09:20:00,424 - Image.py[line:391] - DEBUG: Importing PalmImagePlugin
+2018-01-17 09:20:00,428 - Image.py[line:391] - DEBUG: Importing PcdImagePlugin
+2018-01-17 09:20:00,429 - Image.py[line:391] - DEBUG: Importing PcxImagePlugin
+2018-01-17 09:20:00,429 - Image.py[line:391] - DEBUG: Importing PdfImagePlugin
+2018-01-17 09:20:00,431 - Image.py[line:391] - DEBUG: Importing PixarImagePlugin
+2018-01-17 09:20:00,433 - Image.py[line:391] - DEBUG: Importing PngImagePlugin
+2018-01-17 09:20:00,433 - Image.py[line:391] - DEBUG: Importing PpmImagePlugin
+2018-01-17 09:20:00,435 - Image.py[line:391] - DEBUG: Importing PsdImagePlugin
+2018-01-17 09:20:00,437 - Image.py[line:391] - DEBUG: Importing SgiImagePlugin
+2018-01-17 09:20:00,439 - Image.py[line:391] - DEBUG: Importing SpiderImagePlugin
+2018-01-17 09:20:00,441 - Image.py[line:391] - DEBUG: Importing SunImagePlugin
+2018-01-17 09:20:00,443 - Image.py[line:391] - DEBUG: Importing TgaImagePlugin
+2018-01-17 09:20:00,445 - Image.py[line:391] - DEBUG: Importing TiffImagePlugin
+2018-01-17 09:20:00,445 - Image.py[line:391] - DEBUG: Importing WebPImagePlugin
+2018-01-17 09:20:00,447 - Image.py[line:394] - DEBUG: Image: failed to import WebPImagePlugin: cannot import name '_webp'
+2018-01-17 09:20:00,447 - Image.py[line:391] - DEBUG: Importing WmfImagePlugin
+2018-01-17 09:20:00,449 - Image.py[line:391] - DEBUG: Importing XbmImagePlugin
+2018-01-17 09:20:00,454 - Image.py[line:391] - DEBUG: Importing XpmImagePlugin
+2018-01-17 09:20:00,456 - Image.py[line:391] - DEBUG: Importing XVThumbImagePlugin
+2018-01-17 09:42:04,564 - base.py[line:144] - INFO: Job "job_load2reids (trigger: cron[hour='9', minute='20'], next run at: 2018-01-18 09:20:00 CST)" executed successfully

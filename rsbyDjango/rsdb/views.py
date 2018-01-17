@@ -8,7 +8,7 @@ from datetime import datetime
 import redis
 import pickle
 from rsbyDjango import settings
-
+from data import model
 
 # Create your views here.
 
