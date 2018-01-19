@@ -116,9 +116,9 @@ def run():
         cron表达式：
         sched.add_job(my_job(), 'cron', hour=1, minute=00)
     '''
-    job1=sched.add_job(job_merageExcel,'cron',day=1, hour=1, minute=00)
+    # job1=sched.add_job(job_merageExcel,'cron',day=18, hour=17, minute=12)
     # # 经测试此种方式可行
-    job2=sched.add_job(job_load2reids,'cron', hour=9, minute=20)
+    job2=sched.add_job(job_load2reids,'cron', hour=17, minute=13)
     # 循坏任务
     # job3=sched.add_job(job_timerprint,trigger='interval', minute=10)
     sched._logger=Common.My_Log(logging.DEBUG,os.path.join(settings.LOG_DIR,'scheduler.log'))

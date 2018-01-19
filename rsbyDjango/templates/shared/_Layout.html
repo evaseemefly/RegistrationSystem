@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-{#    <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,200,500,600,700' rel='stylesheet' type='text/css'>#}
+    {#    <link href='http://fonts.googleapis.com/css?family=Raleway:400,300,200,500,600,700' rel='stylesheet' type='text/css'>#}
     <link href="/static/css/bootstrap/bootstrap.css" rel="stylesheet">
     <link href="/static/css/card/default.css" rel="stylesheet">
-{#    <link href="/static/css/card/font-aswesome.min.css" rel="stylesheet">#}
-{#    <link href="/static/css/card/font-aswesome.min.css" rel="stylesheet">#}
+    {#    <link href="/static/css/card/font-aswesome.min.css" rel="stylesheet">#}
+    {#    <link href="/static/css/card/font-aswesome.min.css" rel="stylesheet">#}
     <link href="http://cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
     <!-- 卡片样式-->
     <link href="/static/css/card/default.css" rel="stylesheet" type="text/css">
@@ -18,8 +18,8 @@
         	描述：
         	loading特效
         -->
-	<link rel="stylesheet" type="text/css" href="/static/css/loading/normalize.css" />
-	<link rel="stylesheet" type="text/css" href="/static/css/loading/demo.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/loading/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/loading/demo.css" />
     <!--必要样式-->
     <link rel="stylesheet" type="text/css" href="/static/css/loading/component.css" />
     <script src="/static/js/loading/snap.svg-min.js"></script>
@@ -34,9 +34,15 @@
         	时间：2018-01-12
         	描述：loading需要
         -->
-		<script src="/static/js/loading/classie.js"></script>
-		<script src="/static/js/loading/svgLoader.js"></script>
+    <script src="/static/js/loading/classie.js"></script>
+    <script src="/static/js/loading/svgLoader.js"></script>
+
+    <!--
+        flatui需要
+    -->
+    <link rel="stylesheet" type="text/css" href="/static/css/flatui/flat-ui.css" />
     <style type="text/css">
+
 
         html {
             position: relative;
@@ -55,50 +61,63 @@
             font-weight: 200;
         }
         #loader{
-				z-index: 1000;
-			}
+            z-index: 1000;
+        }
     </style>
 </head>
 <body>
-	<div id="pagewrap" class="htmleaf-container">
-		<header class="htmleaf-header">
-			<h1>国家海洋环境预报中心 <span>九楼值班平台</span></h1>
-		</header>
-        <div >
-{#            { % block content %}#}
-{#            { %  endblock %}#}
-            {% block content %}
-            {% endblock %}
-        </div>
-	</div>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        {#    <div class="navbar-header">#}
+        {#      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">#}
+        {#        <span class="sr-only">Toggle navigation</span>#}
+        {#        <span class="icon-bar"></span>#}
+        {#        <span class="icon-bar"></span>#}
+        {#        <span class="icon-bar"></span>#}
+        {#      </button>#}
+        <a class="navbar-brand" href="#">国家海洋环境预报中心 &nbsp; 九楼值班平台</a>
+    </div>
+</nav>
+<div id="pagewrap" class="htmleaf-container" style="margin-top: 40px;">
+    {#		<header class="htmleaf-header">#}
+    {#			<h1>国家海洋环境预报中心 <span>九楼值班平台</span></h1>#}
+    {#		</header>#}
+    <div >
+        {#            { % block content %}#}
+        {#            { %  endblock %}#}
+        {% block content %}
+        {% endblock %}
+    </div>
+</div>
 
-    <script>
-     {#    $(function() {#}
-	{#        $('.material-card').materialCard({#}
-	{#            icon_close: 'fa-chevron-left',#}
-	{#            icon_open: 'fa-thumbs-o-up',#}
-	{#            icon_spin: 'fa-spin-fast',#}
-	{#            card_activator: 'click'#}
-	{#        });#}
+<script>
+    {#    $(function() {#}
+    {#        $('.material-card').materialCard({#}
+    {#            icon_close: 'fa-chevron-left',#}
+    {#            icon_open: 'fa-thumbs-o-up',#}
+    {#            icon_spin: 'fa-spin-fast',#}
+    {#            card_activator: 'click'#}
+    {#        });#}
     {##}
-	{#//        $('.active-with-click .material-card').materialCard();#}
+    {#//        $('.active-with-click .material-card').materialCard();#}
     {##}
-	{#        window.setTimeout(function() {#}
-	{#            $('.material-card:eq(1)').materialCard('open');#}
-	{#        }, 2000);#}
+    {#        window.setTimeout(function() {#}
+    {#            $('.material-card:eq(1)').materialCard('open');#}
+    {#        }, 2000);#}
     {##}
-	{#        $('.material-card').on('shown.material-card show.material-card hide.material-card hidden.material-card', function (event) {#}
-	{#            console.log(event.type, event.namespace, $(this));#}
-	{#        });#}
+    {#        $('.material-card').on('shown.material-card show.material-card hide.material-card hidden.material-card', function (event) {#}
+    {#            console.log(event.type, event.namespace, $(this));#}
+    {#        });#}
     {##}
-	{#    });#}
-    </script>
-    {% block  bottom-js %}
+    {#    });#}
+</script>
+{% block  bottom-js %}
 
-    {% endblock %}
+{% endblock %}
 
-    {% block extendsjs %}
-    
-    {% endblock %}
+{% block extendsjs %}
+
+{% endblock %}
 </body>
 </html>
