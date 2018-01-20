@@ -1,50 +1,70 @@
 {% extends "shared/_Layout.html" %}
 
 {% block content %}
+    {#    <section>#}
     <section class="container">
-        <div class="page-header">
-            <h1>暂时不添加<br>
-                <small>测试测试</small></h1>
-        </div>
-        <div class="row active-with-click">
-            <div id="app">
-{#                以下段落不被django视图引擎渲染#}
-                {% verbatim myblock %}
-                <div v-for="item in items">
-                    <div class="col-md-4 col-sm-6 col-xs-12">
-                        <article class="material-card" v-bind:class="item.color">
-                            <h2>
+        {#        <div class="page-header">#}
+        {#            <h1>暂时不添加<br>#}
+        {#                <small>测试测试</small></h1>#}
+        {#        </div>#}
+        {#        <h2>时间时间</h2>#}
+        <div id="app">
+            <div class="row active-with-click">
+                <div >
+                    {#                以下段落不被django视图引擎渲染#}
+                    {#             {{ item.department }}-{{ item.group }}#}
+                    {#            <strong>#}
+                    {#                                    <i class="fa fa-fw fa-star"></i>#}
+                    {##}
+                    {#                                    {{ item.department }}#}
+                    {#                                </strong>#}
+                    {% verbatim myblock %}
+                        <div v-for="item in items">
+                            <div class="col-md-3 col-sm-6 col-xs-12">
+                                <article class="material-card" v-bind:class="item.color">
+                                    <h2>
                                 <span>
-                                     {{ item.name }}
+                                     {{ item.name }}&nbsp&nbsp{{ item.group }}
                                 </span>
-                                <strong>
-                                    <i class="fa fa-fw fa-star"></i>
-                                    {{ item.department }}
-                                </strong>
-                            </h2>
-                            <div class="mc-content">
 
-                                <div class="img-container">
-                                    <img class="img-responsive" src="/static/img/thumb-christopher-walken.jpg">
-                                </div>
-                                <div class="mc-description">
-                                    联系电话
-                                </div>
+                                        <strong>
+                                            <i class="fa fa-fw fa-star"></i>
+
+                                            {{ item.department }}
+                                        </strong>
+                                    </h2>
+                                    <div class="mc-content">
+
+                                        <div class="img-container">
+                                            <img class="img-responsive" v-bind:src="item.img_url">
+                                        </div>
+                                        <div class="mc-description">
+                                            联系电话
+                                        </div>
+                                    </div>
+
+                                </article>
                             </div>
+                        </div>
 
-                            <div class="mc-footer">
-                                <h4>
-                                    Social
-                                </h4>
-                            </div>
-                        </article>
-                    </div>
-                </div>
-                {% endverbatim myblock %}
-            </div>
-
+                        </div>
+                        </div>
+                        <div >
+                            <ul class="pagination">
+                                <li class="previous"><a href="#fakelink" class="fui-arrow-left"></a></li>
+                                <li v-for="n in footer_count" :class="{'active':n==page_index}"><a href="#fakelink">{{ n }}</a></li>
+                                <li class="next"><a href="#fakelink" class="fui-arrow-right"></a></li>
+                            </ul>
+                        </div> <!-- /pagination -->
+                    {% endverbatim myblock %}
         </div>
     </section>
+
+    {#     <ul v-for="n in count" class="pagination">#}
+    {#                                <li><a href="#fakelink">{{ n }}</a></li>#}
+    {##}
+    {#                            </ul> #}
+
     <div id="loader" class="pageload-overlay" data-opening="M -18 -26.90625 L -18 86.90625 L 98 86.90625 L 98 -26.90625 L -18 -26.90625 Z M 40 29.96875 C 40.01804 29.96875 40.03125 29.98196 40.03125 30 C 40.03125 30.01804 40.01804 30.03125 40 30.03125 C 39.98196 30.03125 39.96875 30.01804 39.96875 30 C 39.96875 29.98196 39.98196 29.96875 40 29.96875 Z">
         <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 80 60" preserveAspectRatio="xMidYMid slice">
             <path d="M -18 -26.90625 L -18 86.90625 L 98 86.90625 L 98 -26.90625 L -18 -26.90625 Z M 40 -25.6875 C 70.750092 -25.6875 95.6875 -0.7500919 95.6875 30 C 95.6875 60.750092 70.750092 85.6875 40 85.6875 C 9.2499078 85.6875 -15.6875 60.750092 -15.6875 30 C -15.6875 -0.7500919 9.2499078 -25.6875 40 -25.6875 Z" />
@@ -59,17 +79,30 @@
         dic["副班"] = "Deep-Purple"
         dic["警报班"] = "Pink"
 
-        function myrefresh(){
-            window.location.reload();
+        function consolelog (){
+            console.log("重复执行")
         }
 
-        $(function() {
+        function myrefresh(vm){
+            {#window.location.reload();#}
+            myloading()
+            getPersonList(vm)
+
+        }
+
+        function getPersonList(vm){
             var url = "data.json"
-            var vm
+            {#var vm#}
+             //当前页（从1开始）
+            var page_index=vm.$data.page_index
+            //当前页面显示的人员个数（页容积）
+            var page_count=vm.$data.page_count
+            //person list的长度
+            var pagelist_count
             //页面加载时ajax到获取人员list的方法
             $.ajax({
                 type: "GET",
-                url: "getPersonList",
+                url: "getPersonList?pagecount="+page_count+"&pageindex="+page_index,
                 dataType: "json",
                 success: function(data) {
                     //注意此时返回的data中包含now_date与persons
@@ -77,47 +110,91 @@
                     //分别取出时间与persons
                     now_date=data.now_date
                     persons=data.persons
+                    //获取person list长度
+                    pagelist_count=data.listcount
+                    //当前页码
+                    page_index=data.pageindex
+
+                    //总页数
+                    //丢弃小数部分,保留整数部分
+                    //count=parseInt(data.listcount/page_count)
+                    //向上取整,有小数就整数部分加1
+                    footer_count=Math.ceil(data.listcount/page_count)
                     $(persons).each(function(index, element) {
                         element.color = dic[element.job];
+                        element.img_url="/static/img/"+element.department+"/"+element.name+".jpg"
                         finial_objs.push(element)
                     })
+                    vm.$data.items=finial_objs
+                    vm.$data.page_index=page_index
+                    {#vm.$data.count=count#}
+                    vm.$data.pagelist_count=pagelist_count
+                    vm.$data.footer_count=footer_count
 
-                    //成功后解析
-                    vm = new Vue({
-                        el: '#app',
-                        data: {
-                            items: finial_objs
-                        }
-                    })
                 }
 
             })
+        }
 
-            var myloading = function() {
-                //				var pageWrap = document.getElementById('pagewrap')
-                //					pages = [].slice.call(pageWrap.querySelectorAll('div.container')),
-                //					currentPage = 0,
-                //					triggerLoading = [].slice.call(pageWrap.querySelectorAll('a.pageload-link')),
-                loader = new SVGLoader(document.getElementById('loader'), {
-                    speedIn: 300,
-                    easingIn: mina.easeinout
-                });
+        var myloading = function() {
+            //				var pageWrap = document.getElementById('pagewrap')
+            //					pages = [].slice.call(pageWrap.querySelectorAll('div.container')),
+            //					currentPage = 0,
+            //					triggerLoading = [].slice.call(pageWrap.querySelectorAll('a.pageload-link')),
+            loader = new SVGLoader(document.getElementById('loader'), {
+                speedIn: 300,
+                easingIn: mina.easeinout
+            });
 
-                loader.show();
-                // after some time hide loader
-                setTimeout(function() {
-                    loader.hide();
+            loader.show();
+            // after some time hide loader
+            setTimeout(function() {
+                loader.hide();
 
-                    //					classie.removeClass(pages[0], 'show');
-                    // update..
-                    //					currentPage = currentPage ? 0 : 1;
-                    //					classie.addClass(pages[0], 'show');
+                //					classie.removeClass(pages[0], 'show');
+                // update..
+                //					currentPage = currentPage ? 0 : 1;
+                //					classie.addClass(pages[0], 'show');
 
-                }, 2000);
-            }
-            myloading()
+            }, 2000);
+        }
 
-            //setTimeout(myrefresh(),60000)
+        $(function() {
+            //当前页面显示的人员个数（页容积）
+            var page_count=8
+            //当前页（从1开始）
+            var page_index=1
+            //person list的长度
+            var pagelist_count=0
+            //
+            var footer_count=2
+            var interval=10000
+            //成功后解析
+            vm = new Vue({
+                el: '#app',
+                data: {
+                    items: [],
+                    //当前页码
+                    page_index:page_index,
+                    //返回的person list的长度
+                    pagelist_count:pagelist_count,
+                    //页容积
+                    page_count:page_count,
+                    //foot的页数量
+                    footer_count:footer_count
+                }
+            })
+            getPersonList(vm)
+            {#getPersonList(vm)#}
+            {##}
+            {#myloading()#}
+
+            {#setInterval(myrefresh(vm),1000)#}
+            setInterval(function () {
+                 getPersonList(vm)
+                 myloading()
+            },interval)
+            {#setInterval(consolelog,1000)#}
         });
 
     </script>
