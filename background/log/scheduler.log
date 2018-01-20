@@ -1722,3 +1722,113 @@ FileNotFoundError: [WinError 3] 系统找不到指定的路径。: 'C:\\Users\\evase\\Docum
 2018-01-17 09:20:00,454 - Image.py[line:391] - DEBUG: Importing XpmImagePlugin
 2018-01-17 09:20:00,456 - Image.py[line:391] - DEBUG: Importing XVThumbImagePlugin
 2018-01-17 09:42:04,564 - base.py[line:144] - INFO: Job "job_load2reids (trigger: cron[hour='9', minute='20'], next run at: 2018-01-18 09:20:00 CST)" executed successfully
+2018-01-17 15:19:04,334 - base.py[line:865] - INFO: Added job "job_merageExcel" to job store "default"
+2018-01-17 15:19:04,335 - base.py[line:865] - INFO: Added job "job_load2reids" to job store "default"
+2018-01-17 15:19:04,335 - base.py[line:158] - INFO: Scheduler started
+2018-01-17 15:19:04,335 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-17 15:19:04,335 - base.py[line:1004] - DEBUG: Next wakeup is due at 2018-01-18 15:19:00+08:00 (in 86395.664150 seconds)
+2018-01-17 15:19:13,965 - base.py[line:865] - INFO: Added job "job_merageExcel" to job store "default"
+2018-01-17 15:19:13,966 - base.py[line:865] - INFO: Added job "job_load2reids" to job store "default"
+2018-01-17 15:19:13,966 - base.py[line:158] - INFO: Scheduler started
+2018-01-17 15:19:13,966 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-17 15:19:13,966 - base.py[line:1004] - DEBUG: Next wakeup is due at 2018-01-17 15:20:00+08:00 (in 46.033169 seconds)
+2018-01-17 15:20:00,004 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-17 15:20:00,011 - base.py[line:123] - INFO: Running job "job_load2reids (trigger: cron[hour='15', minute='20'], next run at: 2018-01-17 15:20:00 CST)" (scheduled at 2018-01-17 15:20:00+08:00)
+2018-01-17 15:20:00,016 - base.py[line:1004] - DEBUG: Next wakeup is due at 2018-01-18 15:20:00+08:00 (in 86399.994396 seconds)
+2018-01-17 15:20:00,278 - Image.py[line:391] - DEBUG: Importing BmpImagePlugin
+2018-01-17 15:20:00,284 - Image.py[line:391] - DEBUG: Importing BufrStubImagePlugin
+2018-01-17 15:20:00,285 - Image.py[line:391] - DEBUG: Importing CurImagePlugin
+2018-01-17 15:20:00,286 - Image.py[line:391] - DEBUG: Importing DcxImagePlugin
+2018-01-17 15:20:00,287 - Image.py[line:391] - DEBUG: Importing DdsImagePlugin
+2018-01-17 15:20:00,288 - Image.py[line:391] - DEBUG: Importing EpsImagePlugin
+2018-01-17 15:20:00,290 - Image.py[line:391] - DEBUG: Importing FitsStubImagePlugin
+2018-01-17 15:20:00,291 - Image.py[line:391] - DEBUG: Importing FliImagePlugin
+2018-01-17 15:20:00,292 - Image.py[line:391] - DEBUG: Importing FpxImagePlugin
+2018-01-17 15:20:00,295 - Image.py[line:391] - DEBUG: Importing FtexImagePlugin
+2018-01-17 15:20:00,295 - Image.py[line:391] - DEBUG: Importing GbrImagePlugin
+2018-01-17 15:20:00,296 - Image.py[line:391] - DEBUG: Importing GifImagePlugin
+2018-01-17 15:20:00,298 - Image.py[line:391] - DEBUG: Importing GribStubImagePlugin
+2018-01-17 15:20:00,298 - Image.py[line:391] - DEBUG: Importing Hdf5StubImagePlugin
+2018-01-17 15:20:00,299 - Image.py[line:391] - DEBUG: Importing IcnsImagePlugin
+2018-01-17 15:20:00,301 - Image.py[line:391] - DEBUG: Importing IcoImagePlugin
+2018-01-17 15:20:00,302 - Image.py[line:391] - DEBUG: Importing ImImagePlugin
+2018-01-17 15:20:00,304 - Image.py[line:391] - DEBUG: Importing ImtImagePlugin
+2018-01-17 15:20:00,305 - Image.py[line:391] - DEBUG: Importing IptcImagePlugin
+2018-01-17 15:20:00,306 - Image.py[line:391] - DEBUG: Importing JpegImagePlugin
+2018-01-17 15:20:00,312 - Image.py[line:391] - DEBUG: Importing Jpeg2KImagePlugin
+2018-01-17 15:20:00,313 - Image.py[line:391] - DEBUG: Importing McIdasImagePlugin
+2018-01-17 15:20:00,314 - Image.py[line:391] - DEBUG: Importing MicImagePlugin
+2018-01-17 15:20:00,314 - Image.py[line:391] - DEBUG: Importing MpegImagePlugin
+2018-01-17 15:20:00,315 - Image.py[line:391] - DEBUG: Importing MpoImagePlugin
+2018-01-17 15:20:00,316 - Image.py[line:391] - DEBUG: Importing MspImagePlugin
+2018-01-17 15:20:00,317 - Image.py[line:391] - DEBUG: Importing PalmImagePlugin
+2018-01-17 15:20:00,318 - Image.py[line:391] - DEBUG: Importing PcdImagePlugin
+2018-01-17 15:20:00,319 - Image.py[line:391] - DEBUG: Importing PcxImagePlugin
+2018-01-17 15:20:00,320 - Image.py[line:391] - DEBUG: Importing PdfImagePlugin
+2018-01-17 15:20:00,320 - Image.py[line:391] - DEBUG: Importing PixarImagePlugin
+2018-01-17 15:20:00,321 - Image.py[line:391] - DEBUG: Importing PngImagePlugin
+2018-01-17 15:20:00,321 - Image.py[line:391] - DEBUG: Importing PpmImagePlugin
+2018-01-17 15:20:00,322 - Image.py[line:391] - DEBUG: Importing PsdImagePlugin
+2018-01-17 15:20:00,323 - Image.py[line:391] - DEBUG: Importing SgiImagePlugin
+2018-01-17 15:20:00,324 - Image.py[line:391] - DEBUG: Importing SpiderImagePlugin
+2018-01-17 15:20:00,325 - Image.py[line:391] - DEBUG: Importing SunImagePlugin
+2018-01-17 15:20:00,326 - Image.py[line:391] - DEBUG: Importing TgaImagePlugin
+2018-01-17 15:20:00,327 - Image.py[line:391] - DEBUG: Importing TiffImagePlugin
+2018-01-17 15:20:00,327 - Image.py[line:391] - DEBUG: Importing WebPImagePlugin
+2018-01-17 15:20:00,328 - Image.py[line:394] - DEBUG: Image: failed to import WebPImagePlugin: cannot import name '_webp'
+2018-01-17 15:20:00,328 - Image.py[line:391] - DEBUG: Importing WmfImagePlugin
+2018-01-17 15:20:00,329 - Image.py[line:391] - DEBUG: Importing XbmImagePlugin
+2018-01-17 15:20:00,333 - Image.py[line:391] - DEBUG: Importing XpmImagePlugin
+2018-01-17 15:20:00,334 - Image.py[line:391] - DEBUG: Importing XVThumbImagePlugin
+2018-01-17 15:20:14,644 - base.py[line:131] - ERROR: Job "job_load2reids (trigger: cron[hour='15', minute='20'], next run at: 2018-01-18 15:20:00 CST)" raised an exception
+Traceback (most recent call last):
+  File "/Users/liusihan/anaconda3/lib/python3.6/site-packages/redis/connection.py", line 484, in connect
+    sock = self._connect()
+  File "/Users/liusihan/anaconda3/lib/python3.6/site-packages/redis/connection.py", line 541, in _connect
+    raise err
+  File "/Users/liusihan/anaconda3/lib/python3.6/site-packages/redis/connection.py", line 529, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 61] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/liusihan/anaconda3/lib/python3.6/site-packages/redis/client.py", line 667, in execute_command
+    connection.send_command(*args)
+  File "/Users/liusihan/anaconda3/lib/python3.6/site-packages/redis/connection.py", line 610, in send_command
+    self.send_packed_command(self.pack_command(*args))
+  File "/Users/liusihan/anaconda3/lib/python3.6/site-packages/redis/connection.py", line 585, in send_packed_command
+    self.connect()
+  File "/Users/liusihan/anaconda3/lib/python3.6/site-packages/redis/connection.py", line 489, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 61 connecting to 127.0.0.1:6379. Connection refused.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/liusihan/anaconda3/lib/python3.6/site-packages/redis/connection.py", line 484, in connect
+    sock = self._connect()
+  File "/Users/liusihan/anaconda3/lib/python3.6/site-packages/redis/connection.py", line 541, in _connect
+    raise err
+  File "/Users/liusihan/anaconda3/lib/python3.6/site-packages/redis/connection.py", line 529, in _connect
+    sock.connect(socket_address)
+ConnectionRefusedError: [Errno 61] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/liusihan/anaconda3/lib/python3.6/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "/Users/liusihan/Documents/GitHub/RegistrationSystem/background/core/Scheduler.py", line 103, in job_load2reids
+    r.set(settings.NAME_DaySavedInRedis, p1,ex=settings.REDIS_EX)
+  File "/Users/liusihan/anaconda3/lib/python3.6/site-packages/redis/client.py", line 1171, in set
+    return self.execute_command('SET', *pieces)
+  File "/Users/liusihan/anaconda3/lib/python3.6/site-packages/redis/client.py", line 673, in execute_command
+    connection.send_command(*args)
+  File "/Users/liusihan/anaconda3/lib/python3.6/site-packages/redis/connection.py", line 610, in send_command
+    self.send_packed_command(self.pack_command(*args))
+  File "/Users/liusihan/anaconda3/lib/python3.6/site-packages/redis/connection.py", line 585, in send_packed_command
+    self.connect()
+  File "/Users/liusihan/anaconda3/lib/python3.6/site-packages/redis/connection.py", line 489, in connect
+    raise ConnectionError(self._error_message(e))
+redis.exceptions.ConnectionError: Error 61 connecting to 127.0.0.1:6379. Connection refused.

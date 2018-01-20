@@ -8,8 +8,11 @@ BASE_DIR=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # TARGET_DIR_PATH=r"E:\03协同开发\九楼值班显示平台\result"
 
 #surface book
-FtpSourcePath=r"D:\git仓库\RegistrationSystem\background\ftpdir"
-TARGET_DIR_PATH=r"D:\git仓库\RegistrationSystem\background\result"
+# FtpSourcePath=r"D:\git仓库\RegistrationSystem\background\ftpdir"
+# TARGET_DIR_PATH=r"D:\git仓库\RegistrationSystem\background\result"
+FtpSourcePath=r"/Users/liusihan/Documents/GitHub/RegistrationSystem/background/ftpdir"
+TARGET_DIR_PATH=r"/Users/liusihan/Documents/GitHub/RegistrationSystem/background/result"
+
 
 #最终输出的文件的前缀
 RESULT_FILE_NAME='MERAGE_'
