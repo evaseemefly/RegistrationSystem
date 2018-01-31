@@ -1970,3 +1970,471 @@ FileNotFoundError: [Errno 2] No such file or directory: 'D:\\git²Ö¿â\\Registrati
 2018-01-18 17:13:00,397 - Image.py[line:391] - DEBUG: Importing XpmImagePlugin
 2018-01-18 17:13:00,399 - Image.py[line:391] - DEBUG: Importing XVThumbImagePlugin
 2018-01-18 17:13:02,854 - base.py[line:144] - INFO: Job "job_load2reids (trigger: cron[hour='17', minute='13'], next run at: 2018-01-19 17:13:00 CST)" executed successfully
+2018-01-23 16:59:22,109 - base.py[line:865] - INFO: Added job "job_load2reids" to job store "default"
+2018-01-23 16:59:22,110 - base.py[line:158] - INFO: Scheduler started
+2018-01-23 16:59:22,110 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-23 16:59:22,110 - base.py[line:1004] - DEBUG: Next wakeup is due at 2018-01-23 17:00:00+08:00 (in 37.889805 seconds)
+2018-01-23 17:00:00,002 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-23 17:00:00,013 - base.py[line:123] - INFO: Running job "job_load2reids (trigger: cron[hour='17', minute='0'], next run at: 2018-01-23 17:00:00 CST)" (scheduled at 2018-01-23 17:00:00+08:00)
+2018-01-23 17:00:00,021 - base.py[line:1004] - DEBUG: Next wakeup is due at 2018-01-24 17:00:00+08:00 (in 86399.993708 seconds)
+2018-01-23 17:00:00,858 - Image.py[line:391] - DEBUG: Importing BmpImagePlugin
+2018-01-23 17:00:00,986 - Image.py[line:391] - DEBUG: Importing BufrStubImagePlugin
+2018-01-23 17:00:00,988 - Image.py[line:391] - DEBUG: Importing CurImagePlugin
+2018-01-23 17:00:01,007 - Image.py[line:391] - DEBUG: Importing DcxImagePlugin
+2018-01-23 17:00:01,027 - Image.py[line:391] - DEBUG: Importing DdsImagePlugin
+2018-01-23 17:00:01,029 - Image.py[line:391] - DEBUG: Importing EpsImagePlugin
+2018-01-23 17:00:01,125 - Image.py[line:391] - DEBUG: Importing FitsStubImagePlugin
+2018-01-23 17:00:01,152 - Image.py[line:391] - DEBUG: Importing FliImagePlugin
+2018-01-23 17:00:01,155 - Image.py[line:391] - DEBUG: Importing FpxImagePlugin
+2018-01-23 17:00:01,229 - Image.py[line:391] - DEBUG: Importing FtexImagePlugin
+2018-01-23 17:00:01,249 - Image.py[line:391] - DEBUG: Importing GbrImagePlugin
+2018-01-23 17:00:01,251 - Image.py[line:391] - DEBUG: Importing GifImagePlugin
+2018-01-23 17:00:01,309 - Image.py[line:391] - DEBUG: Importing GribStubImagePlugin
+2018-01-23 17:00:01,311 - Image.py[line:391] - DEBUG: Importing Hdf5StubImagePlugin
+2018-01-23 17:00:01,323 - Image.py[line:391] - DEBUG: Importing IcnsImagePlugin
+2018-01-23 17:00:01,365 - Image.py[line:391] - DEBUG: Importing IcoImagePlugin
+2018-01-23 17:00:01,392 - Image.py[line:391] - DEBUG: Importing ImImagePlugin
+2018-01-23 17:00:01,398 - Image.py[line:391] - DEBUG: Importing ImtImagePlugin
+2018-01-23 17:00:01,401 - Image.py[line:391] - DEBUG: Importing IptcImagePlugin
+2018-01-23 17:00:01,416 - Image.py[line:391] - DEBUG: Importing JpegImagePlugin
+2018-01-23 17:00:01,502 - Image.py[line:391] - DEBUG: Importing Jpeg2KImagePlugin
+2018-01-23 17:00:01,534 - Image.py[line:391] - DEBUG: Importing McIdasImagePlugin
+2018-01-23 17:00:01,536 - Image.py[line:391] - DEBUG: Importing MicImagePlugin
+2018-01-23 17:00:01,556 - Image.py[line:391] - DEBUG: Importing MpegImagePlugin
+2018-01-23 17:00:01,558 - Image.py[line:391] - DEBUG: Importing MpoImagePlugin
+2018-01-23 17:00:01,560 - Image.py[line:391] - DEBUG: Importing MspImagePlugin
+2018-01-23 17:00:01,563 - Image.py[line:391] - DEBUG: Importing PalmImagePlugin
+2018-01-23 17:00:01,623 - Image.py[line:391] - DEBUG: Importing PcdImagePlugin
+2018-01-23 17:00:01,625 - Image.py[line:391] - DEBUG: Importing PcxImagePlugin
+2018-01-23 17:00:01,625 - Image.py[line:391] - DEBUG: Importing PdfImagePlugin
+2018-01-23 17:00:01,646 - Image.py[line:391] - DEBUG: Importing PixarImagePlugin
+2018-01-23 17:00:01,648 - Image.py[line:391] - DEBUG: Importing PngImagePlugin
+2018-01-23 17:00:01,648 - Image.py[line:391] - DEBUG: Importing PpmImagePlugin
+2018-01-23 17:00:01,650 - Image.py[line:391] - DEBUG: Importing PsdImagePlugin
+2018-01-23 17:00:01,659 - Image.py[line:391] - DEBUG: Importing SgiImagePlugin
+2018-01-23 17:00:01,664 - Image.py[line:391] - DEBUG: Importing SpiderImagePlugin
+2018-01-23 17:00:01,682 - Image.py[line:391] - DEBUG: Importing SunImagePlugin
+2018-01-23 17:00:01,684 - Image.py[line:391] - DEBUG: Importing TgaImagePlugin
+2018-01-23 17:00:01,699 - Image.py[line:391] - DEBUG: Importing TiffImagePlugin
+2018-01-23 17:00:01,700 - Image.py[line:391] - DEBUG: Importing WebPImagePlugin
+2018-01-23 17:00:01,702 - Image.py[line:394] - DEBUG: Image: failed to import WebPImagePlugin: cannot import name '_webp'
+2018-01-23 17:00:01,702 - Image.py[line:391] - DEBUG: Importing WmfImagePlugin
+2018-01-23 17:00:01,703 - Image.py[line:391] - DEBUG: Importing XbmImagePlugin
+2018-01-23 17:00:01,729 - Image.py[line:391] - DEBUG: Importing XpmImagePlugin
+2018-01-23 17:00:01,732 - Image.py[line:391] - DEBUG: Importing XVThumbImagePlugin
+2018-01-23 17:00:13,383 - base.py[line:144] - INFO: Job "job_load2reids (trigger: cron[hour='17', minute='0'], next run at: 2018-01-24 17:00:00 CST)" executed successfully
+2018-01-24 08:33:28,783 - base.py[line:865] - INFO: Added job "job_load2reids" to job store "default"
+2018-01-24 08:33:28,784 - base.py[line:158] - INFO: Scheduler started
+2018-01-24 08:33:28,784 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-24 08:33:28,784 - base.py[line:1004] - DEBUG: Next wakeup is due at 2018-01-24 08:34:00+08:00 (in 31.215437 seconds)
+2018-01-24 08:34:00,007 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-24 08:34:00,016 - base.py[line:1004] - DEBUG: Next wakeup is due at 2018-01-25 08:34:00+08:00 (in 86399.992320 seconds)
+2018-01-24 08:34:00,022 - base.py[line:123] - INFO: Running job "job_load2reids (trigger: cron[hour='8', minute='34'], next run at: 2018-01-25 08:34:00 CST)" (scheduled at 2018-01-24 08:34:00+08:00)
+2018-01-24 08:34:00,648 - Image.py[line:391] - DEBUG: Importing BmpImagePlugin
+2018-01-24 08:34:00,817 - Image.py[line:391] - DEBUG: Importing BufrStubImagePlugin
+2018-01-24 08:34:00,821 - Image.py[line:391] - DEBUG: Importing CurImagePlugin
+2018-01-24 08:34:00,839 - Image.py[line:391] - DEBUG: Importing DcxImagePlugin
+2018-01-24 08:34:00,866 - Image.py[line:391] - DEBUG: Importing DdsImagePlugin
+2018-01-24 08:34:00,870 - Image.py[line:391] - DEBUG: Importing EpsImagePlugin
+2018-01-24 08:34:00,946 - Image.py[line:391] - DEBUG: Importing FitsStubImagePlugin
+2018-01-24 08:34:00,966 - Image.py[line:391] - DEBUG: Importing FliImagePlugin
+2018-01-24 08:34:00,968 - Image.py[line:391] - DEBUG: Importing FpxImagePlugin
+2018-01-24 08:34:01,053 - Image.py[line:391] - DEBUG: Importing FtexImagePlugin
+2018-01-24 08:34:01,072 - Image.py[line:391] - DEBUG: Importing GbrImagePlugin
+2018-01-24 08:34:01,076 - Image.py[line:391] - DEBUG: Importing GifImagePlugin
+2018-01-24 08:34:01,140 - Image.py[line:391] - DEBUG: Importing GribStubImagePlugin
+2018-01-24 08:34:01,141 - Image.py[line:391] - DEBUG: Importing Hdf5StubImagePlugin
+2018-01-24 08:34:01,154 - Image.py[line:391] - DEBUG: Importing IcnsImagePlugin
+2018-01-24 08:34:01,196 - Image.py[line:391] - DEBUG: Importing IcoImagePlugin
+2018-01-24 08:34:01,223 - Image.py[line:391] - DEBUG: Importing ImImagePlugin
+2018-01-24 08:34:01,226 - Image.py[line:391] - DEBUG: Importing ImtImagePlugin
+2018-01-24 08:34:01,228 - Image.py[line:391] - DEBUG: Importing IptcImagePlugin
+2018-01-24 08:34:01,247 - Image.py[line:391] - DEBUG: Importing JpegImagePlugin
+2018-01-24 08:34:01,340 - Image.py[line:391] - DEBUG: Importing Jpeg2KImagePlugin
+2018-01-24 08:34:01,365 - Image.py[line:391] - DEBUG: Importing McIdasImagePlugin
+2018-01-24 08:34:01,369 - Image.py[line:391] - DEBUG: Importing MicImagePlugin
+2018-01-24 08:34:01,386 - Image.py[line:391] - DEBUG: Importing MpegImagePlugin
+2018-01-24 08:34:01,388 - Image.py[line:391] - DEBUG: Importing MpoImagePlugin
+2018-01-24 08:34:01,390 - Image.py[line:391] - DEBUG: Importing MspImagePlugin
+2018-01-24 08:34:01,392 - Image.py[line:391] - DEBUG: Importing PalmImagePlugin
+2018-01-24 08:34:01,446 - Image.py[line:391] - DEBUG: Importing PcdImagePlugin
+2018-01-24 08:34:01,448 - Image.py[line:391] - DEBUG: Importing PcxImagePlugin
+2018-01-24 08:34:01,448 - Image.py[line:391] - DEBUG: Importing PdfImagePlugin
+2018-01-24 08:34:01,469 - Image.py[line:391] - DEBUG: Importing PixarImagePlugin
+2018-01-24 08:34:01,471 - Image.py[line:391] - DEBUG: Importing PngImagePlugin
+2018-01-24 08:34:01,471 - Image.py[line:391] - DEBUG: Importing PpmImagePlugin
+2018-01-24 08:34:01,474 - Image.py[line:391] - DEBUG: Importing PsdImagePlugin
+2018-01-24 08:34:01,482 - Image.py[line:391] - DEBUG: Importing SgiImagePlugin
+2018-01-24 08:34:01,483 - Image.py[line:391] - DEBUG: Importing SpiderImagePlugin
+2018-01-24 08:34:01,505 - Image.py[line:391] - DEBUG: Importing SunImagePlugin
+2018-01-24 08:34:01,507 - Image.py[line:391] - DEBUG: Importing TgaImagePlugin
+2018-01-24 08:34:01,522 - Image.py[line:391] - DEBUG: Importing TiffImagePlugin
+2018-01-24 08:34:01,522 - Image.py[line:391] - DEBUG: Importing WebPImagePlugin
+2018-01-24 08:34:01,525 - Image.py[line:394] - DEBUG: Image: failed to import WebPImagePlugin: cannot import name '_webp'
+2018-01-24 08:34:01,525 - Image.py[line:391] - DEBUG: Importing WmfImagePlugin
+2018-01-24 08:34:01,527 - Image.py[line:391] - DEBUG: Importing XbmImagePlugin
+2018-01-24 08:34:01,552 - Image.py[line:391] - DEBUG: Importing XpmImagePlugin
+2018-01-24 08:34:01,562 - Image.py[line:391] - DEBUG: Importing XVThumbImagePlugin
+2018-01-24 09:54:36,785 - base.py[line:865] - INFO: Added job "job_load2reids" to job store "default"
+2018-01-24 09:54:36,787 - base.py[line:158] - INFO: Scheduler started
+2018-01-24 09:54:36,787 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-24 09:54:36,787 - base.py[line:1004] - DEBUG: Next wakeup is due at 2018-01-24 09:55:00+08:00 (in 23.212411 seconds)
+2018-01-24 09:55:00,011 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-24 09:55:00,020 - base.py[line:1004] - DEBUG: Next wakeup is due at 2018-01-25 09:55:00+08:00 (in 86399.987917 seconds)
+2018-01-24 09:55:00,017 - base.py[line:123] - INFO: Running job "job_load2reids (trigger: cron[hour='9', minute='55'], next run at: 2018-01-25 09:55:00 CST)" (scheduled at 2018-01-24 09:55:00+08:00)
+2018-01-24 09:55:00,603 - Image.py[line:391] - DEBUG: Importing BmpImagePlugin
+2018-01-24 09:55:00,730 - Image.py[line:391] - DEBUG: Importing BufrStubImagePlugin
+2018-01-24 09:55:00,732 - Image.py[line:391] - DEBUG: Importing CurImagePlugin
+2018-01-24 09:55:00,752 - Image.py[line:391] - DEBUG: Importing DcxImagePlugin
+2018-01-24 09:55:00,771 - Image.py[line:391] - DEBUG: Importing DdsImagePlugin
+2018-01-24 09:55:00,773 - Image.py[line:391] - DEBUG: Importing EpsImagePlugin
+2018-01-24 09:55:00,853 - Image.py[line:391] - DEBUG: Importing FitsStubImagePlugin
+2018-01-24 09:55:00,880 - Image.py[line:391] - DEBUG: Importing FliImagePlugin
+2018-01-24 09:55:00,882 - Image.py[line:391] - DEBUG: Importing FpxImagePlugin
+2018-01-24 09:55:00,948 - Image.py[line:391] - DEBUG: Importing FtexImagePlugin
+2018-01-24 09:55:00,969 - Image.py[line:391] - DEBUG: Importing GbrImagePlugin
+2018-01-24 09:55:00,971 - Image.py[line:391] - DEBUG: Importing GifImagePlugin
+2018-01-24 09:55:01,028 - Image.py[line:391] - DEBUG: Importing GribStubImagePlugin
+2018-01-24 09:55:01,030 - Image.py[line:391] - DEBUG: Importing Hdf5StubImagePlugin
+2018-01-24 09:55:01,043 - Image.py[line:391] - DEBUG: Importing IcnsImagePlugin
+2018-01-24 09:55:01,084 - Image.py[line:391] - DEBUG: Importing IcoImagePlugin
+2018-01-24 09:55:01,111 - Image.py[line:391] - DEBUG: Importing ImImagePlugin
+2018-01-24 09:55:01,114 - Image.py[line:391] - DEBUG: Importing ImtImagePlugin
+2018-01-24 09:55:01,116 - Image.py[line:391] - DEBUG: Importing IptcImagePlugin
+2018-01-24 09:55:01,135 - Image.py[line:391] - DEBUG: Importing JpegImagePlugin
+2018-01-24 09:55:01,230 - Image.py[line:391] - DEBUG: Importing Jpeg2KImagePlugin
+2018-01-24 09:55:01,261 - Image.py[line:391] - DEBUG: Importing McIdasImagePlugin
+2018-01-24 09:55:01,265 - Image.py[line:391] - DEBUG: Importing MicImagePlugin
+2018-01-24 09:55:01,284 - Image.py[line:391] - DEBUG: Importing MpegImagePlugin
+2018-01-24 09:55:01,285 - Image.py[line:391] - DEBUG: Importing MpoImagePlugin
+2018-01-24 09:55:01,289 - Image.py[line:391] - DEBUG: Importing MspImagePlugin
+2018-01-24 09:55:01,295 - Image.py[line:391] - DEBUG: Importing PalmImagePlugin
+2018-01-24 09:55:01,321 - Image.py[line:391] - DEBUG: Importing PcdImagePlugin
+2018-01-24 09:55:01,324 - Image.py[line:391] - DEBUG: Importing PcxImagePlugin
+2018-01-24 09:55:01,324 - Image.py[line:391] - DEBUG: Importing PdfImagePlugin
+2018-01-24 09:55:01,332 - Image.py[line:391] - DEBUG: Importing PixarImagePlugin
+2018-01-24 09:55:01,335 - Image.py[line:391] - DEBUG: Importing PngImagePlugin
+2018-01-24 09:55:01,335 - Image.py[line:391] - DEBUG: Importing PpmImagePlugin
+2018-01-24 09:55:01,337 - Image.py[line:391] - DEBUG: Importing PsdImagePlugin
+2018-01-24 09:55:01,345 - Image.py[line:391] - DEBUG: Importing SgiImagePlugin
+2018-01-24 09:55:01,347 - Image.py[line:391] - DEBUG: Importing SpiderImagePlugin
+2018-01-24 09:55:01,368 - Image.py[line:391] - DEBUG: Importing SunImagePlugin
+2018-01-24 09:55:01,370 - Image.py[line:391] - DEBUG: Importing TgaImagePlugin
+2018-01-24 09:55:01,386 - Image.py[line:391] - DEBUG: Importing TiffImagePlugin
+2018-01-24 09:55:01,386 - Image.py[line:391] - DEBUG: Importing WebPImagePlugin
+2018-01-24 09:55:01,388 - Image.py[line:394] - DEBUG: Image: failed to import WebPImagePlugin: cannot import name '_webp'
+2018-01-24 09:55:01,388 - Image.py[line:391] - DEBUG: Importing WmfImagePlugin
+2018-01-24 09:55:01,390 - Image.py[line:391] - DEBUG: Importing XbmImagePlugin
+2018-01-24 09:55:01,414 - Image.py[line:391] - DEBUG: Importing XpmImagePlugin
+2018-01-24 09:55:01,418 - Image.py[line:391] - DEBUG: Importing XVThumbImagePlugin
+2018-01-25 15:49:24,035 - base.py[line:865] - INFO: Added job "job_merageExcel" to job store "default"
+2018-01-25 15:49:24,046 - base.py[line:158] - INFO: Scheduler started
+2018-01-25 15:49:24,046 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-25 15:49:24,047 - base.py[line:1004] - DEBUG: Next wakeup is due at 2018-01-25 15:50:00+08:00 (in 35.952731 seconds)
+2018-01-25 15:50:00,007 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-25 15:50:00,017 - base.py[line:1004] - DEBUG: Next wakeup is due at 2018-02-25 15:50:00+08:00 (in 2678399.991906 seconds)
+2018-01-25 15:50:00,025 - base.py[line:123] - INFO: Running job "job_merageExcel (trigger: cron[day='25', hour='15', minute='50'], next run at: 2018-02-25 15:50:00 CST)" (scheduled at 2018-01-25 15:50:00+08:00)
+2018-01-25 15:50:00,189 - base.py[line:131] - ERROR: Job "job_merageExcel (trigger: cron[day='25', hour='15', minute='50'], next run at: 2018-02-25 15:50:00 CST)" raised an exception
+Traceback (most recent call last):
+  File "D:\MyPogram\lib\site-packages\apscheduler\executors\base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "D:\git²Ö¿â\RegistrationSystem\background\core\Scheduler.py", line 43, in job_merageExcel
+    result = excel_operate.build()
+  File "D:\git²Ö¿â\RegistrationSystem\background\core\FileInfo.py", line 48, in build
+    result= engineer.construct_derpartmentData(self,target_date,self.ftpdirpath,derpartment_name)
+  File "D:\git²Ö¿â\RegistrationSystem\background\core\FileInfo.py", line 89, in construct_derpartmentData
+    result_dataframe= self.builder.readExcelColumns(final_path,name)
+  File "D:\git²Ö¿â\RegistrationSystem\background\core\FileInfo.py", line 149, in readExcelColumns
+    read_data = pd.read_excel(path, sheetname=0, header=None)
+  File "D:\MyPogram\lib\site-packages\pandas\io\excel.py", line 203, in read_excel
+    io = ExcelFile(io, engine=engine)
+  File "D:\MyPogram\lib\site-packages\pandas\io\excel.py", line 260, in __init__
+    self.book = xlrd.open_workbook(io)
+  File "D:\MyPogram\lib\site-packages\xlrd\__init__.py", line 116, in open_workbook
+    with open(filename, "rb") as f:
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\git²Ö¿â\\RegistrationSystem\\background\\ftpdir\\9Â¥Öµ°àÆ½Ì¨ÑùÀý±í.xlsx\\2018\\01\\201801.xlsx'
+2018-01-25 15:50:59,421 - base.py[line:865] - INFO: Added job "job_merageExcel" to job store "default"
+2018-01-25 15:50:59,422 - base.py[line:158] - INFO: Scheduler started
+2018-01-25 15:50:59,422 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-25 15:50:59,423 - base.py[line:1004] - DEBUG: Next wakeup is due at 2018-01-25 15:51:00+08:00 (in 0.576692 seconds)
+2018-01-25 15:51:00,001 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-25 15:51:00,008 - base.py[line:1004] - DEBUG: Next wakeup is due at 2018-02-25 15:51:00+08:00 (in 2678399.997970 seconds)
+2018-01-25 15:51:00,009 - base.py[line:123] - INFO: Running job "job_merageExcel (trigger: cron[day='25', hour='15', minute='51'], next run at: 2018-02-25 15:51:00 CST)" (scheduled at 2018-01-25 15:51:00+08:00)
+2018-01-25 15:51:00,061 - base.py[line:131] - ERROR: Job "job_merageExcel (trigger: cron[day='25', hour='15', minute='51'], next run at: 2018-02-25 15:51:00 CST)" raised an exception
+Traceback (most recent call last):
+  File "D:\MyPogram\lib\site-packages\apscheduler\executors\base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "D:\git²Ö¿â\RegistrationSystem\background\core\Scheduler.py", line 43, in job_merageExcel
+    result = excel_operate.build()
+  File "D:\git²Ö¿â\RegistrationSystem\background\core\FileInfo.py", line 48, in build
+    result= engineer.construct_derpartmentData(self,target_date,self.ftpdirpath,derpartment_name)
+  File "D:\git²Ö¿â\RegistrationSystem\background\core\FileInfo.py", line 89, in construct_derpartmentData
+    result_dataframe= self.builder.readExcelColumns(final_path,name)
+  File "D:\git²Ö¿â\RegistrationSystem\background\core\FileInfo.py", line 149, in readExcelColumns
+    read_data = pd.read_excel(path, sheetname=0, header=None)
+  File "D:\MyPogram\lib\site-packages\pandas\io\excel.py", line 203, in read_excel
+    io = ExcelFile(io, engine=engine)
+  File "D:\MyPogram\lib\site-packages\pandas\io\excel.py", line 260, in __init__
+    self.book = xlrd.open_workbook(io)
+  File "D:\MyPogram\lib\site-packages\xlrd\__init__.py", line 116, in open_workbook
+    with open(filename, "rb") as f:
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\git²Ö¿â\\RegistrationSystem\\background\\ftpdir\\9Â¥Öµ°àÆ½Ì¨ÑùÀý±í.xlsx\\2018\\01\\201801.xlsx'
+2018-01-25 15:53:40,642 - base.py[line:865] - INFO: Added job "job_merageExcel" to job store "default"
+2018-01-25 15:53:40,643 - base.py[line:158] - INFO: Scheduler started
+2018-01-25 15:53:40,644 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-25 15:53:40,644 - base.py[line:1004] - DEBUG: Next wakeup is due at 2018-02-25 15:53:00+08:00 (in 2678359.355146 seconds)
+2018-01-25 15:54:29,704 - base.py[line:865] - INFO: Added job "job_merageExcel" to job store "default"
+2018-01-25 15:54:29,705 - base.py[line:158] - INFO: Scheduler started
+2018-01-25 15:54:29,705 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-25 15:54:29,705 - base.py[line:1004] - DEBUG: Next wakeup is due at 2018-01-25 15:55:00+08:00 (in 30.294568 seconds)
+2018-01-25 15:55:00,000 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-25 15:55:00,016 - base.py[line:1004] - DEBUG: Next wakeup is due at 2018-02-25 15:55:00+08:00 (in 2678399.999290 seconds)
+2018-01-25 15:55:00,021 - base.py[line:123] - INFO: Running job "job_merageExcel (trigger: cron[day='25', hour='15', minute='55'], next run at: 2018-02-25 15:55:00 CST)" (scheduled at 2018-01-25 15:55:00+08:00)
+2018-01-25 15:55:00,548 - Image.py[line:391] - DEBUG: Importing BmpImagePlugin
+2018-01-25 15:55:00,689 - Image.py[line:391] - DEBUG: Importing BufrStubImagePlugin
+2018-01-25 15:55:00,693 - Image.py[line:391] - DEBUG: Importing CurImagePlugin
+2018-01-25 15:55:00,702 - Image.py[line:391] - DEBUG: Importing DcxImagePlugin
+2018-01-25 15:55:00,721 - Image.py[line:391] - DEBUG: Importing DdsImagePlugin
+2018-01-25 15:55:00,725 - Image.py[line:391] - DEBUG: Importing EpsImagePlugin
+2018-01-25 15:55:00,842 - Image.py[line:391] - DEBUG: Importing FitsStubImagePlugin
+2018-01-25 15:55:00,862 - Image.py[line:391] - DEBUG: Importing FliImagePlugin
+2018-01-25 15:55:00,865 - Image.py[line:391] - DEBUG: Importing FpxImagePlugin
+2018-01-25 15:55:00,924 - Image.py[line:391] - DEBUG: Importing FtexImagePlugin
+2018-01-25 15:55:00,943 - Image.py[line:391] - DEBUG: Importing GbrImagePlugin
+2018-01-25 15:55:00,947 - Image.py[line:391] - DEBUG: Importing GifImagePlugin
+2018-01-25 15:55:01,004 - Image.py[line:391] - DEBUG: Importing GribStubImagePlugin
+2018-01-25 15:55:01,007 - Image.py[line:391] - DEBUG: Importing Hdf5StubImagePlugin
+2018-01-25 15:55:01,018 - Image.py[line:391] - DEBUG: Importing IcnsImagePlugin
+2018-01-25 15:55:01,054 - Image.py[line:391] - DEBUG: Importing IcoImagePlugin
+2018-01-25 15:55:01,087 - Image.py[line:391] - DEBUG: Importing ImImagePlugin
+2018-01-25 15:55:01,093 - Image.py[line:391] - DEBUG: Importing ImtImagePlugin
+2018-01-25 15:55:01,097 - Image.py[line:391] - DEBUG: Importing IptcImagePlugin
+2018-01-25 15:55:01,110 - Image.py[line:391] - DEBUG: Importing JpegImagePlugin
+2018-01-25 15:55:01,189 - Image.py[line:391] - DEBUG: Importing Jpeg2KImagePlugin
+2018-01-25 15:55:01,212 - Image.py[line:391] - DEBUG: Importing McIdasImagePlugin
+2018-01-25 15:55:01,214 - Image.py[line:391] - DEBUG: Importing MicImagePlugin
+2018-01-25 15:55:01,224 - Image.py[line:391] - DEBUG: Importing MpegImagePlugin
+2018-01-25 15:55:01,226 - Image.py[line:391] - DEBUG: Importing MpoImagePlugin
+2018-01-25 15:55:01,228 - Image.py[line:391] - DEBUG: Importing MspImagePlugin
+2018-01-25 15:55:01,232 - Image.py[line:391] - DEBUG: Importing PalmImagePlugin
+2018-01-25 15:55:01,275 - Image.py[line:391] - DEBUG: Importing PcdImagePlugin
+2018-01-25 15:55:01,277 - Image.py[line:391] - DEBUG: Importing PcxImagePlugin
+2018-01-25 15:55:01,278 - Image.py[line:391] - DEBUG: Importing PdfImagePlugin
+2018-01-25 15:55:01,300 - Image.py[line:391] - DEBUG: Importing PixarImagePlugin
+2018-01-25 15:55:01,304 - Image.py[line:391] - DEBUG: Importing PngImagePlugin
+2018-01-25 15:55:01,304 - Image.py[line:391] - DEBUG: Importing PpmImagePlugin
+2018-01-25 15:55:01,307 - Image.py[line:391] - DEBUG: Importing PsdImagePlugin
+2018-01-25 15:55:01,317 - Image.py[line:391] - DEBUG: Importing SgiImagePlugin
+2018-01-25 15:55:01,322 - Image.py[line:391] - DEBUG: Importing SpiderImagePlugin
+2018-01-25 15:55:01,335 - Image.py[line:391] - DEBUG: Importing SunImagePlugin
+2018-01-25 15:55:01,337 - Image.py[line:391] - DEBUG: Importing TgaImagePlugin
+2018-01-25 15:55:01,352 - Image.py[line:391] - DEBUG: Importing TiffImagePlugin
+2018-01-25 15:55:01,353 - Image.py[line:391] - DEBUG: Importing WebPImagePlugin
+2018-01-25 15:55:01,356 - Image.py[line:394] - DEBUG: Image: failed to import WebPImagePlugin: cannot import name '_webp'
+2018-01-25 15:55:01,356 - Image.py[line:391] - DEBUG: Importing WmfImagePlugin
+2018-01-25 15:55:01,358 - Image.py[line:391] - DEBUG: Importing XbmImagePlugin
+2018-01-25 15:55:01,381 - Image.py[line:391] - DEBUG: Importing XpmImagePlugin
+2018-01-25 15:55:01,384 - Image.py[line:391] - DEBUG: Importing XVThumbImagePlugin
+2018-01-25 15:56:15,340 - base.py[line:865] - INFO: Added job "job_merageExcel" to job store "default"
+2018-01-25 15:56:15,341 - base.py[line:158] - INFO: Scheduler started
+2018-01-25 15:56:15,342 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-25 15:56:15,342 - base.py[line:1004] - DEBUG: Next wakeup is due at 2018-01-25 15:57:00+08:00 (in 44.657405 seconds)
+2018-01-25 15:57:00,016 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-25 15:57:00,029 - base.py[line:1004] - DEBUG: Next wakeup is due at 2018-02-25 15:57:00+08:00 (in 2678399.981768 seconds)
+2018-01-25 15:57:00,032 - base.py[line:123] - INFO: Running job "job_merageExcel (trigger: cron[day='25', hour='15', minute='57'], next run at: 2018-02-25 15:57:00 CST)" (scheduled at 2018-01-25 15:57:00+08:00)
+2018-01-25 15:57:00,179 - Image.py[line:391] - DEBUG: Importing BmpImagePlugin
+2018-01-25 15:57:00,189 - Image.py[line:391] - DEBUG: Importing BufrStubImagePlugin
+2018-01-25 15:57:00,193 - Image.py[line:391] - DEBUG: Importing CurImagePlugin
+2018-01-25 15:57:00,195 - Image.py[line:391] - DEBUG: Importing DcxImagePlugin
+2018-01-25 15:57:00,197 - Image.py[line:391] - DEBUG: Importing DdsImagePlugin
+2018-01-25 15:57:00,198 - Image.py[line:391] - DEBUG: Importing EpsImagePlugin
+2018-01-25 15:57:00,256 - Image.py[line:391] - DEBUG: Importing FitsStubImagePlugin
+2018-01-25 15:57:00,257 - Image.py[line:391] - DEBUG: Importing FliImagePlugin
+2018-01-25 15:57:00,258 - Image.py[line:391] - DEBUG: Importing FpxImagePlugin
+2018-01-25 15:57:00,263 - Image.py[line:391] - DEBUG: Importing FtexImagePlugin
+2018-01-25 15:57:00,264 - Image.py[line:391] - DEBUG: Importing GbrImagePlugin
+2018-01-25 15:57:00,268 - Image.py[line:391] - DEBUG: Importing GifImagePlugin
+2018-01-25 15:57:00,271 - Image.py[line:391] - DEBUG: Importing GribStubImagePlugin
+2018-01-25 15:57:00,272 - Image.py[line:391] - DEBUG: Importing Hdf5StubImagePlugin
+2018-01-25 15:57:00,273 - Image.py[line:391] - DEBUG: Importing IcnsImagePlugin
+2018-01-25 15:57:00,276 - Image.py[line:391] - DEBUG: Importing IcoImagePlugin
+2018-01-25 15:57:00,277 - Image.py[line:391] - DEBUG: Importing ImImagePlugin
+2018-01-25 15:57:00,279 - Image.py[line:391] - DEBUG: Importing ImtImagePlugin
+2018-01-25 15:57:00,280 - Image.py[line:391] - DEBUG: Importing IptcImagePlugin
+2018-01-25 15:57:00,281 - Image.py[line:391] - DEBUG: Importing JpegImagePlugin
+2018-01-25 15:57:00,287 - Image.py[line:391] - DEBUG: Importing Jpeg2KImagePlugin
+2018-01-25 15:57:00,288 - Image.py[line:391] - DEBUG: Importing McIdasImagePlugin
+2018-01-25 15:57:00,289 - Image.py[line:391] - DEBUG: Importing MicImagePlugin
+2018-01-25 15:57:00,290 - Image.py[line:391] - DEBUG: Importing MpegImagePlugin
+2018-01-25 15:57:00,292 - Image.py[line:391] - DEBUG: Importing MpoImagePlugin
+2018-01-25 15:57:00,293 - Image.py[line:391] - DEBUG: Importing MspImagePlugin
+2018-01-25 15:57:00,294 - Image.py[line:391] - DEBUG: Importing PalmImagePlugin
+2018-01-25 15:57:00,296 - Image.py[line:391] - DEBUG: Importing PcdImagePlugin
+2018-01-25 15:57:00,297 - Image.py[line:391] - DEBUG: Importing PcxImagePlugin
+2018-01-25 15:57:00,297 - Image.py[line:391] - DEBUG: Importing PdfImagePlugin
+2018-01-25 15:57:00,298 - Image.py[line:391] - DEBUG: Importing PixarImagePlugin
+2018-01-25 15:57:00,299 - Image.py[line:391] - DEBUG: Importing PngImagePlugin
+2018-01-25 15:57:00,300 - Image.py[line:391] - DEBUG: Importing PpmImagePlugin
+2018-01-25 15:57:00,301 - Image.py[line:391] - DEBUG: Importing PsdImagePlugin
+2018-01-25 15:57:00,302 - Image.py[line:391] - DEBUG: Importing SgiImagePlugin
+2018-01-25 15:57:00,303 - Image.py[line:391] - DEBUG: Importing SpiderImagePlugin
+2018-01-25 15:57:00,304 - Image.py[line:391] - DEBUG: Importing SunImagePlugin
+2018-01-25 15:57:00,305 - Image.py[line:391] - DEBUG: Importing TgaImagePlugin
+2018-01-25 15:57:00,305 - Image.py[line:391] - DEBUG: Importing TiffImagePlugin
+2018-01-25 15:57:00,306 - Image.py[line:391] - DEBUG: Importing WebPImagePlugin
+2018-01-25 15:57:00,307 - Image.py[line:394] - DEBUG: Image: failed to import WebPImagePlugin: cannot import name '_webp'
+2018-01-25 15:57:00,307 - Image.py[line:391] - DEBUG: Importing WmfImagePlugin
+2018-01-25 15:57:00,308 - Image.py[line:391] - DEBUG: Importing XbmImagePlugin
+2018-01-25 15:57:00,312 - Image.py[line:391] - DEBUG: Importing XpmImagePlugin
+2018-01-25 15:57:00,314 - Image.py[line:391] - DEBUG: Importing XVThumbImagePlugin
+2018-01-25 15:57:16,791 - base.py[line:144] - INFO: Job "job_merageExcel (trigger: cron[day='25', hour='15', minute='57'], next run at: 2018-02-25 15:57:00 CST)" executed successfully
+2018-01-25 16:02:06,187 - base.py[line:865] - INFO: Added job "job_merageExcel" to job store "default"
+2018-01-25 16:02:06,188 - base.py[line:158] - INFO: Scheduler started
+2018-01-25 16:02:06,189 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-25 16:02:06,189 - base.py[line:1004] - DEBUG: Next wakeup is due at 2018-01-25 16:03:00+08:00 (in 53.810715 seconds)
+2018-01-25 16:03:00,002 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-25 16:03:00,013 - base.py[line:1004] - DEBUG: Next wakeup is due at 2018-02-25 16:03:00+08:00 (in 2678399.996991 seconds)
+2018-01-25 16:03:00,018 - base.py[line:123] - INFO: Running job "job_merageExcel (trigger: cron[day='25', hour='16', minute='3'], next run at: 2018-02-25 16:03:00 CST)" (scheduled at 2018-01-25 16:03:00+08:00)
+2018-01-25 16:03:00,072 - base.py[line:131] - ERROR: Job "job_merageExcel (trigger: cron[day='25', hour='16', minute='3'], next run at: 2018-02-25 16:03:00 CST)" raised an exception
+Traceback (most recent call last):
+  File "D:\MyPogram\lib\site-packages\apscheduler\executors\base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "D:\git²Ö¿â\RegistrationSystem\background\core\Scheduler.py", line 43, in job_merageExcel
+    result = excel_operate.build()
+  File "D:\git²Ö¿â\RegistrationSystem\background\core\FileInfo.py", line 48, in build
+    result= engineer.construct_derpartmentData(self,target_date,self.ftpdirpath,derpartment_name)
+  File "D:\git²Ö¿â\RegistrationSystem\background\core\FileInfo.py", line 89, in construct_derpartmentData
+    result_dataframe= self.builder.readExcelColumns(final_path,name)
+  File "D:\git²Ö¿â\RegistrationSystem\background\core\FileInfo.py", line 149, in readExcelColumns
+    read_data = pd.read_excel(path, sheetname=0, header=None)
+  File "D:\MyPogram\lib\site-packages\pandas\io\excel.py", line 203, in read_excel
+    io = ExcelFile(io, engine=engine)
+  File "D:\MyPogram\lib\site-packages\pandas\io\excel.py", line 260, in __init__
+    self.book = xlrd.open_workbook(io)
+  File "D:\MyPogram\lib\site-packages\xlrd\__init__.py", line 116, in open_workbook
+    with open(filename, "rb") as f:
+FileNotFoundError: [Errno 2] No such file or directory: 'D:\\git²Ö¿â\\RegistrationSystem\\background\\ftpdir\\9Â¥Öµ°àÆ½Ì¨ÑùÀý±í.xlsx\\2018\\01\\201801.xlsx'
+2018-01-25 16:03:23,343 - base.py[line:865] - INFO: Added job "job_merageExcel" to job store "default"
+2018-01-25 16:03:23,344 - base.py[line:158] - INFO: Scheduler started
+2018-01-25 16:03:23,344 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-25 16:03:23,344 - base.py[line:1004] - DEBUG: Next wakeup is due at 2018-01-25 16:04:00+08:00 (in 36.655129 seconds)
+2018-01-25 16:04:00,002 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-25 16:04:00,017 - base.py[line:1004] - DEBUG: Next wakeup is due at 2018-02-25 16:04:00+08:00 (in 2678399.997428 seconds)
+2018-01-25 16:04:00,024 - base.py[line:123] - INFO: Running job "job_merageExcel (trigger: cron[day='25', hour='16', minute='4'], next run at: 2018-02-25 16:04:00 CST)" (scheduled at 2018-01-25 16:04:00+08:00)
+2018-01-25 16:04:01,253 - base.py[line:131] - ERROR: Job "job_merageExcel (trigger: cron[day='25', hour='16', minute='4'], next run at: 2018-02-25 16:04:00 CST)" raised an exception
+Traceback (most recent call last):
+  File "D:\MyPogram\lib\site-packages\apscheduler\executors\base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "D:\git²Ö¿â\RegistrationSystem\background\core\Scheduler.py", line 43, in job_merageExcel
+    result = excel_operate.build()
+  File "D:\git²Ö¿â\RegistrationSystem\background\core\FileInfo.py", line 53, in build
+    excel_pers.make_persistence(result)
+  File "D:\git²Ö¿â\RegistrationSystem\background\core\Persistence.py", line 85, in make_persistence
+    self.persistence_instance.to_persistence(df)
+  File "D:\git²Ö¿â\RegistrationSystem\background\core\Persistence.py", line 50, in to_persistence
+    df.to_csv(self.path)
+  File "D:\MyPogram\lib\site-packages\pandas\core\frame.py", line 1403, in to_csv
+    formatter.save()
+  File "D:\MyPogram\lib\site-packages\pandas\io\formats\format.py", line 1577, in save
+    compression=self.compression)
+  File "D:\MyPogram\lib\site-packages\pandas\io\common.py", line 385, in _get_handle
+    f = open(path_or_buf, mode, errors='replace')
+PermissionError: [Errno 13] Permission denied: 'D:\\git²Ö¿â\\RegistrationSystem\\background\\result\\2018\\MERAGE_201801.csv'
+2018-01-25 16:04:24,854 - base.py[line:865] - INFO: Added job "job_merageExcel" to job store "default"
+2018-01-25 16:04:24,855 - base.py[line:158] - INFO: Scheduler started
+2018-01-25 16:04:24,855 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-25 16:04:24,856 - base.py[line:1004] - DEBUG: Next wakeup is due at 2018-01-25 16:05:00+08:00 (in 35.144281 seconds)
+2018-01-25 16:05:00,002 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-25 16:05:00,016 - base.py[line:1004] - DEBUG: Next wakeup is due at 2018-02-25 16:05:00+08:00 (in 2678399.996264 seconds)
+2018-01-25 16:05:00,021 - base.py[line:123] - INFO: Running job "job_merageExcel (trigger: cron[day='25', hour='16', minute='5'], next run at: 2018-02-25 16:05:00 CST)" (scheduled at 2018-01-25 16:05:00+08:00)
+2018-01-25 16:05:00,507 - base.py[line:144] - INFO: Job "job_merageExcel (trigger: cron[day='25', hour='16', minute='5'], next run at: 2018-02-25 16:05:00 CST)" executed successfully
+2018-01-25 17:17:48,316 - base.py[line:865] - INFO: Added job "job_merageExcel" to job store "default"
+2018-01-25 17:17:48,317 - base.py[line:158] - INFO: Scheduler started
+2018-01-25 17:17:48,317 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-25 17:17:48,317 - base.py[line:1004] - DEBUG: Next wakeup is due at 2018-01-25 17:18:00+08:00 (in 11.682877 seconds)
+2018-01-25 17:18:00,003 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-25 17:18:00,010 - base.py[line:1004] - DEBUG: Next wakeup is due at 2018-02-25 17:18:00+08:00 (in 2678399.996661 seconds)
+2018-01-25 17:18:00,008 - base.py[line:123] - INFO: Running job "job_merageExcel (trigger: cron[day='25', hour='17', minute='18'], next run at: 2018-02-25 17:18:00 CST)" (scheduled at 2018-01-25 17:18:00+08:00)
+2018-01-25 17:18:00,390 - base.py[line:144] - INFO: Job "job_merageExcel (trigger: cron[day='25', hour='17', minute='18'], next run at: 2018-02-25 17:18:00 CST)" executed successfully
+2018-01-31 08:54:40,643 - base.py[line:865] - INFO: Added job "job_merageExcel" to job store "default"
+2018-01-31 08:54:40,653 - base.py[line:158] - INFO: Scheduler started
+2018-01-31 08:54:40,653 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-31 08:54:40,653 - base.py[line:1004] - DEBUG: Next wakeup is due at 2018-01-31 08:55:00+08:00 (in 19.346146 seconds)
+2018-01-31 08:55:00,010 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-31 08:55:00,027 - base.py[line:123] - INFO: Running job "job_merageExcel (trigger: cron[day='31', hour='8', minute='55'], next run at: 2018-01-31 08:55:00 CST)" (scheduled at 2018-01-31 08:55:00+08:00)
+2018-01-31 08:55:00,029 - base.py[line:1004] - DEBUG: Next wakeup is due at 2018-03-31 08:55:00+08:00 (in 5097599.989425 seconds)
+2018-01-31 08:55:00,432 - base.py[line:144] - INFO: Job "job_merageExcel (trigger: cron[day='31', hour='8', minute='55'], next run at: 2018-03-31 08:55:00 CST)" executed successfully
+2018-01-31 09:00:50,482 - base.py[line:865] - INFO: Added job "job_merageExcel" to job store "default"
+2018-01-31 09:00:50,482 - base.py[line:158] - INFO: Scheduler started
+2018-01-31 09:00:50,482 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-31 09:00:50,482 - base.py[line:1004] - DEBUG: Next wakeup is due at 2018-01-31 09:01:00+08:00 (in 9.517343 seconds)
+2018-01-31 09:01:00,006 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-31 09:01:00,007 - base.py[line:123] - INFO: Running job "job_merageExcel (trigger: cron[day='31', hour='9', minute='1'], next run at: 2018-01-31 09:01:00 CST)" (scheduled at 2018-01-31 09:01:00+08:00)
+2018-01-31 09:01:00,008 - base.py[line:1004] - DEBUG: Next wakeup is due at 2018-03-31 09:01:00+08:00 (in 5097599.993300 seconds)
+2018-01-31 09:01:00,172 - base.py[line:131] - ERROR: Job "job_merageExcel (trigger: cron[day='31', hour='9', minute='1'], next run at: 2018-03-31 09:01:00 CST)" raised an exception
+Traceback (most recent call last):
+  File "D:\MyPogram\lib\site-packages\apscheduler\executors\base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "D:\git²Ö¿â\RegistrationSystem\background\core\Scheduler.py", line 43, in job_merageExcel
+    result = excel_operate.build()
+  File "D:\git²Ö¿â\RegistrationSystem\background\core\FileInfo.py", line 53, in build
+    excel_pers.make_persistence(result)
+  File "D:\git²Ö¿â\RegistrationSystem\background\core\Persistence.py", line 85, in make_persistence
+    self.persistence_instance.to_persistence(df)
+  File "D:\git²Ö¿â\RegistrationSystem\background\core\Persistence.py", line 50, in to_persistence
+    df.to_csv(self.path)
+  File "D:\MyPogram\lib\site-packages\pandas\core\frame.py", line 1403, in to_csv
+    formatter.save()
+  File "D:\MyPogram\lib\site-packages\pandas\io\formats\format.py", line 1577, in save
+    compression=self.compression)
+  File "D:\MyPogram\lib\site-packages\pandas\io\common.py", line 385, in _get_handle
+    f = open(path_or_buf, mode, errors='replace')
+PermissionError: [Errno 13] Permission denied: 'D:\\git²Ö¿â\\RegistrationSystem\\background\\result\\2018\\MERAGE_201801.csv'
+2018-01-31 09:01:58,102 - base.py[line:865] - INFO: Added job "job_merageExcel" to job store "default"
+2018-01-31 09:01:58,102 - base.py[line:158] - INFO: Scheduler started
+2018-01-31 09:01:58,102 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-31 09:01:58,102 - base.py[line:1004] - DEBUG: Next wakeup is due at 2018-01-31 09:02:00+08:00 (in 1.897317 seconds)
+2018-01-31 09:02:00,008 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-31 09:02:00,010 - base.py[line:123] - INFO: Running job "job_merageExcel (trigger: cron[day='31', hour='9', minute='2'], next run at: 2018-01-31 09:02:00 CST)" (scheduled at 2018-01-31 09:02:00+08:00)
+2018-01-31 09:02:00,011 - base.py[line:1004] - DEBUG: Next wakeup is due at 2018-03-31 09:02:00+08:00 (in 5097599.991147 seconds)
+2018-01-31 09:02:00,143 - base.py[line:144] - INFO: Job "job_merageExcel (trigger: cron[day='31', hour='9', minute='2'], next run at: 2018-03-31 09:02:00 CST)" executed successfully
+2018-01-31 09:02:16,105 - base.py[line:865] - INFO: Added job "job_merageExcel" to job store "default"
+2018-01-31 09:02:16,105 - base.py[line:158] - INFO: Scheduler started
+2018-01-31 09:02:16,105 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-31 09:02:16,105 - base.py[line:1004] - DEBUG: Next wakeup is due at 2018-01-31 09:03:00+08:00 (in 43.894017 seconds)
+2018-01-31 09:03:00,005 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-31 09:03:00,006 - base.py[line:123] - INFO: Running job "job_merageExcel (trigger: cron[day='31', hour='9', minute='3'], next run at: 2018-01-31 09:03:00 CST)" (scheduled at 2018-01-31 09:03:00+08:00)
+2018-01-31 09:03:00,007 - base.py[line:1004] - DEBUG: Next wakeup is due at 2018-03-31 09:03:00+08:00 (in 5097599.994742 seconds)
+2018-01-31 09:03:00,130 - base.py[line:144] - INFO: Job "job_merageExcel (trigger: cron[day='31', hour='9', minute='3'], next run at: 2018-03-31 09:03:00 CST)" executed successfully
+2018-01-31 09:03:38,547 - base.py[line:865] - INFO: Added job "job_merageExcel" to job store "default"
+2018-01-31 09:03:38,547 - base.py[line:158] - INFO: Scheduler started
+2018-01-31 09:03:38,547 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-31 09:03:38,547 - base.py[line:1004] - DEBUG: Next wakeup is due at 2018-03-31 09:03:00+08:00 (in 5097561.452145 seconds)
+2018-01-31 09:04:06,713 - base.py[line:865] - INFO: Added job "job_merageExcel" to job store "default"
+2018-01-31 09:04:06,713 - base.py[line:158] - INFO: Scheduler started
+2018-01-31 09:04:06,713 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-31 09:04:06,713 - base.py[line:1004] - DEBUG: Next wakeup is due at 2018-01-31 09:05:00+08:00 (in 53.286491 seconds)
+2018-01-31 09:05:00,006 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-31 09:05:00,008 - base.py[line:123] - INFO: Running job "job_merageExcel (trigger: cron[day='31', hour='9', minute='5'], next run at: 2018-01-31 09:05:00 CST)" (scheduled at 2018-01-31 09:05:00+08:00)
+2018-01-31 09:05:00,009 - base.py[line:1004] - DEBUG: Next wakeup is due at 2018-03-31 09:05:00+08:00 (in 5097599.993734 seconds)
+2018-01-31 09:05:00,137 - base.py[line:144] - INFO: Job "job_merageExcel (trigger: cron[day='31', hour='9', minute='5'], next run at: 2018-03-31 09:05:00 CST)" executed successfully
+2018-01-31 09:06:32,042 - base.py[line:865] - INFO: Added job "job_merageExcel" to job store "default"
+2018-01-31 09:06:32,043 - base.py[line:158] - INFO: Scheduler started
+2018-01-31 09:06:32,043 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-31 09:06:32,043 - base.py[line:1004] - DEBUG: Next wakeup is due at 2018-01-31 09:07:00+08:00 (in 27.956516 seconds)
+2018-01-31 09:07:00,006 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-31 09:07:00,007 - base.py[line:123] - INFO: Running job "job_merageExcel (trigger: cron[hour='9', minute='7'], next run at: 2018-01-31 09:07:00 CST)" (scheduled at 2018-01-31 09:07:00+08:00)
+2018-01-31 09:07:00,008 - base.py[line:1004] - DEBUG: Next wakeup is due at 2018-02-01 09:07:00+08:00 (in 86399.992896 seconds)
+2018-01-31 09:07:00,114 - base.py[line:144] - INFO: Job "job_merageExcel (trigger: cron[hour='9', minute='7'], next run at: 2018-02-01 09:07:00 CST)" executed successfully
+2018-01-31 09:10:34,462 - base.py[line:158] - INFO: Scheduler started
+2018-01-31 09:10:34,462 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-31 09:10:34,462 - base.py[line:1000] - DEBUG: No jobs; waiting until a job is added
+2018-01-31 09:10:47,326 - base.py[line:158] - INFO: Scheduler started
+2018-01-31 09:10:47,327 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-31 09:10:47,327 - base.py[line:1000] - DEBUG: No jobs; waiting until a job is added
+2018-01-31 09:30:59,200 - base.py[line:158] - INFO: Scheduler started
+2018-01-31 09:30:59,203 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-31 09:30:59,203 - base.py[line:1000] - DEBUG: No jobs; waiting until a job is added
+2018-01-31 09:39:24,744 - base.py[line:158] - INFO: Scheduler started
+2018-01-31 09:39:24,745 - base.py[line:924] - DEBUG: Looking for jobs to run
+2018-01-31 09:39:24,746 - base.py[line:1000] - DEBUG: No jobs; waiting until a job is added

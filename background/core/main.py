@@ -1,4 +1,9 @@
+import sys
 import os
+curPath = os.path.abspath(os.path.dirname(__file__))
+rootPath = os.path.split(curPath)[0]
+sys.path.append(rootPath)
+
 from core import FileInfo
 from conf import  settings
 from datetime import datetime
@@ -8,6 +13,7 @@ import pandas as pd
 from conf import settings as st
 from core import Persistence
 from core import Scheduler
+
 
 
 def main():

@@ -96,11 +96,15 @@ def job_load2reids():
     # 4.1 序列化
 
     p1 = pickle.dumps(list_person)
+    print("序列化成功")
+    print(str(p1))
 
     # 4.2 将pickle存储至redis中 并设置过期时间
     r = redis.Redis(settings.REDIS_IP, settings.REDIS_PORT)
+    print("初始化redis成功")
 
     r.set(settings.NAME_DaySavedInRedis, p1,ex=settings.REDIS_EX)
+    print("写入redis成功")
 
 
 def run():
@@ -116,9 +120,11 @@ def run():
         cron表达式：
         sched.add_job(my_job(), 'cron', hour=1, minute=00)
     '''
-    # job1=sched.add_job(job_merageExcel,'cron',day=18, hour=17, minute=12)
+    # job1=sched.add_job(job_merageExcel,'cron',day=31, hour=9, minute=5)
+    # job1 = sched.add_job(job_merageExcel, 'cron', hour=9, minute=7)
+    job_merageExcel()
     # # 经测试此种方式可行
-    job2=sched.add_job(job_load2reids,'cron', hour=17, minute=13)
+    # job2=sched.add_job(job_load2reids,'cron', hour=9, minute=55)
     # 循坏任务
     # job3=sched.add_job(job_timerprint,trigger='interval', minute=10)
     sched._logger=Common.My_Log(logging.DEBUG,os.path.join(settings.LOG_DIR,'scheduler.log'))

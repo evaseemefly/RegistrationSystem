@@ -185,7 +185,8 @@ class ExcelOper:
             read_data[2:-1].head()
 
             # 重新设置第一列为索引
-            convert_data = read_data[2:-1].set_index(0)
+            convert_data = read_data[2:].set_index(0)
+            # convert_data = read_data[2:-1].set_index(0)
 
             # 3重新赋值columns并通过层次化的方式重新读取数据
             convert_data.columns = [columns_newmerage.loc[0].tolist(), columns_newmerage.loc[1].tolist(),
