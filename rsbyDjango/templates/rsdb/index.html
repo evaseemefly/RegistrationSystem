@@ -158,6 +158,13 @@
 
             }, 2000);
         }
+        var vm_showtime = new Vue({
+				el: '#showtime',
+				data: {
+					now_time: ""
+				}
+
+			})
 
         $(function() {
             //当前页面显示的人员个数（页容积）
@@ -169,6 +176,8 @@
             //
             var footer_count=2
             var interval=10000
+
+
             //成功后解析
             vm = new Vue({
                 el: '#app',
@@ -184,13 +193,18 @@
                     footer_count:footer_count
                 }
             })
-            getPersonList(vm)
             {#getPersonList(vm)#}
+            getPersonList(vm)
             {##}
             {#myloading()#}
-
+             var a = new Date();
+				var b = a.toLocaleTimeString();
+				var c = a.toLocaleDateString();
+				vm_showtime.$data.now_time=(new Date()).toLocaleDateString();
             {#setInterval(myrefresh(vm),1000)#}
             setInterval(function () {
+
+				vm_showtime.$data.now_time=(new Date()).toLocaleDateString();
                  getPersonList(vm)
                  myloading()
             },interval)

@@ -77,6 +77,9 @@
         {#        <span class="icon-bar"></span>#}
         {#      </button>#}
         <a class="navbar-brand" href="#">国家海洋环境预报中心 &nbsp; 九楼值班平台</a>
+         {% verbatim myblock %}
+        <p id="showtime" class="navbar-text navbar-right">当前日期 {{now_time}} &nbsp;&nbsp;&nbsp;</p>
+        {% endverbatim myblock %}
     </div>
 </nav>
 <div id="pagewrap" class="htmleaf-container" style="margin-top: 40px;">
