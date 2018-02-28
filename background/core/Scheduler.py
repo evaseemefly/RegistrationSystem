@@ -108,7 +108,7 @@ def job_load2reids():
 
 
 def run():
-    sched=BlockingScheduler()
+    sched=BlockingScheduler(daemonic=False,max_instances=5)
     # 注意使用background.BackgroundScheduler()启动之后只会执行一次就会停止？
     # sched = apscheduler.schedulers.background.BackgroundScheduler()
     # 使用cron的方式实现以下两个时间的定时任务
@@ -126,8 +126,8 @@ def run():
     # # 经测试此种方式可行
     # job2=sched.add_job(job_load2reids,'cron', hour=9, minute=55)
     # 循坏任务
-    # job3=sched.add_job(job_timerprint,trigger='interval', minute=10)
-    sched._logger=Common.My_Log(logging.DEBUG,os.path.join(settings.LOG_DIR,'scheduler.log'))
+    job3=sched.add_job(job_timerprint,trigger='interval', seconds=10)
+    # sched._logger=Common.My_Log(logging.DEBUG,os.path.join(settings.LOG_DIR,'scheduler.log'))
     sched.start()
     # sched.resume()
 
