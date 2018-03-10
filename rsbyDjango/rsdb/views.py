@@ -8,6 +8,7 @@ from datetime import datetime
 import redis
 import pickle
 from rsbyDjango import settings
+import numpy as np
 from data import model
 import math
 
@@ -49,7 +50,9 @@ def getPersonList(request):
 
     # 反序列化
     person_list=pickle.loads(data_redis)
-
+    # 3月10日修改bug
+    # 因为有的室周末为空，所以需要剔除这些部门
+    person_list = [person for person in person_list if str(person.name) != "nan"]
     # 对list进行分页
     # 1、获取长度
     len_list=len(person_list)
@@ -85,6 +88,10 @@ def getPersonList(request):
     elif page_index==math.ceil(len_list/page_count):
         page_next=1
         person_skiplist = person_list[(page_next - 1) * page_count:page_count]
+    # person_final = [person for person in person_skiplist if not np.isnan(person.name)]
+    # 3月10日修改bug
+    # 因为有的室周末为空，所以需要剔除这些部门
+    person_final = [person for person in person_skiplist if str(person.name)!="nan"]
     # page_next=page_index
     # 测试用，已注释
     # for p in range(1,5):
@@ -98,11 +105,11 @@ def getPersonList(request):
         使用
         
     '''
-    data=json.dumps(person_skiplist,default=lambda obj:obj.__dict__,ensure_ascii=False)
+    data=json.dumps(person_final,default=lambda obj:obj.__dict__,ensure_ascii=False)
     # test_json=json.dumps(test_list)
     # data=json.dumps(dict_json)
     # data=serialize("json",person_list)
-    dict_data={"now_date":datetime.now().strftime('%y-%m-%d'),"persons":person_skiplist,"pageindex":page_next,"listcount":len_list}
+    dict_data={"now_date":datetime.now().strftime('%y-%m-%d'),"persons":person_final,"pageindex":page_next,"listcount":len_list}
     test_json=json.dumps(dict_data,default=lambda obj:obj.__dict__,ensure_ascii=False)
     return HttpResponse(test_json,content_type="application/json")
 
