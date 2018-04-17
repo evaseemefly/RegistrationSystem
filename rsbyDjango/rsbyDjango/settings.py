@@ -10,10 +10,14 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
-import os
+import os,sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+sys.path.insert(0,BASE_DIR)
+#添加apps的目录地址
+sys.path.insert(0,os.path.join(BASE_DIR,'apps'))
 
 BASE_TEMPLATE_DIRS = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))#获取当前脚本的父目录
 
@@ -39,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rsdb',
+    'duty'
 ]
 
 MIDDLEWARE = [
@@ -76,10 +81,23 @@ WSGI_APPLICATION = 'rsbyDjango.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#     }
+# }
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME':'registrationsystem',
+        'USER':'admin',
+        'PASSWORD':'admin123',
+        'HOST':'127.0.0.1',
+        # 'OPTIONS':{'init_command':'SET storage_engine=INNODB;'}
     }
 }
 
