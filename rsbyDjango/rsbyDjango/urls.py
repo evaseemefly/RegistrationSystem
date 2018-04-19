@@ -14,11 +14,18 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
+# from django.urls import reverse
 from django.contrib import admin
+# from django.utils.functional import lazy
+# from django.utils.functional import lazy_property
+import xadmin
+xadmin.autodiscover()
 from rsdb import views
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    # url(r'^admin/', admin.site.urls),
+    url(r'^xadmin/', xadmin.site.urls,name='xadmin'),
     url(r'^home',views.home),
     url(r'^getPersonList',views.getPersonList)
 ]
+
