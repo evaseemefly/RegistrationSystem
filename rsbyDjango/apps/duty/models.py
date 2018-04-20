@@ -13,6 +13,9 @@ class UserInfo(models.Model):
     #注意不能使用default=datetime.now
     createdate=models.DateField(auto_now_add=True,null=True)
     modeificateddate=models.DateField(auto_now=True,null=True)
+    class Meta:
+        verbose_name="用户信息"
+        verbose_name_plural=verbose_name
 
 class DepartmentInfo(models.Model):
     parent_department_choices={
@@ -24,11 +27,12 @@ class DepartmentInfo(models.Model):
     did=models.AutoField(primary_key=True)
     pid=models.IntegerField(choices=parent_department_choices)
     derpartmentname=models.CharField(default='默认部门',max_length=20)
-
     class Meta:
         # 设置了此名称后在xadmin中可以显示该别名
         verbose_name="部门信息"
         verbose_name_plural=verbose_name
+    def __str__(self):
+        return self.derpartmentname
 
 class DutyInfo(models.Model):
     duid=models.AutoField(primary_key=True)
@@ -40,10 +44,13 @@ class DutyInfo(models.Model):
     class Meta:
         verbose_name="值班类别"
         verbose_name_plural=verbose_name
+    def __str__(self):
+        return self.dutyname
 
 class dutyschedule(models.Model):
     id=models.AutoField(primary_key=True)
     dutydate=models.DateField(auto_now=True)
+
 
 class R_UserInfo_DepartmentInfo(models.Model):
     id=models.AutoField(primary_key=True)
@@ -54,3 +61,11 @@ class R_DepartmentInfo_DutyInfo(models.Model):
     id=models.AutoField(primary_key=True)
     did=models.ForeignKey(DepartmentInfo,on_delete=models.CASCADE)
     duid=models.ForeignKey(DutyInfo,on_delete=models.CASCADE)
+    # desc=models.CharField(default=did.derpartmentname+"-"+duid.dutyname)
+    class Meta:
+        verbose_name="部门与岗位关系"
+        verbose_name_plural=verbose_name
+    def __str__(self):
+        name=self.did.derpartmentname+"-"+self.duid.dutyname
+        return name
+

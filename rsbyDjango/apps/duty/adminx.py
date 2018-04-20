@@ -4,8 +4,10 @@ __date__ = '2018/4/19 14:31'
 
 import xadmin
 
-from .models import DutyInfo,DepartmentInfo
+from .models import DutyInfo,DepartmentInfo,UserInfo,R_DepartmentInfo_DutyInfo
 
+class UserInfoAdmin(object):
+    list_display=['username','createdate','modeificateddate']
 
 class DutyInfoAdmin(object):
     # 注意不在继承admin，继承自obj
@@ -16,5 +18,12 @@ class DepartmentInfoAdmin(object):
     list_display=['did','pid','derpartmentname']
     pass
 
+class R_DepartmentInfo_DutyInfoAdmin(object):
+    list_dislpay=['uid','did']
+    pass
+
+
 xadmin.site.register(DutyInfo,DutyInfoAdmin)
 xadmin.site.register(DepartmentInfo,DepartmentInfoAdmin)
+xadmin.site.register(UserInfo,UserInfoAdmin)
+xadmin.site.register(R_DepartmentInfo_DutyInfo,R_DepartmentInfo_DutyInfoAdmin)
