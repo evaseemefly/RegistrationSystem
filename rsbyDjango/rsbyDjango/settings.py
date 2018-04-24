@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     # 以下三个为xadmin使用的app
     'xadmin',
     'crispy_forms',
+
+    'rest_framework'
     # 'reversion',
 
 ]
