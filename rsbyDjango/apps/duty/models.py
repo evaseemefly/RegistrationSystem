@@ -50,6 +50,9 @@ class DutyInfo(models.Model):
 class dutyschedule(models.Model):
     id=models.AutoField(primary_key=True)
     dutydate=models.DateField(auto_now=True)
+    duty=models.ForeignKey(DutyInfo,on_delete=models.CASCADE)
+    user=models.ForeignKey(UserInfo,on_delete=models.CASCADE)
+    department=models.ForeignKey(DepartmentInfo,on_delete=models.CASCADE)
 
 
 class R_UserInfo_DepartmentInfo(models.Model):
