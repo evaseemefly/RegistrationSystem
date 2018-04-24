@@ -18,7 +18,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0,BASE_DIR)
 #添加apps的目录地址
 sys.path.insert(0,os.path.join(BASE_DIR,'apps'))
-
+# 将根目录下的extra_sourcecode加入到系统路径中
+sys.path.insert(0,os.path.join(BASE_DIR,'extra_sourcecode'))
 BASE_TEMPLATE_DIRS = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))#获取当前脚本的父目录
 
 # Quick-start development settings - unsuitable for production
