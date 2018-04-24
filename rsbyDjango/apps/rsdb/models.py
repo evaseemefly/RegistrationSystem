@@ -1,3 +1,4 @@
+# _*_ encoding:utf-8 _*_
 from django.db import models
 
 # Create your models here.
@@ -8,4 +9,5 @@ class Person(object):
         self.department=department
         self.group=group
         self.job=job
+
 
