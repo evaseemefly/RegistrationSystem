@@ -124,7 +124,7 @@ def run():
     # job1 = sched.add_job(job_merageExcel, 'cron', hour=9, minute=7)
     job_merageExcel()
     # # 经测试此种方式可行
-    job_load2reids()
+    # job_load2reids()
     # job2=sched.add_job(job_load2reids,'cron', hour=9, minute=55)
     # 循坏任务
     job3=sched.add_job(job_timerprint,trigger='interval', seconds=10)

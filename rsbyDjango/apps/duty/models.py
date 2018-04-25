@@ -47,19 +47,6 @@ class DutyInfo(models.Model):
     def __str__(self):
         return self.dutyname
 
-class dutyschedule(models.Model):
-    id=models.AutoField(primary_key=True)
-    dutydate=models.DateField(auto_now=True)
-    duty=models.ForeignKey(DutyInfo,on_delete=models.CASCADE)
-    user=models.ForeignKey(UserInfo,on_delete=models.CASCADE)
-    department=models.ForeignKey(DepartmentInfo,on_delete=models.CASCADE)
-
-
-class R_UserInfo_DepartmentInfo(models.Model):
-    id=models.AutoField(primary_key=True)
-    uid=models.ForeignKey(UserInfo,on_delete=models.CASCADE)
-    did=models.ForeignKey(DepartmentInfo,on_delete=models.CASCADE)
-
 class R_DepartmentInfo_DutyInfo(models.Model):
     id=models.AutoField(primary_key=True)
     did=models.ForeignKey(DepartmentInfo,on_delete=models.CASCADE)
@@ -71,4 +58,20 @@ class R_DepartmentInfo_DutyInfo(models.Model):
     def __str__(self):
         name=self.did.derpartmentname+"-"+self.duid.dutyname
         return name
+
+
+class R_UserInfo_DepartmentInfo(models.Model):
+    id=models.AutoField(primary_key=True)
+    uid=models.ForeignKey(UserInfo,on_delete=models.CASCADE)
+    did=models.ForeignKey(DepartmentInfo,on_delete=models.CASCADE)
+
+class dutyschedule(models.Model):
+    id=models.AutoField(primary_key=True)
+    rDepartmentDuty=models.ForeignKey(R_DepartmentInfo_DutyInfo,on_delete=models.CASCADE)
+    dutydate=models.DateField(auto_now=True)
+    # duty=models.ForeignKey(DutyInfo,on_delete=models.CASCADE)
+    user=models.ForeignKey(UserInfo,on_delete=models.CASCADE)
+    # department=models.ForeignKey(DepartmentInfo,on_delete=models.CASCADE)
+
+
 
