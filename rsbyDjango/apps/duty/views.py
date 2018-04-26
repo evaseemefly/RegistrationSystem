@@ -1,3 +1,8 @@
+
+'''
+可抽象出来的父类view放在view_base.py文件中，此处仅放置路由中指向的类视图
+'''
+
 from django.shortcuts import render
 
 # Create your views here.
@@ -11,7 +16,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from .models import DutyInfo,dutyschedule,R_DepartmentInfo_DutyInfo,DepartmentInfo,R_UserInfo_DepartmentInfo
-from .serializers import DutyScheduleSerializer,UserSerializer
+from .serializers import DutyScheduleSerializer,UserSerializer,DutySerializer
+from .view_base import DutyScheduleBaseView,UserBaseView,DutyBaseView
 
 class DutyListView(APIView):
     '''
@@ -46,46 +52,14 @@ class DutyListView(APIView):
         json_duty=DutyScheduleSerializer(duty_arr,many=True)
         return Response(json_duty.data)
 
-class UserView(APIView):
-    def getuserlistbydepartment(self,dids=[]):
-        '''
-        根据部门id获取该部门拥有的人员列表
-        :param did:
-        :return:
-        '''
-        if len(dids)>0:
-            user_list=[r.uid for r in R_UserInfo_DepartmentInfo.objects.filter(did_id__in=dids)]
-        return user_list
-
-class UserListView(UserView):
+class UserListView(UserBaseView):
     def get(self,request):
         did = [3,5]
         user_list=self.getuserlistbydepartment(did)
         user_json = UserSerializer(user_list, many=True)
         return Response(user_json.data)
 
-
-class DutyScheduleView(APIView):
-    def getscheduleDetial(self,dids=[],pid=-1):
-        '''
-        根据部门id list与所属的父级部门 获取符合条件的 值班信息（list）
-        :param dids:
-        :param pid:
-        :return:
-        '''
-        schedule_list=[]
-        if pid==-1:
-            if len(dids)>0:
-                # 1 根据部门找到 部门-岗位关联表 id
-                rd_list = [temp.id for temp in R_DepartmentInfo_DutyInfo.objects.filter(did_id__in=dids)]
-                # DepartmentInfo.objects.filter()
-                # 2 根据id找到 值班表
-                schedule_list = dutyschedule.objects.filter(rDepartmentDuty__in=rd_list)
-        return schedule_list
-
-
-
-class ScheduleListView(DutyScheduleView):
+class ScheduleListView(DutyScheduleBaseView):
     def get(self,request):
         '''
         根据部门id或组id获取人员list
@@ -100,3 +74,16 @@ class ScheduleListView(DutyScheduleView):
         schedule_list=self.getscheduleDetial(dids=did)
         seredule_json = DutyScheduleSerializer(schedule_list, many=True)
         return Response(seredule_json.data)
+
+class DutyListView(DutyBaseView):
+    def get(self,request):
+        '''
+
+        :param request:
+        :return:
+        '''
+        did=[1]
+        duty_list=self.getdutylistbydepartment(dids=did)
+        duty_json=DutySerializer(duty_list,many=True).data
+        return Response(duty_json)
+
