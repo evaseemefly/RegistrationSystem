@@ -17,6 +17,9 @@ class UserInfo(models.Model):
         verbose_name="用户信息"
         verbose_name_plural=verbose_name
 
+    def __str__(self):
+        return self.username
+
 class DepartmentInfo(models.Model):
     parent_department_choices={
         (1, '数值室'),
@@ -64,6 +67,14 @@ class R_UserInfo_DepartmentInfo(models.Model):
     id=models.AutoField(primary_key=True)
     uid=models.ForeignKey(UserInfo,on_delete=models.CASCADE)
     did=models.ForeignKey(DepartmentInfo,on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name="人员与部门关系"
+        verbose_name_plural=verbose_name
+
+    def __str__(self):
+        name=self.did.derpartmentname+"-"+self.uid.username
+        return name
 
 class dutyschedule(models.Model):
     id=models.AutoField(primary_key=True)
