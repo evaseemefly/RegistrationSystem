@@ -76,6 +76,7 @@ class ScheduleModificationView(APIView):
         modification_data= request.data
         schedule_id=modification_data.get('id',None)
         schedule_code=modification_data.get('code',None)
+        schedule_uid = modification_data.get('uid', None)
         # 以上三个变量均不为none
         if None in [schedule_id,schedule_code]:
             return
@@ -91,7 +92,6 @@ class ScheduleModificationView(APIView):
                 先根据值班信息表id找到该行数据
                 直接修改用户id
             '''
-            schedule_uid = modification_data.get('uid', None)
             schedule_obj= dutyschedule.objects.filter(id=schedule_id)
             # 注意此处可能会出错
             '''
@@ -111,20 +111,34 @@ class ScheduleModificationView(APIView):
                     did与duid获取r_department_duty id
                 将该id作为值班信息表的 rid
             '''
+            # 获取前端传入的岗位及部门id
             schedule_duid=modification_data.get('duid',None)
             schedule_did= modification_data.get('did',None)
             # 非空
             if None not in[schedule_duid,schedule_did]:
                 temp_schedule=dutyschedule.objects.filter(id=schedule_id)
+                # 取出第一个
                 temp_schedule=temp_schedule.first()
                 if temp_schedule is not None:
                     # 在部门职责信息表中根据部门id以及职责id找到对应的行
-                    rDerDuty= R_DepartmentInfo_DutyInfo.objects.filter(did_id=schedule_did,duid=schedule_duid)
-                    # print(type(rDerDuty))
-                    rDerDuty_temp=R_DepartmentInfo_DutyInfo.objects.get(did_id=schedule_did,duid=schedule_duid)
-                    # print(type(rDerDuty_temp))
-                    temp_schedule.rDepartmentDuty=rDerDuty_temp
-                    temp_schedule.save()
+                    rDerDuty= R_DepartmentInfo_DutyInfo.objects.filter(did=schedule_did,duid=schedule_duid)
+                    # print(rDerDuty)
+                    # 注意使用get,若不存在则会抛出异常
+                    # rDerDuty_temp=R_DepartmentInfo_DutyInfo.objects.get(did_id=schedule_did,duid=schedule_duid)
+                    if(rDerDuty.count()>0):
+                        temp_schedule.rDepartmentDuty=rDerDuty.first()
+                        temp_schedule.save()
+                    # 若关联表中不存在（有可能），则1：先在关联表中创建；2：在写入值班信息表
+                    else:
+                        #分别获取部门以及岗位对象
+                        depart_temp= DepartmentInfo.objects.filter(did=schedule_did)
+                        duty_temp=DutyInfo.objects.filter(duid=schedule_duid)
+                        r=R_DepartmentInfo_DutyInfo(did=depart_temp.first(),duid=duty_temp.first())
+                        r.save()
+                        # R_DepartmentInfo_DutyInfo.objects.create(did=schedule_did,duid=schedule_duid)
+                        temp_schedule.rDepartmentDuty=r
+                        temp_schedule.save()
+                        # pass
                     # temp_schedule.update(rDepartmentDuty_id=rDerDuty.id)
 
             pass
