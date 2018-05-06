@@ -153,7 +153,7 @@ class ScheduleListView(DutyScheduleBaseView):
         :param request:
         :return:
         '''
-        did=[1]
+        did=[4]
         pid=-1
         # 传入了一组部门
         # 找到对应的部门
