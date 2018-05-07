@@ -37,7 +37,7 @@ class DutyScheduleBaseView(APIView):
         return schedule_list
 
 class UserBaseView(APIView):
-    def getuserlistbydepartment(self,dids=[]):
+    def getuserlistbydepartment(self,dids=None):
         '''
         根据部门id获取该部门拥有的人员列表
         :param did:
