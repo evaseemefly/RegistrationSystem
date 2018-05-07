@@ -78,7 +78,7 @@ class ScheduleListView(DutyScheduleBaseView):
 class DutyListView(DutyBaseView):
     def get(self,request):
         '''
-
+        根据部门id获取该部门所拥有的的岗位信息
         :param request:
         :return:
         '''
