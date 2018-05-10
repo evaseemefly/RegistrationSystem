@@ -17,8 +17,8 @@ from rest_framework.response import Response
 from rest_framework import status
 
 from .models import DutyInfo,dutyschedule,R_DepartmentInfo_DutyInfo,DepartmentInfo,R_UserInfo_DepartmentInfo
-from .serializers import DutyScheduleSerializer,UserSerializer,DutySerializer
-from .view_base import DutyScheduleBaseView,UserBaseView,DutyBaseView
+from .serializers import DutyScheduleSerializer,UserSerializer,DutySerializer,R_User_DepartmentSerializer,R_User_Department_Simplify_Serializer
+from .view_base import DutyScheduleBaseView,UserBaseView,DutyBaseView,GroupBaseView
 
 class DutyListView(APIView):
     '''
@@ -64,6 +64,18 @@ class UserListView(UserBaseView):
         user_list=self.getuserlistbydepartment(dids)
         user_json = UserSerializer(user_list, many=True)
         return Response(user_json.data)
+
+class GroupListView(GroupBaseView):
+    def get(self,request):
+        '''
+        根据传入的pid获取该pid所拥有的群组，以及群组中包含的人员
+        :param request:
+        :return:
+        '''
+        r_user_department=self.getgroupByDepartment(4)
+        r_json=R_User_Department_Simplify_Serializer(r_user_department,many=True)
+        # r_json = R_User_Department_Simplify_Serializer(r_user_department)
+        return Response(r_json.data)
 
 class ScheduleModificationView(APIView):
     def post(self,request):
@@ -161,7 +173,10 @@ class ScheduleListView(DutyScheduleBaseView):
         schedule_list=self.getscheduleDetial(dids=did)
         seredule_json = DutyScheduleSerializer(schedule_list, many=True)
         # return JsonResponse(seredule_json.data)
+        print(seredule_json.data)
         return Response(seredule_json.data,status=status.HTTP_202_ACCEPTED)
+        # return HttpResponse(seredule_json.data)
+        # return Response(seredule_json.data)
         # return Response(seredule_json.data)
 
 class DutyListView(DutyBaseView):

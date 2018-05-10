@@ -47,6 +47,18 @@ class UserBaseView(APIView):
             user_list=[r.uid for r in R_UserInfo_DepartmentInfo.objects.filter(did_id__in=dids) if r.uid.isdel==False]
         return user_list
 
+class GroupBaseView(APIView):
+    def getgroupByDepartment(self,did=None):
+        '''
+        根据传入的dids数组获取所有的群组,
+
+        :param did:
+        :return:R_UserInfo_DepartmentInfo
+        '''
+        groups= DepartmentInfo.objects.filter(pid=did)
+        # r_user_depart= R_UserInfo_DepartmentInfo.objects.filter(did=groups)
+        r_user_depart = R_UserInfo_DepartmentInfo.objects.filter(did_id__in=groups)
+        return r_user_depart
 
 class DutyBaseView(APIView):
     def getdutylistbydepartment(self,dids=[]):
