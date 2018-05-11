@@ -54,6 +54,13 @@ class R_User_DepartmentSerializer(serializers.ModelSerializer):
         model=R_UserInfo_DepartmentInfo
         fields=('id','uid','did')
 
+class R_Department_User_Simplify_Serializer(serializers.ModelSerializer):
+    did=serializers.IntegerField()
+    name=serializers.CharField()
+    uid=User_Simplify_Serializer()
+    class Meta:
+        fields=('did','name','uid')
+
 class R_User_Department_Simplify_Serializer(serializers.ModelSerializer):
     '''
     精简后的关联表

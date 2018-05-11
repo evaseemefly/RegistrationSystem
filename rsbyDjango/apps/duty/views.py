@@ -7,8 +7,11 @@ from django.shortcuts import render
 
 # Create your views here.
 # 获取指定组的班级情况
-from django.views.generic import View
+
 from datetime import datetime
+import json
+
+from django.views.generic import View
 from django.core import serializers
 from django.http import JsonResponse,HttpResponse
 
@@ -16,9 +19,12 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
-from .models import DutyInfo,dutyschedule,R_DepartmentInfo_DutyInfo,DepartmentInfo,R_UserInfo_DepartmentInfo
-from .serializers import DutyScheduleSerializer,UserSerializer,DutySerializer,R_User_DepartmentSerializer,R_User_Department_Simplify_Serializer
+from .models import DutyInfo,dutyschedule,R_DepartmentInfo_DutyInfo,DepartmentInfo,R_UserInfo_DepartmentInfo,UserInfo
+from .serializers import DutyScheduleSerializer,UserSerializer,DutySerializer,R_User_DepartmentSerializer,R_User_Department_Simplify_Serializer,User_Simplify_Serializer,R_Department_User_Simplify_Serializer
 from .view_base import DutyScheduleBaseView,UserBaseView,DutyBaseView,GroupBaseView
+from .model_middle import R_User_Department_Middle
+
+from Common.MyJsonEncoder import DateTimeEncoder
 
 class DutyListView(APIView):
     '''
@@ -72,10 +78,36 @@ class GroupListView(GroupBaseView):
         :param request:
         :return:
         '''
+
+        def user_department_middle2dict(m):
+            return {
+                'name':m.name,
+                'did':m.did,
+                'uid':m.uid
+            }
+
+        user=UserInfo()
+        user.id=1
+        user.username='123'
+        user.isdel=True
+
+        user_json=User_Simplify_Serializer([user],many=True).data
         r_user_department=self.getgroupByDepartment(4)
         r_json=R_User_Department_Simplify_Serializer(r_user_department,many=True)
+        r=R_User_Department_Middle()
+        # finial_list=r.ToMiddleSerializer(r_user_department)
+        # r_json=R_Department_User_Simplify_Serializer(finial_list,many=True)
+        finial_list=r.ToMiddle(r_user_department)
+        # r_json=json.dumps(finial_list,default=user_department_middle2dict)
+        # 注意当序列化的内容包含中文时，需要设置ensure_ascii为false
+        r_json=json.dumps(finial_list,cls=DateTimeEncoder,default=lambda obj:obj.__dict__,ensure_ascii=False)
+        # 注意以下此种方式只能序列化类型为QuerySet的对象
+        # r_json=serializers.serialize(finial_list)
+
         # r_json = R_User_Department_Simplify_Serializer(r_user_department)
-        return Response(r_json.data)
+        # return Response(r_json)
+        # return JsonResponse(finial_list,safe=False)
+        return HttpResponse(r_json,content_type='application/json')
 
 class ScheduleModificationView(APIView):
     def post(self,request):

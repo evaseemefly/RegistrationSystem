@@ -1,13 +1,22 @@
 import json
+import datetime
+from datetime import date
 
 class MyJsonEncoder(json.JSONEncoder):
     def default(self, o):
         d={}
         d['__class__']=o.__class__.__name__
         d['__module__']=o.__module__
-        d.update(obj.__dict__)
+        d.update(o.__dict__)
         return d
 
+class DateTimeEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, datetime.datetime):
+            return obj.strftime('%Y-%m-%d %H:%M:%S')
+        elif isinstance(obj, date):
+            return obj.strftime('%Y-%m-%d')
+        return json.JSONEncoder.default(self, obj)
 
 class MyJsonDecoder(json.JSONDecoder):
     def __init__(self):
