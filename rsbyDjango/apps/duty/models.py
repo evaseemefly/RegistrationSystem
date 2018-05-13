@@ -76,6 +76,14 @@ class R_UserInfo_DepartmentInfo(models.Model):
         name=self.did.derpartmentname+"-"+self.uid.username
         return name
 
+class R_Department_User_Simplify(models.Model):
+    did=models.IntegerField()
+    name=models.CharField()
+    uid=models.ForeignKey(UserInfo,on_delete=models.CASCADE)
+
+    class Meta:
+        abstract=True
+
 class dutyschedule(models.Model):
     id=models.AutoField(primary_key=True)
     rDepartmentDuty=models.ForeignKey(R_DepartmentInfo_DutyInfo,on_delete=models.CASCADE)

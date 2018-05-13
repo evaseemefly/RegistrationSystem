@@ -31,8 +31,8 @@ SECRET_KEY = 'seuko=23hh1b(02dj1b#qi^)=wv8q#18a*y8_xthu-u_+)gze$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# ALLOWED_HOSTS = ['localhost:8000','localhost:8020','127.0.0.1','127.0.0.1:8000']
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -144,8 +144,42 @@ USE_L10N = True
 
 USE_TZ = True
 
+CORS_ALLOW_CREDENTIALS = True
 # 处理跨域访问的问题
 CORS_ORIGIN_ALLOW_ALL = True
+
+# 默认值是全部
+CORS_ORIGIN_WHITELIST = (
+    # 'localhost:8000',
+    # 'localhost:8020',
+    # '127.0.0.1',
+    # '127.0.0.1:8020',
+    # '127.0.0.1:8000'
+)
+
+CORS_ALLOW_METHODS = (
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+    'VIEW',
+)
+
+CORS_ALLOW_HEADERS = (
+    'XMLHttpRequest',
+    'X_FILENAME',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+    'Pragma',
+)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
