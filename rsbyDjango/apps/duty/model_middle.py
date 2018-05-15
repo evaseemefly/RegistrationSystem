@@ -30,6 +30,10 @@ class R_User_Department_Middle(object):
 
         r_list= list(r_user_dep)
         finial_list=[]
+        # 向r_list第一位插入-1
+        common_obj=User_Department_Middle()
+
+        # r_list.insert(0,)
         # 注意此处训话时，会提示ListSerializer是不可迭代的
         # 解决：是因为传入的是序列化之后的对象
         for temp in r_user_dep:
@@ -45,7 +49,6 @@ class R_User_Department_Middle(object):
             if len(match_list)==0:
             # if finial_list.index(temp.did.did)<0:
                 # 向temp_obj中插入当前的match_list的user
-
                 temp_obj.uid.append(user_temp)
                 finial_list.append(temp_obj)
             else:

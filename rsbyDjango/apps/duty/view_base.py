@@ -6,6 +6,9 @@ __date__ = '2018/4/26 14:21'
 可抽闲出来的父类（view）放在此处
 '''
 
+import time
+from datetime import datetime
+
 from django.views.generic import View
 from datetime import datetime
 from django.core import serializers
@@ -19,7 +22,7 @@ from .serializers import DutyScheduleSerializer,UserSerializer
 
 
 class DutyScheduleBaseView(APIView):
-    def getscheduleDetial(self,dids=[],pid=-1):
+    def getscheduleDetial(self,dids=[],pid=-1,target_date=datetime.now()):
         '''
         根据部门id list与所属的父级部门 获取符合条件的 值班信息（list）
         :param dids:
@@ -33,7 +36,7 @@ class DutyScheduleBaseView(APIView):
                 rd_list = [temp.id for temp in R_DepartmentInfo_DutyInfo.objects.filter(did_id__in=dids)]
                 # DepartmentInfo.objects.filter()
                 # 2 根据id找到 值班表
-                schedule_list = dutyschedule.objects.filter(rDepartmentDuty__in=rd_list)
+                schedule_list = dutyschedule.objects.filter(rDepartmentDuty__in=rd_list,dutydate__year=target_date.year,dutydate__month=target_date.month)
         return schedule_list
 
 class UserBaseView(APIView):

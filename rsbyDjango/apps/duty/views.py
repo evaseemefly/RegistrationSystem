@@ -197,12 +197,23 @@ class ScheduleListView(DutyScheduleBaseView):
         :param request:
         :return:
         '''
-        did=[1]
-        pid=-1
+        query_dic=request.query_params
+        # 分别获取user_id,group_id,selected_date
+        uid=query_dic.get('user_id')
+        did=query_dic.get('group_id')
+        target_date=query_dic.get('selected_date')
+
+        did=map(lambda x:int(x),list(did))
+        uid=map(lambda x:int(x),list(uid))
+
+        did=list(did)
+        uid = list(uid)
         # 传入了一组部门
         # 找到对应的部门
         # 返回dutyschedule（值班表）
-        schedule_list=self.getscheduleDetial(dids=did)
+        # datetime.strptime(target_date,'')
+        # convert_date=datetime.strptime(target_date, '%Y-%m-%d')
+        schedule_list=self.getscheduleDetial(dids=did,target_date=datetime.strptime(target_date, '%Y-%m-%d'))
         seredule_json = DutyScheduleSerializer(schedule_list, many=True)
         # return JsonResponse(seredule_json.data)
         print(seredule_json.data)
