@@ -21,7 +21,7 @@ from rest_framework import status
 
 from .models import DutyInfo,dutyschedule,R_DepartmentInfo_DutyInfo,DepartmentInfo,R_UserInfo_DepartmentInfo,UserInfo
 from .serializers import DutyScheduleSerializer,UserSerializer,DutySerializer,R_User_DepartmentSerializer,R_User_Department_Simplify_Serializer,User_Simplify_Serializer,R_Department_User_Simplify_Serializer
-from .view_base import DutyScheduleBaseView,UserBaseView,DutyBaseView,GroupBaseView
+from .view_base import DutyScheduleBaseView,UserBaseView,DutyBaseView,GroupBaseView,R_Department_Duty
 from .model_middle import R_User_Department_Middle
 
 from Common.MyJsonEncoder import DateTimeEncoder
@@ -109,7 +109,7 @@ class GroupListView(GroupBaseView):
         # return JsonResponse(finial_list,safe=False)
         return HttpResponse(r_json,content_type='application/json')
 
-class ScheduleModificationView(APIView):
+class ScheduleModificationView(R_Department_Duty):
     def post(self,request):
         '''
         获取前端提交的修改数据
@@ -186,6 +186,11 @@ class ScheduleModificationView(APIView):
                     # temp_schedule.update(rDepartmentDuty_id=rDerDuty.id)
 
             pass
+
+        # 提交的为 user以及 duty（说明为新建）
+        if schedule_code=='all':
+            schedule_rd=self.get_r_list()
+            dutyschedule.objects.create(rDepartmentDuty_id=-)
 
         pass
 
