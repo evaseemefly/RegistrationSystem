@@ -7,9 +7,13 @@ BASE_DIR=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # FtpSourcePath=r"E:\03协同开发\九楼值班显示平台\ftpdir"
 # TARGET_DIR_PATH=r"E:\03协同开发\九楼值班显示平台\result"
 
+# t430s
+FtpSourcePath = r"D:\03Git仓库\RegistrationSystem\background\ftpdir"
+TARGET_DIR_PATH = r"D:\03Git仓库\RegistrationSystem\background\result"
+
 # 单位台式机
-FtpSourcePath=r"D:\git仓库\RegistrationSystem\background\ftpdir"
-TARGET_DIR_PATH=r"D:\git仓库\RegistrationSystem\background\result"
+# FtpSourcePath=r"D:\git仓库\RegistrationSystem\background\ftpdir"
+# TARGET_DIR_PATH=r"D:\git仓库\RegistrationSystem\background\result"
 #surface book
 # FtpSourcePath=r"D:\git仓库\RegistrationSystem\background\ftpdir"
 # TARGET_DIR_PATH=r"D:\git仓库\RegistrationSystem\background\result"

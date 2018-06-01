@@ -21,7 +21,7 @@ from rest_framework import status
 
 from .models import DutyInfo,dutyschedule,R_DepartmentInfo_DutyInfo,DepartmentInfo,R_UserInfo_DepartmentInfo,UserInfo
 from .serializers import DutyScheduleSerializer,UserSerializer,DutySerializer,R_User_DepartmentSerializer,R_User_Department_Simplify_Serializer,User_Simplify_Serializer,R_Department_User_Simplify_Serializer
-from .view_base import DutyScheduleBaseView,UserBaseView,DutyBaseView,GroupBaseView,R_Department_Duty
+from .view_base import DutyScheduleBaseView,UserBaseView,DutyBaseView,GroupBaseView,R_Department_Duty_BaseView
 from .model_middle import R_User_Department_Middle
 
 from Common.MyJsonEncoder import DateTimeEncoder
@@ -109,7 +109,7 @@ class GroupListView(GroupBaseView):
         # return JsonResponse(finial_list,safe=False)
         return HttpResponse(r_json,content_type='application/json')
 
-class ScheduleModificationView(R_Department_Duty):
+class ScheduleModificationView(R_Department_Duty_BaseView,UserBaseView):
     def post(self,request):
         '''
         获取前端提交的修改数据
@@ -121,6 +121,9 @@ class ScheduleModificationView(R_Department_Duty):
         schedule_id=modification_data.get('id',None)
         schedule_code=modification_data.get('code',None)
         schedule_uid = modification_data.get('uid', None)
+        schedule_did=modification_data.get('did',None)
+        schedule_duid=modification_data.get('duid',None)
+        schedule_dutydate=modification_data.get('dutydate',datetime.now())
         # 以上三个变量均不为none
         if None in [schedule_id,schedule_code]:
             return
@@ -189,8 +192,13 @@ class ScheduleModificationView(R_Department_Duty):
 
         # 提交的为 user以及 duty（说明为新建）
         if schedule_code=='all':
-            schedule_rd=self.get_r_list()
-            dutyschedule.objects.create(rDepartmentDuty_id=-)
+            schedule_rd=self.get_r_list([schedule_did],[schedule_duid])
+            search_user=self.getuserlistbyuid([schedule_uid])
+            dutyschedule.objects.create(
+                rDepartmentDuty_id=schedule_rd.first().id,
+                user_id=search_user.first().uid,
+                dutydate=schedule_dutydate
+            )
 
         pass
 
