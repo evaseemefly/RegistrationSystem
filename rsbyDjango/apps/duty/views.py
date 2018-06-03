@@ -23,6 +23,7 @@ from .models import DutyInfo,dutyschedule,R_DepartmentInfo_DutyInfo,DepartmentIn
 from .serializers import DutyScheduleSerializer,UserSerializer,DutySerializer,R_User_DepartmentSerializer,R_User_Department_Simplify_Serializer,User_Simplify_Serializer,R_Department_User_Simplify_Serializer
 from .view_base import DutyScheduleBaseView,UserBaseView,DutyBaseView,GroupBaseView,R_Department_Duty_BaseView
 from .model_middle import R_User_Department_Middle
+from .forms import ScheduleForm
 
 from Common.MyJsonEncoder import DateTimeEncoder
 
@@ -118,6 +119,7 @@ class ScheduleModificationView(R_Department_Duty_BaseView,UserBaseView):
         '''
         # 获取post提交过来的数据
         modification_data= request.data
+        form= ScheduleForm(request.POST)
         schedule_id=modification_data.get('id',None)
         schedule_code=modification_data.get('code',None)
         schedule_uid = modification_data.get('uid', None)
@@ -191,6 +193,8 @@ class ScheduleModificationView(R_Department_Duty_BaseView,UserBaseView):
             pass
 
         # 提交的为 user以及 duty（说明为新建）
+        # 提交时应提交具体的group_id（部门），而非默认值（-999）
+
         if schedule_code=='all':
             schedule_rd=self.get_r_list([schedule_did],[schedule_duid])
             search_user=self.getuserlistbyuid([schedule_uid])
