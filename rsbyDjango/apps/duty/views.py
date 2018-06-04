@@ -21,8 +21,9 @@ from rest_framework import status
 
 from .models import DutyInfo,dutyschedule,R_DepartmentInfo_DutyInfo,DepartmentInfo,R_UserInfo_DepartmentInfo,UserInfo
 from .serializers import DutyScheduleSerializer,UserSerializer,DutySerializer,R_User_DepartmentSerializer,R_User_Department_Simplify_Serializer,User_Simplify_Serializer,R_Department_User_Simplify_Serializer
-from .view_base import DutyScheduleBaseView,UserBaseView,DutyBaseView,GroupBaseView
+from .view_base import DutyScheduleBaseView,UserBaseView,DutyBaseView,GroupBaseView,R_Department_Duty_BaseView
 from .model_middle import R_User_Department_Middle
+from .forms import ScheduleForm
 
 from Common.MyJsonEncoder import DateTimeEncoder
 
@@ -109,7 +110,7 @@ class GroupListView(GroupBaseView):
         # return JsonResponse(finial_list,safe=False)
         return HttpResponse(r_json,content_type='application/json')
 
-class ScheduleModificationView(APIView):
+class ScheduleModificationView(R_Department_Duty_BaseView,UserBaseView):
     def post(self,request):
         '''
         获取前端提交的修改数据
@@ -118,9 +119,15 @@ class ScheduleModificationView(APIView):
         '''
         # 获取post提交过来的数据
         modification_data= request.data
+        form= ScheduleForm(request.POST)
         schedule_id=modification_data.get('id',None)
         schedule_code=modification_data.get('code',None)
         schedule_uid = modification_data.get('uid', None)
+        schedule_did=modification_data.get('did',None)
+        schedule_duid=modification_data.get('duid',None)
+
+        schedule_dutydate=modification_data.get('dutydate',None) or datetime.now().strftime('%Y-%m-%d')
+        schedule_dutydate=datetime.strptime(schedule_dutydate,'%Y-%m-%d')
         # 以上三个变量均不为none
         if None in [schedule_id,schedule_code]:
             return
@@ -144,6 +151,7 @@ class ScheduleModificationView(APIView):
             '''
 
             schedule_obj.update(user_id=schedule_uid)
+
         # 岗位职责
         if schedule_code=='duty':
             '''
@@ -187,7 +195,24 @@ class ScheduleModificationView(APIView):
 
             pass
 
-        pass
+        # 修改日期
+        if schedule_code=='date':
+            schedule_obj=dutyschedule.objects.filter(id=schedule_id)
+            schedule_obj.update(dutydate=schedule_dutydate)
+            pass
+
+        # 提交的为 user以及 duty（说明为新建）
+        # 提交时应提交具体的group_id（部门），而非默认值（-999）
+        if schedule_code=='all':
+            schedule_rd=self.get_r_list([schedule_did],[schedule_duid])
+            search_user=self.getuserlistbyuid([schedule_uid])
+            dutyschedule.objects.create(
+                rDepartmentDuty_id=schedule_rd.first().id,
+                user_id=search_user.first().uid,
+                dutydate=schedule_dutydate
+            )
+
+        return Response(status=status.HTTP_200_OK)
 
 
 class ScheduleListView(DutyScheduleBaseView):
@@ -195,25 +220,34 @@ class ScheduleListView(DutyScheduleBaseView):
         '''
         根据部门id或组id获取人员list
         :param request:
+          必须包含：
+              user_id，
+              group，
+              selected_date
+          可选：
+            （均为数组）
+             users_id，
+             groups_id
         :return:
         '''
         query_dic=request.query_params
-        # 分别获取user_id,group_id,selected_date
-        uid=query_dic.get('user_id')
-        did=query_dic.get('group_id')
+        # 分别获取users_id,groups_id,selected_date
+        # 注意前端传过来的使用bootstrap-table get 时传递的data中若为数组会自动在原有名字后面加上一个[]，注意！
+        uids=query_dic.get('users_id[]')
+        dids=query_dic.get('groups_id[]')
         target_date=query_dic.get('selected_date')
 
-        did=map(lambda x:int(x),list(did))
-        uid=map(lambda x:int(x),list(uid))
+        dids=map(lambda x:int(x),list(dids))
+        uids=map(lambda x:int(x),list(uids))
 
-        did=list(did)
-        uid = list(uid)
+        dids=list(dids)
+        uids = list(uids)
         # 传入了一组部门
         # 找到对应的部门
         # 返回dutyschedule（值班表）
         # datetime.strptime(target_date,'')
         # convert_date=datetime.strptime(target_date, '%Y-%m-%d')
-        schedule_list=self.getscheduleDetial(dids=did,target_date=datetime.strptime(target_date, '%Y-%m-%d'))
+        schedule_list=self.getscheduleDetial(dids=dids,target_date=datetime.strptime(target_date, '%Y-%m-%d'))
         seredule_json = DutyScheduleSerializer(schedule_list, many=True)
         # return JsonResponse(seredule_json.data)
         print(seredule_json.data)

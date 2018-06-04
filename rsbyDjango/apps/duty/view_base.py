@@ -17,7 +17,7 @@ from django.http import JsonResponse,HttpResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from .models import DutyInfo,dutyschedule,R_DepartmentInfo_DutyInfo,DepartmentInfo,R_UserInfo_DepartmentInfo
+from .models import UserInfo,DutyInfo,dutyschedule,R_DepartmentInfo_DutyInfo,DepartmentInfo,R_UserInfo_DepartmentInfo
 from .serializers import DutyScheduleSerializer,UserSerializer
 
 
@@ -40,6 +40,14 @@ class DutyScheduleBaseView(APIView):
         return schedule_list
 
 class UserBaseView(APIView):
+    def getuserlistbyuid(self,uids=None):
+        '''
+        根据用户ids获取制定的user list
+        :param uids:
+        :return:
+        '''
+        return UserInfo.objects.filter(uid__in=uids)
+
     def getuserlistbydepartment(self,dids=None):
         '''
         根据部门id获取该部门拥有的人员列表
@@ -74,3 +82,14 @@ class DutyBaseView(APIView):
         if len(dids)>0:
             duty_list=[r.duid for r in R_DepartmentInfo_DutyInfo.objects.filter(did_id__in=dids)]
         return duty_list
+
+class R_Department_Duty_BaseView(APIView):
+    def get_r_list(self,dids=[],duids=[]):
+        '''
+        根据 部门ids以及岗位ids获取指定的关系对象list
+        :param dids:
+        :param duids:
+        :return:
+        '''
+        r_list=R_DepartmentInfo_DutyInfo.objects.filter(did_id__in=dids,duid_id__in=duids)
+        return r_list
