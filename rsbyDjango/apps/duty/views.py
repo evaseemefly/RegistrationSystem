@@ -256,6 +256,11 @@ class ScheduleListView(DutyScheduleBaseView):
         # return Response(seredule_json.data)
         # return Response(seredule_json.data)
 
+    def post(self,request):
+        id= request.post.get('id',None)
+        dutyschedule.objects.filter(id=id).delete()
+
+
 class DutyListView(DutyBaseView):
     def get(self,request):
         '''
