@@ -169,7 +169,7 @@ class ScheduleModificationView(R_Department_Duty_BaseView,UserBaseView):
             # 非空
             if None not in[schedule_duid,schedule_did]:
                 temp_schedule=dutyschedule.objects.filter(id=schedule_id)
-                # 取出第一个
+                # 取出第一个值班信息
                 temp_schedule=temp_schedule.first()
                 if temp_schedule is not None:
                     # 在部门职责信息表中根据部门id以及职责id找到对应的行
@@ -237,11 +237,13 @@ class ScheduleListView(DutyScheduleBaseView):
         dids=query_dic.get('groups_id[]')
         target_date=query_dic.get('selected_date')
 
-        dids=map(lambda x:int(x),list(dids))
-        uids=map(lambda x:int(x),list(uids))
+        # dids=map(lambda x:int(x),dids.split(','))
+        dids=[int(temp) for temp in dids.split(',')]
+        # uids=map(lambda x:int(x),list(uids))
+        uids=[int(temp) for temp in uids.split(',')]
 
-        dids=list(dids)
-        uids = list(uids)
+        # dids=list(dids)
+        # uids = list(uids)
         # 传入了一组部门
         # 找到对应的部门
         # 返回dutyschedule（值班表）
@@ -257,8 +259,10 @@ class ScheduleListView(DutyScheduleBaseView):
         # return Response(seredule_json.data)
 
     def post(self,request):
-        id= request.post.get('id',None)
-        dutyschedule.objects.filter(id=id).delete()
+        ids=request.POST.getlist('id[]',None)
+        # id= request.post.get('id',None)
+        dutyschedule.objects.filter(id__in=ids).delete()
+        return Response(status=status.HTTP_202_ACCEPTED)
 
 
 class DutyListView(DutyBaseView):

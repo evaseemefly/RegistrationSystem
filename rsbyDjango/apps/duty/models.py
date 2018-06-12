@@ -87,7 +87,9 @@ class R_Department_User_Simplify(models.Model):
 class dutyschedule(models.Model):
     id=models.AutoField(primary_key=True)
     rDepartmentDuty=models.ForeignKey(R_DepartmentInfo_DutyInfo,on_delete=models.CASCADE)
-    dutydate=models.DateField(auto_now=True)
+    # 注意需要把auto_now去掉，不然每次修改后都会重修修改该时间
+    # dutydate=models.DateField(auto_now=True)
+    dutydate = models.DateField()
     # duty=models.ForeignKey(DutyInfo,on_delete=models.CASCADE)
     user=models.ForeignKey(UserInfo,on_delete=models.CASCADE)
     # department=models.ForeignKey(DepartmentInfo,on_delete=models.CASCADE)
