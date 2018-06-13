@@ -249,8 +249,10 @@ class ScheduleListView(DutyScheduleBaseView):
         # 返回dutyschedule（值班表）
         # datetime.strptime(target_date,'')
         # convert_date=datetime.strptime(target_date, '%Y-%m-%d')
-        schedule_list=self.getscheduleDetial(dids=dids,target_date=datetime.strptime(target_date, '%Y-%m-%d'))
-        seredule_json = DutyScheduleSerializer(schedule_list, many=True)
+        schedule_list=self.getMergeScheduleList(dids=dids,target_date=datetime.strptime(target_date, '%Y-%m-%d'))
+        # schedule_list=self.getscheduleDetial(dids=dids,target_date=datetime.strptime(target_date, '%Y-%m-%d'))
+        # seredule_json = DutyScheduleSerializer(schedule_list, many=True)
+        seredule_json=serializers.serialize("json",schedule_list)
         # return JsonResponse(seredule_json.data)
         print(seredule_json.data)
         return Response(seredule_json.data,status=status.HTTP_202_ACCEPTED)

@@ -18,10 +18,28 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from .models import UserInfo,DutyInfo,dutyschedule,R_DepartmentInfo_DutyInfo,DepartmentInfo,R_UserInfo_DepartmentInfo
-from .serializers import DutyScheduleSerializer,UserSerializer
+from .serializers import DutyScheduleSerializer,UserSerializer,MergeScheduleSerializer,MergeDutyUserSerializer
 
 
 class DutyScheduleBaseView(APIView):
+    def getMergeScheduleList(self,dids=[],pid=-1,target_date=datetime.now()):
+        schedule_list= self.getscheduleDetial(dids,pid,target_date)
+        # 根据日期去重
+        def MergeList(did,schedule_list,target_date=datetime.now()):
+            '''
+
+            :param did: 要合并的部门id
+            :param target_date: 合并的日期
+            :return:
+            '''
+            # 1 找到指定日的值班信息
+            schedult_templist=schedule_list.filter(dutydate__year=target_date.year,dutydate__month=target_date.month,dutydate__day=target_date.day)
+            # 2 列表推到过滤
+            merge_templist=[MergeDutyUserSerializer(temp.user,temp.rDepartmentDuty) for temp in schedult_templist if temp.rDepartmentDuty.did.did==did]
+            return merge_templist
+        merageSchedule_list= [MergeScheduleSerializer(MergeList(did,schedule_list,target_date),target_date) for did in dids]
+        return merageSchedule_list
+
     def getscheduleDetial(self,dids=[],pid=-1,target_date=datetime.now()):
         '''
         根据部门id list与所属的父级部门 获取符合条件的 值班信息（list）
