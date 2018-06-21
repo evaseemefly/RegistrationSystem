@@ -17,7 +17,11 @@ from django.http import JsonResponse,HttpResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from .models import UserInfo,DutyInfo,dutyschedule,R_DepartmentInfo_DutyInfo,DepartmentInfo,R_UserInfo_DepartmentInfo,MergeDutyUserInfo
+from .models import UserInfo,DutyInfo,dutyschedule,R_DepartmentInfo_DutyInfo,DepartmentInfo,R_UserInfo_DepartmentInfo
+
+#代理模型类
+from .models import DutyScheduleProxyModel
+
 from .serializers import DutyScheduleSerializer,UserSerializer,MergeScheduleSerializer,MergeDutyUserSerializer
 
 
@@ -41,10 +45,17 @@ class DutyScheduleBaseView(APIView):
             '''
             # 1 找到指定日的值班信息
             schedult_templist=schedule_list.filter(dutydate__year=target_date.year,dutydate__month=target_date.month,dutydate__day=target_date.day)
+
             # 2 列表推到过滤
+            #6-21 修改
+            # merge_templist=schedult_templist.filter(rDepartmentDuty__did__did==did)
+
+
             schedult_templist.filter()
             merge_templist=[MergeDutyUserSerializer(temp.user,temp.rDepartmentDuty) for temp in schedult_templist if temp.rDepartmentDuty.did.did==did]
+
             return merge_templist
+
         merageSchedule_list= [MergeScheduleSerializer(MergeList(did,schedule_list,target_date),target_date) for did in dids]
         return merageSchedule_list
 
@@ -63,6 +74,9 @@ class DutyScheduleBaseView(APIView):
                 # DepartmentInfo.objects.filter()
                 # 2 根据id找到 值班表
                 schedule_list = dutyschedule.objects.filter(rDepartmentDuty__in=rd_list,dutydate__year=target_date.year,dutydate__month=target_date.month)
+
+                # 6-21 方式2
+                # schedule_list=DutyScheduleProxyModel.objects.filter(rDepartmentDuty__in=rd_list,dutydate__year=target_date.year,dutydate__month=target_date.month)
         return schedule_list
 
 class UserBaseView(APIView):

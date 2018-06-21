@@ -10,10 +10,10 @@ class MergeDutyUserSerializer():
         self.user=user
         self.rDepDuty=rDepDuty
 
-class MyMergeDutyUserSerializer(serializers.ModelSerializer):
-    user=UserInfo(many=False,read_only=True)
-    class Meta:
-        model=R_DepartmentInfo_DutyInfo
+# class MyMergeDutyUserSerializer(serializers.ModelSerializer):
+#     user=UserInfo(many=False,read_only=True)
+#     class Meta:
+#         model=R_DepartmentInfo_DutyInfo
 
 
 class MergeScheduleSerializer():

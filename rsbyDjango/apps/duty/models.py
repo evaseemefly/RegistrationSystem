@@ -94,7 +94,15 @@ class dutyschedule(models.Model):
     user=models.ForeignKey(UserInfo,on_delete=models.CASCADE)
     # department=models.ForeignKey(DepartmentInfo,on_delete=models.CASCADE)
 
-class MergeDutyUserInfo(UserInfo,R_DepartmentInfo_DutyInfo):
-    user=models.ManyToManyField(UserInfo)
-    rDepDuty=models.ManyToManyField(R_DepartmentInfo_DutyInfo)
+# class MergeDutyUserInfo(UserInfo,R_DepartmentInfo_DutyInfo):
+#     user=models.ManyToManyField(UserInfo)
+#     rDepDuty=models.ManyToManyField(R_DepartmentInfo_DutyInfo)
+
+# class DutyUserProxyModel(UserInfo,DutyInfo):
+#     class Meta:
+#         proxy=True
+
+class DutyScheduleProxyModel(dutyschedule):
+    class Meta:
+        proxy=True
 
