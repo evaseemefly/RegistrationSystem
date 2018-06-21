@@ -20,14 +20,16 @@ from django.contrib import admin
 # from django.utils.functional import lazy_property
 import xadmin
 xadmin.autodiscover()
-from rsdb import views
-from duty import views
 
+from rsdb import views
+import rsdb
+from duty import views
+# import duty
 
 urlpatterns = [
     # url(r'^admin/', admin.site.urls),
     url(r'^xadmin/', xadmin.site.urls,name='xadmin'),
-    # url(r'^home',views.home),
+    url(r'^home',rsdb.views.home),
     # url(r'^getPersonList',views.getPersonList),
     url('^duty/',include('duty.urls',namespace='duty')),
     url(r'^api-auth/', include('rest_framework.urls'))

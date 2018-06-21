@@ -17,12 +17,19 @@ from django.http import JsonResponse,HttpResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
-from .models import UserInfo,DutyInfo,dutyschedule,R_DepartmentInfo_DutyInfo,DepartmentInfo,R_UserInfo_DepartmentInfo
+from .models import UserInfo,DutyInfo,dutyschedule,R_DepartmentInfo_DutyInfo,DepartmentInfo,R_UserInfo_DepartmentInfo,MergeDutyUserInfo
 from .serializers import DutyScheduleSerializer,UserSerializer,MergeScheduleSerializer,MergeDutyUserSerializer
 
 
 class DutyScheduleBaseView(APIView):
-    def getMergeScheduleList(self,dids=[],pid=-1,target_date=datetime.now()):
+    def getMergeScheduleListByDate(self,dids=[],pid=-1,target_date=datetime.now()):
+        '''
+        获取修改后的值班列表
+        :param dids:
+        :param pid:
+        :param target_date:
+        :return:
+        '''
         schedule_list= self.getscheduleDetial(dids,pid,target_date)
         # 根据日期去重
         def MergeList(did,schedule_list,target_date=datetime.now()):
@@ -35,6 +42,7 @@ class DutyScheduleBaseView(APIView):
             # 1 找到指定日的值班信息
             schedult_templist=schedule_list.filter(dutydate__year=target_date.year,dutydate__month=target_date.month,dutydate__day=target_date.day)
             # 2 列表推到过滤
+            schedult_templist.filter()
             merge_templist=[MergeDutyUserSerializer(temp.user,temp.rDepartmentDuty) for temp in schedult_templist if temp.rDepartmentDuty.did.did==did]
             return merge_templist
         merageSchedule_list= [MergeScheduleSerializer(MergeList(did,schedule_list,target_date),target_date) for did in dids]
