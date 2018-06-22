@@ -20,8 +20,8 @@
             <file leaf-file-name="view_base.py" pinned="false" current-in-tab="true">
               <entry file="file://$PROJECT_DIR$/apps/duty/view_base.py">
                 <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="611">
-                    <caret line="46" column="33" lean-forward="true" selection-start-line="46" selection-start-column="33" selection-end-line="46" selection-end-column="33" />
+                  <state relative-caret-position="299">
+                    <caret line="34" column="68" lean-forward="true" selection-start-line="34" selection-start-column="68" selection-end-line="34" selection-end-column="68" />
                     <folding>
                       <element signature="e#108#119#0" expanded="true" />
                     </folding>
@@ -49,8 +49,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apps/duty/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="251" column="53" lean-forward="false" selection-start-line="251" selection-start-column="27" selection-end-line="251" selection-end-column="53" />
+            <state relative-caret-position="387">
+              <caret line="258" column="49" lean-forward="true" selection-start-line="258" selection-start-column="49" selection-end-line="258" selection-end-column="49" />
               <folding>
                 <element signature="e#55#90#0" expanded="true" />
                 <element signature="e#2148#2506#0" expanded="false" />
@@ -1005,26 +1005,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/apps/duty/view_base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="34" column="68" lean-forward="true" selection-start-line="34" selection-start-column="68" selection-end-line="34" selection-end-column="68" />
+          <folding>
+            <element signature="e#108#119#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/apps/duty/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="251" column="53" lean-forward="false" selection-start-line="251" selection-start-column="27" selection-end-line="251" selection-end-column="53" />
+        <state relative-caret-position="387">
+          <caret line="258" column="49" lean-forward="true" selection-start-line="258" selection-start-column="49" selection-end-line="258" selection-end-column="49" />
           <folding>
             <element signature="e#55#90#0" expanded="true" />
             <element signature="e#2148#2506#0" expanded="false" />
             <element signature="e#2548#3927#0" expanded="false" />
             <element signature="e#4911#5272#0" expanded="false" />
             <element signature="e#6665#7210#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/duty/view_base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="611">
-          <caret line="46" column="33" lean-forward="true" selection-start-line="46" selection-start-column="33" selection-end-line="46" selection-end-column="33" />
-          <folding>
-            <element signature="e#108#119#0" expanded="true" />
           </folding>
         </state>
       </provider>
