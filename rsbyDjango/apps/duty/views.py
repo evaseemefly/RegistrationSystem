@@ -252,10 +252,23 @@ class ScheduleListView(DutyScheduleBaseView):
         schedule_list=self.getMergeScheduleListByDate(dids=dids,target_date=datetime.strptime(target_date, '%Y-%m-%d'))
         # schedule_list=self.getscheduleDetial(dids=dids,target_date=datetime.strptime(target_date, '%Y-%m-%d'))
         # seredule_json = DutyScheduleSerializer(schedule_list, many=True)
-        seredule_json=serializers.serialize("json",schedule_list)
+
+        # seredule_json=serializers.serialize("json",schedule_list)
+        def json_default(value):
+            if isinstance(value, datetime.datetime):
+                return value.strftime('%Y-%m-%d %H:%M:%S')
+            elif isinstance(value, datetime.date):
+                return value.strftime('%Y-%m-%d')
+            else:
+                return value.__dict__
+        # seredule_json = json.dumps(schedule_list,skipkeys=True,cls=json_default,ensure_ascii=False, default=lambda obj:obj.__dict__)
+        seredule_json = json.dumps(schedule_list,ensure_ascii=False)
+
         # return JsonResponse(seredule_json.data)
-        print(seredule_json.data)
-        return Response(seredule_json.data,status=status.HTTP_202_ACCEPTED)
+        print(seredule_json)
+        # return JsonResponse(seredule_json)
+        return HttpResponse(seredule_json, content_type="application/json")
+        # return Response(seredule_json,status=status.HTTP_202_ACCEPTED)
         # return HttpResponse(seredule_json.data)
         # return Response(seredule_json.data)
         # return Response(seredule_json.data)
