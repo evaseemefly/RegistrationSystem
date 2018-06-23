@@ -106,14 +106,12 @@ DATABASES = {
         'NAME':'registrationsystem',
 
         # 单位台式机
-        'USER':'admin',
-        'PASSWORD':'admin123',
+        # 'USER':'admin',
+        # 'PASSWORD':'admin123',
 
         # 540配置
-        # 'USER':'root',
-        # 'PASSWORD':'123456',
-        # 'USER':'root',
-        # 'PASSWORD':'123456',
+        'USER':'root',
+        'PASSWORD':'123456',
         'HOST':'127.0.0.1',
         # 'OPTIONS':{'init_command':'SET storage_engine=INNODB;'}
     }
