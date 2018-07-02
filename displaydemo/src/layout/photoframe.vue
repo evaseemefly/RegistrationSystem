@@ -7,9 +7,8 @@
                     <img v-bind:src="person.img_url">
                 </div>
                 <div class="post-content" :class=person.level>
-                    <photobutton :detail=person></photobutton>
+                    <photobutton v-show="isShowButton(person)" :detail=person></photobutton>
                     <h1 class="title">{{person.name}}</h1>
-                    
                 </div>
             </div>
         </div>
@@ -18,8 +17,28 @@
 <script>
     import photobutton from "./photo-button.vue";
     export default {
+        data() {
+            return {
+                level_dict: [
+                    "urgency", "minor"
+                ]
+            }
+        },
         components: {
             photobutton
+        },
+        methods:{
+            isShowButton(item){
+                var isShow=true;
+                if(this.level_dict.indexOf(item.level)>=0)
+                {
+                    isShow=false;
+                }
+                // if(item.level in this.level_dict){
+                //     isShow=true;
+                // }
+                return isShow;
+            }
         },
         props: {
             person: {

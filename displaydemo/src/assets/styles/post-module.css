@@ -3,10 +3,11 @@
    .title {
      text-align: center;
    }
-   .post-container{
-     width:250px;
-     
+
+   .post-container {
+     width: 250px;
    }
+
    .post-title {
      color: #ffffff;
      font-size: 18px;
@@ -35,12 +36,14 @@
    }
 
    .post-module {
+     /* 水平居中 */
+     margin: auto;
      position: relative;
      z-index: 1;
      display: block;
      background: #ffffff;
      box-shadow: 0 0 30px #666666;
-    width:172.25px;
+     width: 172.25px;
      /* 边角圆滑处理 */
      /* border-top-left-radius: 2em 0.5em;
     border-top-right-radius: 1em 3em;
@@ -93,7 +96,7 @@
    .post-module .my_frame {
      background: #000000;
      height: 280px;
-     width:172.25px;
+     width: 172.25px;
      overflow: hidden;
      text-align: center;
      vertical-align: middle;
@@ -116,7 +119,9 @@
      bottom: 0;
      /* background: #ffffff; */
      width: 100%;
-     padding: 15px;
+     /* padding: 15px; */
+     padding-top: 50px;
+     padding-bottom: 15px;
      -webkti-box-sizing: border-box;
      -moz-box-sizing: border-box;
      box-sizing: border-box;

@@ -1,6 +1,11 @@
 <template>
     <div>
-        <nav class="navbar navbar-center">
+        <div class="topcenterbar">
+            <a href="#" class="current">部门1</a>
+            <a href="#">部门2</a>
+            <a href="#">部门3</a>
+        </div>
+        <!-- <nav class="navbar navbar-center">
             <div class="container-fluid">
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                     <ul class="nav navbar-nav">
@@ -15,7 +20,7 @@
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav> -->
     </div>
 </template>
 <script>
@@ -24,13 +29,37 @@
     }
 </script>
 <style scoped>
-    .navbar-center{
+    .navbar-center {
         background-color: rgba(0, 57, 245, 0.089);
         margin-bottom: 2px;
     }
-    a{
-        color:aliceblue;
-        font-size:large;
-        font-weight: 300;
+
+    .topcenterbar {
+        text-align: center;
+        height: 65px;
+        color: rgb(213, 214, 226);
+        font-weight: 500;
+        font-family: "Microsoft YaHei", 宋体, "Segoe UI", "Lucida Grande", Helvetica, Arial, sans-serif, FreeSans, Arimo;
+        background: rgba(73, 74, 95, 0.438);
     }
+
+    .topcenterbar a {
+        display: inline-block;
+        margin: 0.5em;
+        padding: 0.6em 1em;
+        border: 3px solid #fff;
+        font-weight: 700;
+        color: #fff;
+    }
+
+    .topcenterbar a.current {
+        background: #1d7db1;
+        color: #fff;
+    }
+
+    /* a {
+        color: aliceblue;
+        font-size: large;
+        font-weight: 300;
+    } */
 </style>

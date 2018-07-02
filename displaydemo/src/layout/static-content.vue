@@ -29,14 +29,14 @@
             var myself = this;
             this.vips.push({
                 level:"urgency",
-                img_rul: '',
+                img_url: './src/img/person/中心领导/易晓蕾.jpg',
                 name: '易小雷',
                 desc:'带班领导',
 
             });
             this.vips.push({
                 level:"minor",
-                img_rul: '',
+                img_url: './src/img/person/业务处/张志华.jpg',
                 name: '领导B',
                 desc:'应急管理值班岗',
             });
@@ -57,6 +57,7 @@
         height: 100%;
         position: fixed;
         z-index: 2;
-        background-color: rgba(3, 45, 184, 0.493);
+        /* background-color: rgba(3, 45, 184, 0.493); */
+        background: rgba(73, 74, 95, 0.541);
     }
 </style>
