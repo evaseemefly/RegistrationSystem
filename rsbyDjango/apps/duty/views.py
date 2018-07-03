@@ -129,7 +129,7 @@ class ScheduleModificationView(R_Department_Duty_BaseView,UserBaseView):
         schedule_dutydate=modification_data.get('dutydate',None) or datetime.now().strftime('%Y-%m-%d')
         schedule_dutydate=datetime.strptime(schedule_dutydate,'%Y-%m-%d')
         # 以上三个变量均不为none
-        if None in [schedule_id,schedule_code]:
+        if None in [schedule_code]:
             return
         '''
         下面使用工厂方法实现：
@@ -143,7 +143,9 @@ class ScheduleModificationView(R_Department_Duty_BaseView,UserBaseView):
                 先根据值班信息表id找到该行数据
                 直接修改用户id
             '''
-            schedule_obj= dutyschedule.objects.filter(id=schedule_id)
+            # 获取指定的duty与department的关系
+            r_dep_duty= R_DepartmentInfo_DutyInfo.objects.filter(did=schedule_did,duid=schedule_duid)
+            schedule_obj= dutyschedule.objects.filter(rDepartmentDuty=r_dep_duty[0],dutydate=schedule_dutydate)
             # 注意此处可能会出错
             '''
                 错误原因：

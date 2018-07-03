@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="post-container">
-            <div class="post-title">{{person.desc}}</div>
+            <div class="post-title" v-show="!isShowButton(person)">{{person.desc}}</div>
             <div class="post-module">
                 <div class="my_frame">
                     <img v-bind:src="person.img_url">
