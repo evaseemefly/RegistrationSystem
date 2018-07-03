@@ -6,7 +6,7 @@
                 <div class="my_frame">
                     <img v-bind:src="person.img_url">
                 </div>
-                <div class="post-content" :class=person.level>
+                <div class="post-content" :class=person.level :style="postcontentHeight(person)">
                     <photobutton v-show="isShowButton(person)" :detail=person></photobutton>
                     <h1 class="title">{{person.name}}</h1>
                 </div>
@@ -27,12 +27,21 @@
         components: {
             photobutton
         },
-        methods:{
-            isShowButton(item){
-                var isShow=true;
-                if(this.level_dict.indexOf(item.level)>=0)
-                {
-                    isShow=false;
+        computed: {
+            
+        },
+        methods: {
+            postcontentHeight: function (item) {
+                var height = "";
+                if (this.level_dict.indexOf(item.level) >= 0) {
+                    height = "padding-top: 13px;";
+                }
+                return height;
+            },
+            isShowButton(item) {
+                var isShow = true;
+                if (this.level_dict.indexOf(item.level) >= 0) {
+                    isShow = false;
                 }
                 // if(item.level in this.level_dict){
                 //     isShow=true;
