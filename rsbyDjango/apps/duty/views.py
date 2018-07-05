@@ -126,7 +126,7 @@ class ScheduleCreateView(DutyScheduleBaseView,R_Department_Duty_BaseView,UserBas
         # 分别获取users_id,groups_id,selected_date
         # 注意前端传过来的使用bootstrap-table get 时传递的data中若为数组会自动在原有名字后面加上一个[]，注意！
         did=query_dic.get('did',None)
-        uid=query_dic.get('uid',-999);
+        uid=query_dic.get('uid',-999)
         # duid = query_dic.get('duid',None)
         target_date = query_dic.get('selected_date',None)
         schedule_dutydate = datetime.strptime(target_date, '%Y-%m-%d')
@@ -334,6 +334,22 @@ class ScheduleListView(DutyScheduleBaseView):
         dutyschedule.objects.filter(id__in=ids).delete()
         return Response(status=status.HTTP_202_ACCEPTED)
 
+class ScheduleDelView(DutyScheduleBaseView,R_Department_Duty_BaseView):
+    def post(self,request):
+        # 1 获取值班日期与group id
+        query_dic=request.data
+        target_date=query_dic.get('target_date',None)
+        did=query_dic.get('group_id',None)
+        r_list= self.get_r_list([did])
+        # 2 根据日期与部门id查询符合条件的值班信息（多个）
+        [dutyschedule.objects.filter(dutydate=datetime.strptime(target_date, '%Y-%m-%d'),
+                                        rDepartmentDuty=r).delete() for r in r_list]
+        # for r in r_list:
+        #     dutyschedule.objects.filter(dutydate=datetime.strptime(target_date, '%Y-%m-%d'),
+        #                                 rDepartmentDuty=r).delete()
+        # ids = request.POST.getlist('id[]', None)
+        # id= request.post.get('id',None)
+        return Response(status=status.HTTP_202_ACCEPTED)
 
 class DutyListView(DutyBaseView):
     def get(self,request):

@@ -210,5 +210,8 @@ class R_Department_Duty_BaseView(APIView):
         :param duids:
         :return:
         '''
-        r_list=R_DepartmentInfo_DutyInfo.objects.filter(did_id__in=dids,duid_id__in=duids)
+        if len(dids)>0 and len(duids)>0:
+            r_list=R_DepartmentInfo_DutyInfo.objects.filter(did_id__in=dids,duid_id__in=duids)
+        elif len(duids)==0:
+            r_list=R_DepartmentInfo_DutyInfo.objects.filter(did_id__in=dids)
         return r_list
