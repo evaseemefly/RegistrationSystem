@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'crispy_forms',
 
     'rest_framework',
-    'corsheaders'
+    'corsheaders',
+    'rest_framework.authtoken'
     # 'reversion',
 
 ]
@@ -106,12 +107,12 @@ DATABASES = {
         'NAME':'registrationsystem',
 
         # 单位台式机
-        'USER':'admin',
-        'PASSWORD':'admin123',
+        # 'USER':'admin',
+        # 'PASSWORD':'admin123',
 
         # 540配置
-        # 'USER':'root',
-        # 'PASSWORD':'123456',
+        'USER':'root',
+        'PASSWORD':'123456',
         'HOST':'127.0.0.1',
         # 'OPTIONS':{'init_command':'SET storage_engine=INNODB;'}
     }
@@ -214,3 +215,10 @@ REDIS_PORT=6379
 REDIS_EX=85400
 
 NAME_DaySavedInRedis='dailydata'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    )
+}

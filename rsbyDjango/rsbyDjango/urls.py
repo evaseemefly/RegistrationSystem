@@ -26,12 +26,15 @@ import rsdb
 from duty import views
 # import duty
 
+from rest_framework.authtoken import views
+
 urlpatterns = [
     # url(r'^admin/', admin.site.urls),
     url(r'^xadmin/', xadmin.site.urls,name='xadmin'),
     url(r'^home',rsdb.views.home),
     # url(r'^getPersonList',views.getPersonList),
     url('^duty/',include('duty.urls',namespace='duty')),
-    url(r'^api-auth/', include('rest_framework.urls'))
+    url(r'^api-auth/', include('rest_framework.urls')),
+    url(r'^api-token-auth/', views.obtain_auth_token)
 ]
 
