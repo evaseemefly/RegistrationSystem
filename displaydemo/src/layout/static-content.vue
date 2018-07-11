@@ -30,7 +30,7 @@
             this.vips.push({
                 level:"urgency",
                 img_url: './src/img/person/中心领导/易晓蕾.jpg',
-                name: '易小雷',
+                name: '领导A',
                 desc:'带班领导',
 
             });

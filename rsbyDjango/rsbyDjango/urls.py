@@ -27,6 +27,7 @@ from duty import views
 # import duty
 
 from rest_framework.authtoken import views
+from rest_framework_jwt.views import obtain_jwt_token
 
 urlpatterns = [
     # url(r'^admin/', admin.site.urls),
@@ -35,6 +36,8 @@ urlpatterns = [
     # url(r'^getPersonList',views.getPersonList),
     url('^duty/',include('duty.urls',namespace='duty')),
     url(r'^api-auth/', include('rest_framework.urls')),
-    url(r'^api-token-auth/', views.obtain_auth_token)
+    url(r'^api-token-auth/', views.obtain_auth_token),
+    url(r'^api-token-auth/', obtain_jwt_token),
+
 ]
 

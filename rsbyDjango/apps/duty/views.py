@@ -15,9 +15,13 @@ from django.views.generic import View
 from django.core import serializers
 from django.http import JsonResponse,HttpResponse
 
+from django.contrib.auth.models import User
+
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+
+
 
 # drf权限验证
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
@@ -32,8 +36,8 @@ from .forms import ScheduleForm
 from Common.MyJsonEncoder import DateTimeEncoder
 
 class DutyListView(APIView):
-    authentication_classes = (SessionAuthentication,BasicAuthentication)
-    permission_classes = (IsAuthenticated,)
+    # authentication_classes = (SessionAuthentication,BasicAuthentication)
+    # permission_classes = (IsAuthenticated,)
     '''
     指定班级列表
     '''
@@ -369,4 +373,16 @@ class DutyListView(DutyBaseView):
         duty_list=self.getdutylistbydepartment(dids=dids)
         duty_json=DutySerializer(duty_list,many=True).data
         return Response(duty_json)
+
+from rest_framework.authtoken.models import Token
+
+class CreateUserView(APIView):
+    def post(self,request):
+
+        user=User.objects.get(username='admin')
+
+        token=Token.objects.create(user=user)
+        print(token.key)
+        pass
+
 

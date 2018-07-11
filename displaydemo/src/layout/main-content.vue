@@ -41,30 +41,30 @@
                 group: '风暴潮',
                 duty: '主班'
             });
-            this.users.push({
-                level: "norm",
-                img_url: './src/img/person/预警室/梁森栋.jpg',
-                name: '值班员B',
-                desc: '风暴潮 副班',
-                group: '风暴潮',
-                duty: '副班'
-            });
-            this.users.push({
-                level: "norm",
-                img_url: './src/img/person/预警室/徐瑞.jpg',
-                name: '值班员C',
-                desc: '风暴潮 24小时岗',
-                group: '风暴潮',
-                duty: '24小时岗'
-            });
-            this.users.push({
-                level: "norm",
-                img_url: './src/img/person/预警室/傅赐福.jpg',
-                name: '值班员D',
-                desc: '风暴潮 警报班',
-                group: '风暴潮',
-                duty: '警报班'
-            });
+            // this.users.push({
+            //     level: "norm",
+            //     img_url: './src/img/person/预警室/梁森栋.jpg',
+            //     name: '值班员B',
+            //     desc: '风暴潮 副班',
+            //     group: '风暴潮',
+            //     duty: '副班'
+            // });
+            // this.users.push({
+            //     level: "norm",
+            //     img_url: './src/img/person/预警室/徐瑞.jpg',
+            //     name: '值班员C',
+            //     desc: '风暴潮 24小时岗',
+            //     group: '风暴潮',
+            //     duty: '24小时岗'
+            // });
+            // this.users.push({
+            //     level: "norm",
+            //     img_url: './src/img/person/预警室/傅赐福.jpg',
+            //     name: '值班员D',
+            //     desc: '风暴潮 警报班',
+            //     group: '风暴潮',
+            //     duty: '警报班'
+            // });
         }
     }
 </script>
