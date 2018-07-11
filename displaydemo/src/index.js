@@ -10,6 +10,7 @@ import moment from 'moment'
 
 Vue.prototype.moment=moment
 Vue.config.devtools=true;
+// Vue.use(VueRouter)
 const root=document.createElement("div")
 document.body.appendChild(root)
 
