@@ -19,6 +19,10 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
+# drf权限验证
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
+
 from .models import DutyInfo,dutyschedule,R_DepartmentInfo_DutyInfo,DepartmentInfo,R_UserInfo_DepartmentInfo,UserInfo,dutyschedule
 from .serializers import DutyScheduleSerializer,UserSerializer,DutySerializer,R_User_DepartmentSerializer,R_User_Department_Simplify_Serializer,User_Simplify_Serializer,R_Department_User_Simplify_Serializer
 from .view_base import DutyScheduleBaseView,UserBaseView,DutyBaseView,GroupBaseView,R_Department_Duty_BaseView
@@ -28,6 +32,8 @@ from .forms import ScheduleForm
 from Common.MyJsonEncoder import DateTimeEncoder
 
 class DutyListView(APIView):
+    authentication_classes = (SessionAuthentication,BasicAuthentication)
+    permission_classes = (IsAuthenticated,)
     '''
     指定班级列表
     '''
@@ -92,8 +98,9 @@ class GroupListView(GroupBaseView):
         user.username='123'
         user.isdel=True
 
-        user_json=User_Simplify_Serializer([user],many=True).data
-        r_user_department=self.getgroupByDepartment(4)
+        did=request.query_params.get('department_id',None)
+        # user_json=User_Simplify_Serializer([user],many=True).data
+        r_user_department=self.getgroupByDepartment(int(did))
         r_json=R_User_Department_Simplify_Serializer(r_user_department,many=True)
         r=R_User_Department_Middle()
         # finial_list=r.ToMiddleSerializer(r_user_department)
