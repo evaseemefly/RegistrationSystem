@@ -30,16 +30,26 @@
             this.vips.push({
                 level:"urgency",
                 img_url: './src/img/person/中心领导/易晓蕾.jpg',
-                name: '领导A',
+                name: '易晓蕾',
                 desc:'带班领导',
+                other:"中心副主任"
 
             });
             this.vips.push({
                 level:"minor",
                 img_url: './src/img/person/业务处/张志华.jpg',
-                name: '领导B',
+                name: '张志华',
                 desc:'应急管理值班岗',
+                other:"业务处处长"
             });
+            // this.users.push({
+            //     level: "norm",
+            //     img_url: './src/img/person/预警室/傅赐福.jpg',
+            //     name: '值班员D',
+            //     desc: '风暴潮 警报班',
+            //     group: '风暴潮',
+            //     duty: '警报班'
+            // });
         }
     }
 </script>
