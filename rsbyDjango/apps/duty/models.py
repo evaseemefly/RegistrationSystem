@@ -1,10 +1,18 @@
 # -*- coding:utf-8 -*-
 __author__ = 'evaseemefly'
 __date__ = '2018/4/17 16:33'
-from django.db import models
+
 from datetime import datetime
 
+from django.db import models
+
+from django.contrib.auth import get_user_model
+
+User=get_user_model()
+
 # Create your models here.
+
+
 
 class UserInfo(models.Model):
     uid=models.AutoField(primary_key=True)
@@ -30,6 +38,7 @@ class DepartmentInfo(models.Model):
     did=models.AutoField(primary_key=True)
     pid=models.IntegerField(choices=parent_department_choices)
     derpartmentname=models.CharField(default='默认部门',max_length=20)
+
     class Meta:
         # 设置了此名称后在xadmin中可以显示该别名
         verbose_name="部门信息"
@@ -61,6 +70,12 @@ class R_DepartmentInfo_DutyInfo(models.Model):
     def __str__(self):
         name=self.did.derpartmentname+"-"+self.duid.dutyname
         return name
+
+
+class R_AuthUser_Department(models.Model):
+    aid=models.ForeignKey(User,verbose_name=u"auth用户",on_delete=models.CASCADE)
+    did=models.ForeignKey(DepartmentInfo,verbose_name=u"部门",on_delete=models.CASCADE)
+
 
 
 class R_UserInfo_DepartmentInfo(models.Model):
