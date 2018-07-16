@@ -11,7 +11,7 @@
     </nav>
 </template>
 <script>
-    import calendar from "./calendar.vue";
+    // import calendar from "./calendar.vue";
     export default {
         components: {
             calendar
