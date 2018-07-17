@@ -32,3 +32,32 @@ class UserListView(APIView):
         r_author_dep=R_Author_Department.objects.filter(aid_id=author.id)
         deps=[r.did for r in r_author_dep]
         return Response('')
+
+class AuthorDetialView(APIView):
+    from django.contrib.auth import get_user_model
+    User=get_user_model()
+    class Content(object):
+        def __init__(self,user,auth):
+            self.user=user
+            self.auth=auth
+    from rest_framework import serializers
+
+    class UserDetailSerializer(serializers.ModelSerializer):
+        class Meta:
+            model=User
+            filed=("name")
+
+    class ContentSerializer(serializers.Serializer):
+        user=UserDetailSerializer()
+        auth=serializers.CharField(max_length=200)
+
+    def get(self,request):
+        '''
+        根据用户获取该用户的信息并返回
+        :param request:
+        :return:
+        '''
+        content = {
+            'user': request.user,
+            'auth': request.auth
+        }
