@@ -35,8 +35,11 @@ urlpatterns = [
     url(r'^home',rsdb.views.home),
     # url(r'^getPersonList',views.getPersonList),
     url('^duty/',include('duty.urls',namespace='duty')),
+    url('^user/',include('users.urls',namespace='users')),
     url(r'^api-auth/', include('rest_framework.urls')),
-    url(r'^api-token-auth/', views.obtain_auth_token),
+    # drf自带的token认证模式
+    # url(r'^api-token-auth/', views.obtain_auth_token),
+    # jwt的token认证模式
     url(r'^api-token-auth/', obtain_jwt_token),
 
 ]

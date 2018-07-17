@@ -34,6 +34,7 @@ DEBUG = True
 # ALLOWED_HOSTS = ['localhost:8000','localhost:8020','127.0.0.1','127.0.0.1:8000']
 ALLOWED_HOSTS = []
 
+# AUTH_USER_MODEL = 'users.UserProfile'
 # Application definition
 
 INSTALLED_APPS = [
@@ -226,6 +227,12 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         # 不使用token
         # 'rest_framework.authentication.TokenAuthentication',
-        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        # 'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
     )
+}
+import datetime
+JWT_AUTH={
+    # 设置过期时间
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=1),
+    'JWT_AUTH_HEADER_PREFIX': 'JWT',
 }
