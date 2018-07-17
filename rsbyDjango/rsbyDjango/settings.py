@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rsdb',
     'duty',
+    'users',
     # 以下三个为xadmin使用的app
     'xadmin',
     'crispy_forms',

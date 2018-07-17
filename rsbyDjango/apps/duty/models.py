@@ -72,9 +72,10 @@ class R_DepartmentInfo_DutyInfo(models.Model):
         return name
 
 
-class R_AuthUser_Department(models.Model):
-    aid=models.ForeignKey(User,verbose_name=u"auth用户",on_delete=models.CASCADE)
-    did=models.ForeignKey(DepartmentInfo,verbose_name=u"部门",on_delete=models.CASCADE)
+# class R_AuthUser_Department(models.Model):
+#     id=models.AutoField(primary_key=True)
+#     aid=models.ForeignKey(User,verbose_name=u"auth用户",on_delete=models.CASCADE)
+#     did=models.ForeignKey(DepartmentInfo,verbose_name=u"部门",on_delete=models.CASCADE)
 
 
 
