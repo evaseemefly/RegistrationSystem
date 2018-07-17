@@ -34,22 +34,22 @@ class UserListView(APIView):
         return Response('')
 
 class AuthorDetialView(APIView):
-    from django.contrib.auth import get_user_model
-    User=get_user_model()
-    class Content(object):
-        def __init__(self,user,auth):
-            self.user=user
-            self.auth=auth
-    from rest_framework import serializers
-
-    class UserDetailSerializer(serializers.ModelSerializer):
-        class Meta:
-            model=User
-            filed=("name")
-
-    class ContentSerializer(serializers.Serializer):
-        user=UserDetailSerializer()
-        auth=serializers.CharField(max_length=200)
+    # from django.contrib.auth import get_user_model
+    # User=get_user_model()
+    # class Content(object):
+    #     def __init__(self,user,auth):
+    #         self.user=user
+    #         self.auth=auth
+    # from rest_framework import serializers
+    #
+    # class UserDetailSerializer(serializers.ModelSerializer):
+    #     class Meta:
+    #         model=User
+    #         filed=("name")
+    #
+    # class ContentSerializer(serializers.Serializer):
+    #     user=UserDetailSerializer()
+    #     auth=serializers.CharField(max_length=200)
 
     def get(self,request):
         '''
@@ -61,3 +61,4 @@ class AuthorDetialView(APIView):
             'user': request.user,
             'auth': request.auth
         }
+        pass
