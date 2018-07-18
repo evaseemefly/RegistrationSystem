@@ -7,3 +7,7 @@ class UserDetailSerializer(serializers.ModelSerializer):
     class Meta:
         model=User
         fields=("name", "gender", "birthday", "email")
+
+class ContentSerializer(serializers.Serializer):
+    user=UserDetailSerializer()
+    auth=serializers.CharField(max_length=200)
