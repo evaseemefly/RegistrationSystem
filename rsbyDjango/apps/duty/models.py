@@ -8,6 +8,7 @@ from django.db import models
 
 from django.contrib.auth import get_user_model
 
+# type: class 'django.db.models.base.ModelBase'
 User=get_user_model()
 
 # Create your models here.

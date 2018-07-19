@@ -34,6 +34,14 @@
                 duty: '带班主任'
             });
             this.users.push({
+                level: "import",
+                img_url: './src/img/person/预警室/董剑希.jpg',
+                name: '董剑希',
+                desc: '带班主任',
+                group: '室主任',
+                duty: '带班主任'
+            });
+            this.users.push({
                 level: "norm",
                 img_url: './src/img/person/预警室/侯放.jpg',
                 name: '侯放',

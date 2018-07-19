@@ -12,6 +12,10 @@ from rest_framework.permissions import IsAuthenticated
 
 from .models import R_Author_Department
 from .serializers import UserDetailSerializer,ContentSerializer
+
+from duty.models import DepartmentInfo
+from duty.serializers import DutySerializer
+from duty.view_base import DutyBaseView
 # Create your views here.
 
 class UserListView(APIView):
@@ -37,17 +41,33 @@ class UserListView(APIView):
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
+class AuthDepartmentView(APIView):
+    pass
+
+class AuthDepartmentDutyView(APIView):
+    '''
+        根据auth获取其拥有的department，并根据department获取Duty
+    '''
+    def get(self,request):
+        '''
+
+        :param request:
+        :return:
+        '''
+        # 获取dids
+        dids=[]
+        list= DutyBaseView(dids)
+        duty_json=DutySerializer(list,many=True)
+        return Response(duty_json)
+
 class AuthorDetialView(APIView):
     # User=get_user_model()
-
+    authentication_classes = (JSONWebTokenAuthentication, SessionAuthentication, BaseAuthentication)
 
     # class UserDetailSerializer(serializers.ModelSerializer):
     #     class Meta:
     #         model=User
     #         filed=("name")
-
-
-
     def get(self,request):
         '''
         根据用户获取该用户的信息并返回
@@ -56,14 +76,14 @@ class AuthorDetialView(APIView):
         '''
 
         class Content(object):
-            def __init__(self, user, auth):
+            def __init__(self, user):
                 self.user = user
-                self.auth = auth
-        content =Content(request.user,request.auth)
+                # self.auth = auth
+        content =Content(request.user)
         serializer= ContentSerializer(content)
         print(serializer.data)
         # {
         #     'user': request.user,
         #     'auth': request.auth
         # }
-        pass
+        return Response(serializer.data)
