@@ -107,7 +107,7 @@ def job_load2reids():
     print("写入redis成功")
 
 
-def run():
+def  run():
     sched=BlockingScheduler(daemonic=False,max_instances=5)
     # 注意使用background.BackgroundScheduler()启动之后只会执行一次就会停止？
     # sched = apscheduler.schedulers.background.BackgroundScheduler()
