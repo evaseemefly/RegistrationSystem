@@ -24,9 +24,7 @@ class MergeScheduleSerializer():
         self.DutyUserList=duSer
 
 class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model=UserInfo
-        fields='__all__'
+    pass
 
 class User_Simplify_Serializer(serializers.ModelSerializer):
     '''
