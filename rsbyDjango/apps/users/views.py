@@ -12,9 +12,11 @@ from rest_framework.permissions import IsAuthenticated
 
 from .models import R_Author_Department
 from .serializers import UserDetailSerializer,ContentSerializer
+from .view_base import AuthDepartmentBaseView
 
 from duty.models import DepartmentInfo
-from duty.serializers import DutySerializer
+from duty.serializers import DutySerializer,DepartmentSerializer,MerageDepartmentDutyserializer
+from duty.models import MerageDepartmentDutyModel
 from duty.view_base import DutyBaseView
 # Create your views here.
 
@@ -41,10 +43,17 @@ class UserListView(APIView):
 from django.contrib.auth import get_user_model
 from rest_framework import serializers
 
-class AuthDepartmentView(APIView):
-    pass
+class AuthDepartmentView(AuthDepartmentBaseView):
+    authentication_classes = (JSONWebTokenAuthentication, SessionAuthentication, BaseAuthentication)
 
-class AuthDepartmentDutyView(APIView):
+    def get(self, request):
+        userid = request.user.id
+        deparmetn_list = self.getDeparmetnlistbyUser(userid=userid)
+        deparment_json = DepartmentSerializer(deparmetn_list, many=True).data
+        return Response(deparment_json)
+
+class AuthDepartmentDutyView(AuthDepartmentBaseView,DutyBaseView):
+    authentication_classes = (JSONWebTokenAuthentication, SessionAuthentication, BaseAuthentication)
     '''
         根据auth获取其拥有的department，并根据department获取Duty
     '''
@@ -54,11 +63,17 @@ class AuthDepartmentDutyView(APIView):
         :param request:
         :return:
         '''
-        # 获取dids
-        dids=[]
-        list= DutyBaseView(dids)
-        duty_json=DutySerializer(list,many=True)
-        return Response(duty_json)
+        # 获取auth
+        auth=request.user
+        # 获取auth拥有的department列表
+        list_department= self.getDeparmetnlistbyAuth(auth.id)
+        # dids=[]
+        # 根据department list获取对应的duty
+        list_dep_duty= [MerageDepartmentDutyModel(dep,self.getdutylistbydepartment([dep])) for dep in list_department]
+        # list= self.getdutylistbydepartment(list_department)
+        # duty_json=DutySerializer(list,many=True)
+        merage_json=MerageDepartmentDutyserializer(list_dep_duty,many=True).data
+        return Response(merage_json)
 
 class AuthorDetialView(APIView):
     # User=get_user_model()
@@ -87,3 +102,7 @@ class AuthorDetialView(APIView):
         #     'auth': request.auth
         # }
         return Response(serializer.data)
+
+# class UserDepartmentListView(APIView):
+
+

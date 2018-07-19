@@ -123,3 +123,8 @@ class DutyScheduleProxyModel(dutyschedule):
     class Meta:
         proxy=True
 
+class MerageDepartmentDutyModel(object):
+    def __init__(self,dep,duty_list):
+        self.department=dep
+        self.duty_list=duty_list
+
