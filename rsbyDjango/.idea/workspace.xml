@@ -43,11 +43,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="view_base.py" pinned="false" current-in-tab="false">
+          <file leaf-file-name="view_base.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/apps/users/view_base.py">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="203">
-                  <caret line="7" column="18" lean-forward="true" selection-end-line="13" selection-end-column="30" />
+                  <caret line="7" column="18" selection-end-line="13" selection-end-column="30" />
                   <folding>
                     <element signature="e#0#40#0" expanded="true" />
                   </folding>
@@ -55,16 +55,21 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="view_base_new.py" pinned="false" current-in-tab="true">
+          <file leaf-file-name="view_base_new.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/apps/users/view_base_new.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="377">
+                <state relative-caret-position="319">
                   <caret line="13" column="30" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
                   <folding>
                     <element signature="e#0#40#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="abcd.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/apps/users/abcd.py">
+              <provider selected="true" editor-type-id="text-editor" />
             </entry>
           </file>
           <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
@@ -175,6 +180,7 @@
         <option value="$PROJECT_DIR$/apps/users/views.py" />
         <option value="$PROJECT_DIR$/apps/users/view_base.py" />
         <option value="$PROJECT_DIR$/apps/users/view_base_new.py" />
+        <option value="$PROJECT_DIR$/apps/users/abcd.py" />
       </list>
     </option>
   </component>
@@ -187,10 +193,10 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
     <option name="width" value="1280" />
-    <option name="height" value="725" />
+    <option name="height" value="722" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -371,7 +377,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="722" extended-state="6" />
+    <frame x="0" y="23" width="1280" height="722" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4978678" weight="0.32826087" />
@@ -399,20 +405,20 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="调试" order="7" weight="0.27566963" />
-      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.31893688" />
+      <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.31790122" />
     </layout>
     <layout-to-restore>
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="运行" order="13" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.39320388" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="right" id="Data View" order="4" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22068231" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4978678" weight="0.32900432" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.39320388" />
+      <window_info anchor="right" id="SciView" order="6" />
+      <window_info anchor="right" id="Data View" order="4" />
       <window_info anchor="bottom" id="Python Console" order="11" sideWeight="0.48933902" weight="0.19588745" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3195652" />
       <window_info anchor="bottom" id="manage.py@rsbyDjango" order="14" sideWeight="0.60714287" weight="0.29347825" />
@@ -421,11 +427,11 @@
       <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.49573562" weight="0.32826087" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.4195096" side_tool="true" weight="0.3728261" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22068231" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.5804904" weight="0.2902174" />
+      <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="调试" order="9" weight="0.27566963" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="right" id="SciView" order="6" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.5804904" weight="0.2902174" />
       <window_info id="Favorites" order="2" side_tool="true" />
     </layout-to-restore>
   </component>
@@ -569,7 +575,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://D:/MyPogram/Lib/site-packages/django/conf/urls/__init__.py" />
     <entry file="file://D:/MyPogram/Lib/site-packages/django/urls/__init__.py" />
     <entry file="file://$PROJECT_DIR$/extra_sourcecode/xadmin/sites.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -850,20 +855,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/users/view_base.py">
+    <entry file="file://$PROJECT_DIR$/apps/users/view_base_new.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="7" column="18" lean-forward="true" selection-end-line="13" selection-end-column="30" />
+        <state relative-caret-position="319">
+          <caret line="13" column="30" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/users/view_base_new.py">
+    <entry file="file://$PROJECT_DIR$/apps/users/abcd.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/users/view_base.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="377">
-          <caret line="13" column="30" selection-start-line="13" selection-start-column="30" selection-end-line="13" selection-end-column="30" />
+        <state relative-caret-position="203">
+          <caret line="7" column="18" selection-end-line="13" selection-end-column="30" />
           <folding>
             <element signature="e#0#40#0" expanded="true" />
           </folding>
