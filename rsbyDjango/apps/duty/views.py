@@ -279,6 +279,10 @@ class ScheduleModificationView(R_Department_Duty_BaseView,UserBaseView):
 
         return Response(status=status.HTTP_200_OK)
 
+class tempTestJson(APIView):
+    def get(request):
+        resp = {'errorcode': 100, 'detail': 'Get success'}
+        return HttpResponse(json.dumps(resp), content_type="application/json")
 
 class ScheduleListView(DutyScheduleBaseView):
     def get(self,request):
