@@ -10,6 +10,12 @@ from rest_framework.authentication import SessionAuthentication,BaseAuthenticati
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 from rest_framework.permissions import IsAuthenticated
 
+'''临时添加'''
+from django.http import HttpResponse
+import json
+
+from duty.serializers import DepartmentSerializer
+
 from .models import R_Author_Department
 from .serializers import UserDetailSerializer,ContentSerializer
 # Create your views here.
@@ -67,3 +73,22 @@ class AuthorDetialView(APIView):
         #     'auth': request.auth
         # }
         pass
+
+class UserDepartmentListView(APIView):
+    authentication_classes = (JSONWebTokenAuthentication, SessionAuthentication, BaseAuthentication)
+    def get(self, request):
+        userid = request.user.id
+        deparmetn_list = self.getDeparmetnlistbyUser(userid=userid)
+        deparment_json = DepartmentSerializer(deparmetn_list, many=True).data
+        return Response(deparment_json)
+
+    def getDeparmetnlistbyUser(self,userid):
+        '''
+        根据用户id，获取该用户所属的department
+        :param userid:
+        :return:
+        '''
+        if userid > -1:
+            department_list=[r.did for r in R_Author_Department.objects.filter(aid=userid)]
+        return department_list
+
