@@ -17,6 +17,7 @@ import json
 from duty.serializers import DepartmentSerializer
 
 from .models import R_Author_Department
+from .serializers import UserDetailSerializer,ContentSerializer
 # Create your views here.
 
 class UserListView(APIView):
@@ -39,23 +40,19 @@ class UserListView(APIView):
         deps=[r.did for r in r_author_dep]
         return Response('')
 
+from django.contrib.auth import get_user_model
+from rest_framework import serializers
+
 class AuthorDetialView(APIView):
-    # from django.contrib.auth import get_user_model
     # User=get_user_model()
-    # class Content(object):
-    #     def __init__(self,user,auth):
-    #         self.user=user
-    #         self.auth=auth
-    # from rest_framework import serializers
-    #
+
+
     # class UserDetailSerializer(serializers.ModelSerializer):
     #     class Meta:
     #         model=User
     #         filed=("name")
-    #
-    # class ContentSerializer(serializers.Serializer):
-    #     user=UserDetailSerializer()
-    #     auth=serializers.CharField(max_length=200)
+
+
 
     def get(self,request):
         '''
@@ -63,10 +60,18 @@ class AuthorDetialView(APIView):
         :param request:
         :return:
         '''
-        content = {
-            'user': request.user,
-            'auth': request.auth
-        }
+
+        class Content(object):
+            def __init__(self, user, auth):
+                self.user = user
+                self.auth = auth
+        content =Content(request.user,request.auth)
+        serializer= ContentSerializer(content)
+        print(serializer.data)
+        # {
+        #     'user': request.user,
+        #     'auth': request.auth
+        # }
         pass
 
 class UserDepartmentListView(APIView):
