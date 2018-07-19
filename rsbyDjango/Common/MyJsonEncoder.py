@@ -16,6 +16,7 @@ class DateTimeEncoder(json.JSONEncoder):
             return obj.strftime('%Y-%m-%d %H:%M:%S')
         elif isinstance(obj, date):
             return obj.strftime('%Y-%m-%d')
+
         return json.JSONEncoder.default(self, obj)
 
 class MyJsonDecoder(json.JSONDecoder):

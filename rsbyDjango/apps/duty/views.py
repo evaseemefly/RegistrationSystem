@@ -15,11 +15,19 @@ from django.views.generic import View
 from django.core import serializers
 from django.http import JsonResponse,HttpResponse
 
+from django.contrib.auth.models import User
+
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
-from .models import DutyInfo,dutyschedule,R_DepartmentInfo_DutyInfo,DepartmentInfo,R_UserInfo_DepartmentInfo,UserInfo
+
+
+# drf权限验证
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
+
+from .models import DutyInfo,dutyschedule,R_DepartmentInfo_DutyInfo,DepartmentInfo,R_UserInfo_DepartmentInfo,UserInfo,dutyschedule
 from .serializers import DutyScheduleSerializer,UserSerializer,DutySerializer,R_User_DepartmentSerializer,R_User_Department_Simplify_Serializer,User_Simplify_Serializer,R_Department_User_Simplify_Serializer
 from .view_base import DutyScheduleBaseView,UserBaseView,DutyBaseView,GroupBaseView,R_Department_Duty_BaseView
 from .model_middle import R_User_Department_Middle
@@ -28,6 +36,8 @@ from .forms import ScheduleForm
 from Common.MyJsonEncoder import DateTimeEncoder
 
 class DutyListView(APIView):
+    # authentication_classes = (SessionAuthentication,BasicAuthentication)
+    # permission_classes = (IsAuthenticated,)
     '''
     指定班级列表
     '''
@@ -92,8 +102,9 @@ class GroupListView(GroupBaseView):
         user.username='123'
         user.isdel=True
 
-        user_json=User_Simplify_Serializer([user],many=True).data
-        r_user_department=self.getgroupByDepartment(4)
+        did=request.query_params.get('department_id',None)
+        # user_json=User_Simplify_Serializer([user],many=True).data
+        r_user_department=self.getgroupByDepartment(int(did))
         r_json=R_User_Department_Simplify_Serializer(r_user_department,many=True)
         r=R_User_Department_Middle()
         # finial_list=r.ToMiddleSerializer(r_user_department)
@@ -109,6 +120,58 @@ class GroupListView(GroupBaseView):
         # return Response(r_json)
         # return JsonResponse(finial_list,safe=False)
         return HttpResponse(r_json,content_type='application/json')
+
+class ScheduleCreateView(DutyScheduleBaseView,R_Department_Duty_BaseView,UserBaseView):
+    def post(self,request):
+        '''
+            根据前台提交的内容新建该日的记录
+        :param request:
+        :return:
+        '''
+
+        '''
+            1、查询数据库指定group以及指定日期是否已经存在值班信息
+            2、若不存在则创建，并赋予默认值
+        '''
+        query_dic = request.data
+        # 分别获取users_id,groups_id,selected_date
+        # 注意前端传过来的使用bootstrap-table get 时传递的data中若为数组会自动在原有名字后面加上一个[]，注意！
+        did=query_dic.get('did',None)
+        uid=query_dic.get('uid',-999)
+        # duid = query_dic.get('duid',None)
+        target_date = query_dic.get('selected_date',None)
+        schedule_dutydate = datetime.strptime(target_date, '%Y-%m-%d')
+        duids=query_dic.getlist('duids[]',None)
+
+        schedulelist= self.getMergeScheduleListByDate(dids=did,target_date=datetime.strptime(target_date, '%Y-%m-%d'),oneday=True)
+        if(len(schedulelist)==0):
+            # 指定日期，指定的group未有值班信息，则创建新的
+            schedule_rd_list = self.get_r_list([did], duids)
+            search_user = self.getuserlistbyuid([uid])
+            for temp in schedule_rd_list:
+                dutyschedule.objects.create(
+                    rDepartmentDuty_id=temp.id,
+                    user_id=search_user.first().uid,
+                    dutydate=schedule_dutydate)
+            pass
+        elif(len(schedulelist)==1):
+            if(len(schedulelist[0].get('DutyUserList'))==0):
+                # 指定日期，指定的group未有值班信息，则创建新的
+                schedule_rd_list=self.get_r_list([did],duids)
+                search_user=self.getuserlistbyuid([uid])
+                for temp in schedule_rd_list:
+                    dutyschedule.objects.create(
+                        rDepartmentDuty_id=temp.id,
+                        user_id=search_user.first().uid,
+                        dutydate=schedule_dutydate)
+                # (dutyschedule.objects.create(
+                #     rDepartmentDuty_id=rd_temp.id,
+                #     user_id=search_user.first().uid,
+                #     dutydate=schedule_dutydate
+                # )
+                #     for rd_temp in schedule_rd_list)
+                pass
+        return Response(status=status.HTTP_200_OK)
 
 class ScheduleModificationView(R_Department_Duty_BaseView,UserBaseView):
     def post(self,request):
@@ -129,7 +192,7 @@ class ScheduleModificationView(R_Department_Duty_BaseView,UserBaseView):
         schedule_dutydate=modification_data.get('dutydate',None) or datetime.now().strftime('%Y-%m-%d')
         schedule_dutydate=datetime.strptime(schedule_dutydate,'%Y-%m-%d')
         # 以上三个变量均不为none
-        if None in [schedule_id,schedule_code]:
+        if None in [schedule_code]:
             return
         '''
         下面使用工厂方法实现：
@@ -143,7 +206,9 @@ class ScheduleModificationView(R_Department_Duty_BaseView,UserBaseView):
                 先根据值班信息表id找到该行数据
                 直接修改用户id
             '''
-            schedule_obj= dutyschedule.objects.filter(id=schedule_id)
+            # 获取指定的duty与department的关系
+            r_dep_duty= R_DepartmentInfo_DutyInfo.objects.filter(did=schedule_did,duid=schedule_duid)
+            schedule_obj= dutyschedule.objects.filter(rDepartmentDuty=r_dep_duty[0],dutydate=schedule_dutydate)
             # 注意此处可能会出错
             '''
                 错误原因：
@@ -214,6 +279,10 @@ class ScheduleModificationView(R_Department_Duty_BaseView,UserBaseView):
 
         return Response(status=status.HTTP_200_OK)
 
+class tempTestJson(APIView):
+    def get(request):
+        resp = {'errorcode': 100, 'detail': 'Get success'}
+        return HttpResponse(json.dumps(resp), content_type="application/json")
 
 class ScheduleListView(DutyScheduleBaseView):
     def get(self,request):
@@ -249,11 +318,27 @@ class ScheduleListView(DutyScheduleBaseView):
         # 返回dutyschedule（值班表）
         # datetime.strptime(target_date,'')
         # convert_date=datetime.strptime(target_date, '%Y-%m-%d')
-        schedule_list=self.getscheduleDetial(dids=dids,target_date=datetime.strptime(target_date, '%Y-%m-%d'))
-        seredule_json = DutyScheduleSerializer(schedule_list, many=True)
+        schedule_list=self.getMergeScheduleListByDate(dids=dids,target_date=datetime.strptime(target_date, '%Y-%m-%d'))
+        # schedule_list=self.getscheduleDetial(dids=dids,target_date=datetime.strptime(target_date, '%Y-%m-%d'))
+        # seredule_json = DutyScheduleSerializer(schedule_list, many=True)
+
+        # seredule_json=serializers.serialize("json",schedule_list)
+        class Date_Encoder(json.JSONEncoder):
+            def default(self, value):
+                if isinstance(value, datetime):
+                    return value.strftime('%Y-%m-%d %H:%M:%S')
+                elif isinstance(value, datetime.date):
+                    return value.strftime('%Y-%m-%d')
+                else:
+                    return value.__dict__
+        # seredule_json = json.dumps(schedule_list,skipkeys=True,cls=json_default,ensure_ascii=False, default=lambda obj:obj.__dict__)
+        seredule_json = json.dumps(schedule_list,ensure_ascii=False,cls=DateTimeEncoder)
+
         # return JsonResponse(seredule_json.data)
-        print(seredule_json.data)
-        return Response(seredule_json.data,status=status.HTTP_202_ACCEPTED)
+        print(seredule_json)
+        # return JsonResponse(seredule_json)
+        return HttpResponse(seredule_json, content_type="application/json")
+        # return Response(seredule_json,status=status.HTTP_202_ACCEPTED)
         # return HttpResponse(seredule_json.data)
         # return Response(seredule_json.data)
         # return Response(seredule_json.data)
@@ -264,6 +349,22 @@ class ScheduleListView(DutyScheduleBaseView):
         dutyschedule.objects.filter(id__in=ids).delete()
         return Response(status=status.HTTP_202_ACCEPTED)
 
+class ScheduleDelView(DutyScheduleBaseView,R_Department_Duty_BaseView):
+    def post(self,request):
+        # 1 获取值班日期与group id
+        query_dic=request.data
+        target_date=query_dic.get('target_date',None)
+        did=query_dic.get('group_id',None)
+        r_list= self.get_r_list([did])
+        # 2 根据日期与部门id查询符合条件的值班信息（多个）
+        [dutyschedule.objects.filter(dutydate=datetime.strptime(target_date, '%Y-%m-%d'),
+                                        rDepartmentDuty=r).delete() for r in r_list]
+        # for r in r_list:
+        #     dutyschedule.objects.filter(dutydate=datetime.strptime(target_date, '%Y-%m-%d'),
+        #                                 rDepartmentDuty=r).delete()
+        # ids = request.POST.getlist('id[]', None)
+        # id= request.post.get('id',None)
+        return Response(status=status.HTTP_202_ACCEPTED)
 
 class DutyListView(DutyBaseView):
     def get(self,request):
@@ -276,4 +377,16 @@ class DutyListView(DutyBaseView):
         duty_list=self.getdutylistbydepartment(dids=dids)
         duty_json=DutySerializer(duty_list,many=True).data
         return Response(duty_json)
+
+from rest_framework.authtoken.models import Token
+
+class CreateUserView(APIView):
+    def post(self,request):
+
+        user=User.objects.get(username='admin')
+
+        token=Token.objects.create(user=user)
+        print(token.key)
+        pass
+
 

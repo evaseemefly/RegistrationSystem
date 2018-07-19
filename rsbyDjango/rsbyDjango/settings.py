@@ -34,6 +34,7 @@ DEBUG = True
 # ALLOWED_HOSTS = ['localhost:8000','localhost:8020','127.0.0.1','127.0.0.1:8000']
 ALLOWED_HOSTS = []
 
+# AUTH_USER_MODEL = 'users.UserProfile'
 # Application definition
 
 INSTALLED_APPS = [
@@ -45,12 +46,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rsdb',
     'duty',
+    'users',
     # 以下三个为xadmin使用的app
     'xadmin',
     'crispy_forms',
 
     'rest_framework',
-    'corsheaders'
+    'corsheaders',
+    'rest_framework.authtoken'
     # 'reversion',
 
 ]
@@ -104,11 +107,16 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         'NAME':'registrationsystem',
-        'USER':'admin',
-        'PASSWORD':'admin123',
-        # 'USER':'root',
-        #
-        # 'PASSWORD':'123456',
+
+        # 单位台式机
+        # 'USER':'admin',
+        # 'PASSWORD':'admin123',
+
+        # mac
+        'USER':'root',
+        'PASSWORD':'12345678',
+
+        # 540配置
         # 'USER':'root',
         # 'PASSWORD':'123456',
         'HOST':'127.0.0.1',
@@ -213,3 +221,19 @@ REDIS_PORT=6379
 REDIS_EX=85400
 
 NAME_DaySavedInRedis='dailydata'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        # 不使用token
+        # 'rest_framework.authentication.TokenAuthentication',
+        # 'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+    )
+}
+import datetime
+JWT_AUTH={
+    # 设置过期时间
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=1),
+    'JWT_AUTH_HEADER_PREFIX': 'JWT',
+}

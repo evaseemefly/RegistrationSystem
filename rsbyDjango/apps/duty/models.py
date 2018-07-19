@@ -1,10 +1,19 @@
 # -*- coding:utf-8 -*-
 __author__ = 'evaseemefly'
 __date__ = '2018/4/17 16:33'
-from django.db import models
+
 from datetime import datetime
 
+from django.db import models
+
+from django.contrib.auth import get_user_model
+
+# type: class 'django.db.models.base.ModelBase'
+User=get_user_model()
+
 # Create your models here.
+
+
 
 class UserInfo(models.Model):
     uid=models.AutoField(primary_key=True)
@@ -30,6 +39,7 @@ class DepartmentInfo(models.Model):
     did=models.AutoField(primary_key=True)
     pid=models.IntegerField(choices=parent_department_choices)
     derpartmentname=models.CharField(default='默认部门',max_length=20)
+
     class Meta:
         # 设置了此名称后在xadmin中可以显示该别名
         verbose_name="部门信息"
@@ -63,6 +73,13 @@ class R_DepartmentInfo_DutyInfo(models.Model):
         return name
 
 
+# class R_AuthUser_Department(models.Model):
+#     id=models.AutoField(primary_key=True)
+#     aid=models.ForeignKey(User,verbose_name=u"auth用户",on_delete=models.CASCADE)
+#     did=models.ForeignKey(DepartmentInfo,verbose_name=u"部门",on_delete=models.CASCADE)
+
+
+
 class R_UserInfo_DepartmentInfo(models.Model):
     id=models.AutoField(primary_key=True)
     uid=models.ForeignKey(UserInfo,on_delete=models.CASCADE)
@@ -94,5 +111,20 @@ class dutyschedule(models.Model):
     user=models.ForeignKey(UserInfo,on_delete=models.CASCADE)
     # department=models.ForeignKey(DepartmentInfo,on_delete=models.CASCADE)
 
+# class MergeDutyUserInfo(UserInfo,R_DepartmentInfo_DutyInfo):
+#     user=models.ManyToManyField(UserInfo)
+#     rDepDuty=models.ManyToManyField(R_DepartmentInfo_DutyInfo)
 
+# class DutyUserProxyModel(UserInfo,DutyInfo):
+#     class Meta:
+#         proxy=True
+
+class DutyScheduleProxyModel(dutyschedule):
+    class Meta:
+        proxy=True
+
+class MerageDepartmentDutyModel(object):
+    def __init__(self,dep,duty_list):
+        self.department=dep
+        self.duty_list=duty_list
 

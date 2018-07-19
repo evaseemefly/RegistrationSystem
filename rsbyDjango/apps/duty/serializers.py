@@ -1,6 +1,30 @@
 from .models import dutyschedule,UserInfo,DutyInfo,DepartmentInfo,R_DepartmentInfo_DutyInfo,R_UserInfo_DepartmentInfo
 from rest_framework import serializers,viewsets
 
+from datetime import datetime
+
+# class MergeDutyUserSerializer(R_Department_DutySerializer,UserInfo):
+class MergeDutyUserSerializer():
+    def __init__(self,user,rDepDuty,id=None):
+        self.id=id
+        self.user=user
+        self.rDepDuty=rDepDuty
+
+# class MyMergeDutyUserSerializer(serializers.ModelSerializer):
+#     user=UserInfo(many=False,read_only=True)
+#     class Meta:
+#         model=R_DepartmentInfo_DutyInfo
+
+
+class MergeScheduleSerializer():
+# class MergeScheduleSerializer(MergeDutyUserSerializer):
+    def __init__(self,duSer,dutydate=datetime.now(),id=None):
+        self.id=id
+        self.dutydate=dutydate
+        self.DutyUserList=duSer
+
+
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model=UserInfo
@@ -104,6 +128,10 @@ class DutyScheduleSerializer(serializers.ModelSerializer):
     class Meta:
         model=dutyschedule
         fields=('id','dutydate','user','rDepartmentDuty')
+
+class MerageDepartmentDutyserializer(serializers.Serializer):
+    department = DepartmentSerializer()
+    duty_list = DutySerializer(many=True)
 
     # class Meta:
     #     model=dutyschedule

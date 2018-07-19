@@ -18,11 +18,124 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 from .models import UserInfo,DutyInfo,dutyschedule,R_DepartmentInfo_DutyInfo,DepartmentInfo,R_UserInfo_DepartmentInfo
-from .serializers import DutyScheduleSerializer,UserSerializer
+
+#代理模型类
+from .models import DutyScheduleProxyModel
+
+from .serializers import DutyScheduleSerializer,UserSerializer,MergeScheduleSerializer,MergeDutyUserSerializer,R_Department_DutySerializer
 
 
 class DutyScheduleBaseView(APIView):
-    def getscheduleDetial(self,dids=[],pid=-1,target_date=datetime.now()):
+    def getMergeScheduleListByDate(self,dids=[],pid=-1,target_date=datetime.now(),oneday=False):
+        '''
+        获取修改后的值班列表
+        :param dids:
+        :param pid:
+        :param target_date:
+        :return:
+        '''
+        schedule_list= self.getscheduleDetial(dids,pid,target_date,oneday)
+        # 根据日期去重
+        def MergeList(did,schedule_list,target_date=datetime.now()):
+            '''
+
+            :param did: 要合并的部门id
+            :param target_date: 合并的日期
+            :return:
+            '''
+            # 1 找到指定日的值班信息
+            schedult_templist=schedule_list.filter(dutydate__year=target_date.year,dutydate__month=target_date.month,dutydate__day=target_date.day)
+
+            # 2 列表推到过滤
+            #6-21 修改
+            # merge_templist=schedult_templist.filter(rDepartmentDuty__did__did==did)
+            schedult_templist=schedult_templist.filter(rDepartmentDuty__did__did=did)
+            # schedult_templist.filter(user__uid=1)
+
+            # merge_templist = [MergeDutyUserSerializer(temp.user, temp.rDepartmentDuty) for temp in schedult_templist if
+            #                   temp.rDepartmentDuty.did.did == did]
+
+            # merge_templist=[MergeDutyUserSerializer(temp.user,temp.rDepartmentDuty) for temp in schedult_templist]
+            merge_templist=[dict(user=UserSerializer(temp.user).data,dutydate=temp.dutydate,rDepartmentDuty=R_Department_DutySerializer(temp.rDepartmentDuty).data) for temp in schedult_templist]
+
+            return merge_templist
+
+        def DifferentDate(list):
+            differntDate_list=[]
+            for temp in list:
+                if(temp.dutydate not in differntDate_list):
+                    differntDate_list.append(temp.dutydate)
+            return differntDate_list
+
+        # 需要获取schedule_list中的不同的日期
+        date_list=DifferentDate(schedule_list)
+        merageSchedule_list=[]
+        # for temp in date_list:
+        if len(date_list)>0:
+            merageSchedule_list=[dict(DutyUserList=MergeList(did,schedule_list,temp),dutydate=temp.strftime('%Y-%m-%d')) for did in dids for temp in date_list]
+        # merageSchedule_list.append(dict_temp)
+        # merageSchedule_list=[dict(DutyUserList=MergeList(did,schedule_list,target_date),dutydate=target_date.strftime('%Y-%m-%d')) for did in dids]
+        # merageSchedule_list= [MergeScheduleSerializer(MergeList(did,schedule_list,target_date),target_date) for did in dids]
+        return merageSchedule_list
+
+    def getMergeScheduleListByOneDay(self,dids=[],pid=-1,target_date=datetime.now()):
+        '''
+                获取修改后的值班列表
+                :param dids:
+                :param pid:
+                :param target_date:
+                :return:
+                '''
+        schedule_list = self.getscheduleDetial(dids, pid, target_date)
+
+        # 根据日期去重
+        def MergeList(did, schedule_list, target_date=datetime.now()):
+            '''
+
+            :param did: 要合并的部门id
+            :param target_date: 合并的日期
+            :return:
+            '''
+            # 1 找到指定日的值班信息
+            schedult_templist = schedule_list.filter(dutydate__year=target_date.year, dutydate__month=target_date.month,
+                                                     dutydate__day=target_date.day)
+
+            # 2 列表推到过滤
+            # 6-21 修改
+            # merge_templist=schedult_templist.filter(rDepartmentDuty__did__did==did)
+            schedult_templist = schedult_templist.filter(rDepartmentDuty__did__did=did)
+            # schedult_templist.filter(user__uid=1)
+
+            # merge_templist = [MergeDutyUserSerializer(temp.user, temp.rDepartmentDuty) for temp in schedult_templist if
+            #                   temp.rDepartmentDuty.did.did == did]
+
+            # merge_templist=[MergeDutyUserSerializer(temp.user,temp.rDepartmentDuty) for temp in schedult_templist]
+            merge_templist = [dict(user=UserSerializer(temp.user).data, dutydate=temp.dutydate,
+                                   rDepartmentDuty=R_Department_DutySerializer(temp.rDepartmentDuty).data) for temp in
+                              schedult_templist]
+
+            return merge_templist
+
+        def DifferentDate(list):
+            differntDate_list = []
+            for temp in list:
+                if (temp.dutydate not in differntDate_list):
+                    differntDate_list.append(temp.dutydate)
+            return differntDate_list
+
+        # 需要获取schedule_list中的不同的日期
+        date_list = DifferentDate(schedule_list)
+        merageSchedule_list = []
+        # for temp in date_list:
+        merageSchedule_list = [
+            dict(DutyUserList=MergeList(did, schedule_list, temp), dutydate=temp.strftime('%Y-%m-%d')) for did in dids
+            for temp in date_list]
+        # merageSchedule_list.append(dict_temp)
+        # merageSchedule_list=[dict(DutyUserList=MergeList(did,schedule_list,target_date),dutydate=target_date.strftime('%Y-%m-%d')) for did in dids]
+        # merageSchedule_list= [MergeScheduleSerializer(MergeList(did,schedule_list,target_date),target_date) for did in dids]
+        return merageSchedule_list
+
+    def getscheduleDetial(self,dids=[],pid=-1,target_date=datetime.now(),oneday=False):
         '''
         根据部门id list与所属的父级部门 获取符合条件的 值班信息（list）
         :param dids:
@@ -35,8 +148,14 @@ class DutyScheduleBaseView(APIView):
                 # 1 根据部门找到 部门-岗位关联表 id
                 rd_list = [temp.id for temp in R_DepartmentInfo_DutyInfo.objects.filter(did_id__in=dids)]
                 # DepartmentInfo.objects.filter()
+                schedule_list=[]
                 # 2 根据id找到 值班表
-                schedule_list = dutyschedule.objects.filter(rDepartmentDuty__in=rd_list,dutydate__year=target_date.year,dutydate__month=target_date.month)
+                if oneday:
+                    schedule_list=dutyschedule.objects.filter(rDepartmentDuty__in=rd_list,dutydate=target_date)
+                else:
+                    schedule_list = dutyschedule.objects.filter(rDepartmentDuty__in=rd_list,dutydate__year=target_date.year,dutydate__month=target_date.month)
+                # 6-21 方式2
+                # schedule_list=DutyScheduleProxyModel.objects.filter(rDepartmentDuty__in=rd_list,dutydate__year=target_date.year,dutydate__month=target_date.month)
         return schedule_list
 
 class UserBaseView(APIView):
@@ -91,5 +210,9 @@ class R_Department_Duty_BaseView(APIView):
         :param duids:
         :return:
         '''
-        r_list=R_DepartmentInfo_DutyInfo.objects.filter(did_id__in=dids,duid_id__in=duids)
+        if len(dids)>0 and len(duids)>0:
+            r_list=R_DepartmentInfo_DutyInfo.objects.filter(did_id__in=dids,duid_id__in=duids)
+        elif len(duids)==0:
+            r_list=R_DepartmentInfo_DutyInfo.objects.filter(did_id__in=dids)
         return r_list
+
