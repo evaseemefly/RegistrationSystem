@@ -109,12 +109,12 @@ DATABASES = {
         'NAME':'registrationsystem',
 
         # 单位台式机
-        # 'USER':'admin',
-        # 'PASSWORD':'admin123',
+        'USER':'admin',
+        'PASSWORD':'admin123',
 
         # mac
-        'USER':'root',
-        'PASSWORD':'12345678',
+        # 'USER':'root',
+        # 'PASSWORD':'12345678',
 
         # 540配置
         # 'USER':'root',
@@ -234,6 +234,6 @@ REST_FRAMEWORK = {
 import datetime
 JWT_AUTH={
     # 设置过期时间
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=1),
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=6),
     'JWT_AUTH_HEADER_PREFIX': 'JWT',
 }
