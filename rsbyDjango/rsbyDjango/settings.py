@@ -234,6 +234,6 @@ REST_FRAMEWORK = {
 import datetime
 JWT_AUTH={
     # 设置过期时间
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=1),
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=6),
     'JWT_AUTH_HEADER_PREFIX': 'JWT',
 }
