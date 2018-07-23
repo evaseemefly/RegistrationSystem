@@ -23,6 +23,8 @@ class MergeScheduleSerializer():
         self.dutydate=dutydate
         self.DutyUserList=duSer
 
+
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model=UserInfo
@@ -126,6 +128,10 @@ class DutyScheduleSerializer(serializers.ModelSerializer):
     class Meta:
         model=dutyschedule
         fields=('id','dutydate','user','rDepartmentDuty')
+
+class MerageDepartmentDutyserializer(serializers.Serializer):
+    department = DepartmentSerializer()
+    duty_list = DutySerializer(many=True)
 
     # class Meta:
     #     model=dutyschedule

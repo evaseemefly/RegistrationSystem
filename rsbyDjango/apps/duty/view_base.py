@@ -215,3 +215,4 @@ class R_Department_Duty_BaseView(APIView):
         elif len(duids)==0:
             r_list=R_DepartmentInfo_DutyInfo.objects.filter(did_id__in=dids)
         return r_list
+

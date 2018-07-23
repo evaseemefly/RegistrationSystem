@@ -13,5 +13,6 @@ urlpatterns = [
     url(r'^grouplist/',views.GroupListView.as_view()),
     url(r'^schedulelist/creat/$',views.ScheduleCreateView.as_view()),
     url(r'^schedulelist/del/$',views.ScheduleDelView.as_view()),
-    url(r'^create/user$',views.CreateUserView.as_view())
+    url(r'^create/user$',views.CreateUserView.as_view()),
+    url(r'^tempTestJson/$',views.tempTestJson)
 ]

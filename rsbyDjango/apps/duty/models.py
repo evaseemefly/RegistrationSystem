@@ -8,6 +8,7 @@ from django.db import models
 
 from django.contrib.auth import get_user_model
 
+# type: class 'django.db.models.base.ModelBase'
 User=get_user_model()
 
 # Create your models here.
@@ -121,4 +122,9 @@ class dutyschedule(models.Model):
 class DutyScheduleProxyModel(dutyschedule):
     class Meta:
         proxy=True
+
+class MerageDepartmentDutyModel(object):
+    def __init__(self,dep,duty_list):
+        self.department=dep
+        self.duty_list=duty_list
 
