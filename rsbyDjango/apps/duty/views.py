@@ -303,7 +303,8 @@ class ScheduleListView(DutyScheduleBaseView):
         # 分别获取users_id,groups_id,selected_date
         # 注意前端传过来的使用bootstrap-table get 时传递的data中若为数组会自动在原有名字后面加上一个[]，注意！
         uids=query_dic.get('users_id[]')
-        dids=query_dic.get('groups_id[]')
+        dids=query_dic.get('group_id_new')
+        # dids=query_dic.get('groups_id[]')
         target_date=query_dic.get('selected_date')
 
         # dids=map(lambda x:int(x),dids.split(','))
