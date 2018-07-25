@@ -101,6 +101,21 @@ class R_Department_User_Simplify(models.Model):
     class Meta:
         abstract=True
 
+class duty_dutyDepartment(models.Model):
+    id = models.AutoField(primary_key=True)
+    aid = models.ForeignKey(User, verbose_name=u"auth用户", on_delete=models.CASCADE)
+    did = models.ForeignKey(DepartmentInfo, verbose_name=u"部门", on_delete=models.CASCADE)
+
+class department_duty_user(object):
+    def __init__(self, deparment, duty_user):
+        self.deparment = deparment
+        self.dutyuser = duty_user
+
+class duty_user(object):
+    def __init__(self, duty, user):
+        self.duty = duty
+        self.user = user
+
 class dutyschedule(models.Model):
     id=models.AutoField(primary_key=True)
     rDepartmentDuty=models.ForeignKey(R_DepartmentInfo_DutyInfo,on_delete=models.CASCADE)

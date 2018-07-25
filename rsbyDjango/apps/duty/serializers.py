@@ -1,4 +1,4 @@
-from .models import dutyschedule,UserInfo,DutyInfo,DepartmentInfo,R_DepartmentInfo_DutyInfo,R_UserInfo_DepartmentInfo
+from .models import dutyschedule,UserInfo,DutyInfo,DepartmentInfo,R_DepartmentInfo_DutyInfo,R_UserInfo_DepartmentInfo, department_duty_user
 from rest_framework import serializers,viewsets
 
 from datetime import datetime
@@ -48,6 +48,11 @@ class DutySerializer(serializers.ModelSerializer):
 class DepartmentSerializer(serializers.ModelSerializer):
     class Meta:
         model=DepartmentInfo
+        fields='__all__'
+
+class DepartmentDutyUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=department_duty_user
         fields='__all__'
 
 class Department_Simplify_Serializer(serializers.ModelSerializer):

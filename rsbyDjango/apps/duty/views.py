@@ -27,13 +27,14 @@ from rest_framework import status
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
 
-from .models import DutyInfo,dutyschedule,R_DepartmentInfo_DutyInfo,DepartmentInfo,R_UserInfo_DepartmentInfo,UserInfo,dutyschedule
-from .serializers import DutyScheduleSerializer,UserSerializer,DutySerializer,R_User_DepartmentSerializer,R_User_Department_Simplify_Serializer,User_Simplify_Serializer,R_Department_User_Simplify_Serializer
+from .models import DutyInfo,dutyschedule,R_DepartmentInfo_DutyInfo,DepartmentInfo,R_UserInfo_DepartmentInfo,UserInfo,dutyschedule, department_duty_user, duty_user
+from .serializers import DutyScheduleSerializer,UserSerializer,DutySerializer,R_User_DepartmentSerializer,R_User_Department_Simplify_Serializer,\
+    User_Simplify_Serializer,R_Department_User_Simplify_Serializer, DepartmentDutyUserSerializer
 from .view_base import DutyScheduleBaseView,UserBaseView,DutyBaseView,GroupBaseView,R_Department_Duty_BaseView
 from .model_middle import R_User_Department_Middle
 from .forms import ScheduleForm
-
 from Common.MyJsonEncoder import DateTimeEncoder
+from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
 class DutyListView(APIView):
     # authentication_classes = (SessionAuthentication,BasicAuthentication)
@@ -122,6 +123,7 @@ class GroupListView(GroupBaseView):
         return HttpResponse(r_json,content_type='application/json')
 
 class ScheduleCreateView(DutyScheduleBaseView,R_Department_Duty_BaseView,UserBaseView):
+
     def post(self,request):
         '''
             根据前台提交的内容新建该日的记录
@@ -279,15 +281,10 @@ class ScheduleModificationView(R_Department_Duty_BaseView,UserBaseView):
 
         return Response(status=status.HTTP_200_OK)
 
-class tempTestJson(APIView):
-    def get(request):
-        resp = {'errorcode': 100, 'detail': 'Get success'}
-        return HttpResponse(json.dumps(resp), content_type="application/json")
-
-class ScheduleListView(DutyScheduleBaseView):
+class ScheduleListView(APIView):
     def get(self,request):
         '''
-        根据部门id或组id获取人员list
+        根据日期（yyyy-mm-dd）获取
         :param request:
           必须包含：
               user_id，
@@ -299,55 +296,124 @@ class ScheduleListView(DutyScheduleBaseView):
              groups_id
         :return:
         '''
-        query_dic=request.query_params
-        # 分别获取users_id,groups_id,selected_date
-        # 注意前端传过来的使用bootstrap-table get 时传递的data中若为数组会自动在原有名字后面加上一个[]，注意！
-        uids=query_dic.get('users_id[]')
-        dids=query_dic.get('groups_id[]')
-        target_date=query_dic.get('selected_date')
+        target_date = request.query_params.getlist('datetime')
+        # target_datetime = datetime.strptime(target_date[0], "%Y-%m-%d")
+        schedule_list = [r for r in dutyschedule.objects.filter(dutydate=target_date[0])]
 
-        # dids=map(lambda x:int(x),dids.split(','))
-        dids=[int(temp) for temp in dids.split(',')]
-        # uids=map(lambda x:int(x),list(uids))
-        uids=[int(temp) for temp in uids.split(',')]
+        '''取出查询日期当天的uer，department和duty信息'''
+        user_list = [t.user for t in schedule_list]
+        department_list = [t.rDepartmentDuty.did for t in schedule_list]
+        duty_list = [t.rDepartmentDuty.duid for t in schedule_list]
 
-        # dids=list(dids)
-        # uids = list(uids)
-        # 传入了一组部门
-        # 找到对应的部门
-        # 返回dutyschedule（值班表）
-        # datetime.strptime(target_date,'')
-        # convert_date=datetime.strptime(target_date, '%Y-%m-%d')
-        schedule_list=self.getMergeScheduleListByDate(dids=dids,target_date=datetime.strptime(target_date, '%Y-%m-%d'))
-        # schedule_list=self.getscheduleDetial(dids=dids,target_date=datetime.strptime(target_date, '%Y-%m-%d'))
-        # seredule_json = DutyScheduleSerializer(schedule_list, many=True)
+        '''以department id 为标识组合值班查询结果'''
+        list_deparmentID = []
+        for i in range(len(department_list)):
+            list_deparmentID.append(department_list[i].did)
+        list_noRepeat = []
+        index = 0
+        for i in list_deparmentID:
+            if not i in [x[0] for x in list_noRepeat]:
+                list_noRepeat.append([i, index])
+            index = index +1
 
-        # seredule_json=serializers.serialize("json",schedule_list)
-        class Date_Encoder(json.JSONEncoder):
-            def default(self, value):
-                if isinstance(value, datetime):
-                    return value.strftime('%Y-%m-%d %H:%M:%S')
-                elif isinstance(value, datetime.date):
-                    return value.strftime('%Y-%m-%d')
-                else:
-                    return value.__dict__
-        # seredule_json = json.dumps(schedule_list,skipkeys=True,cls=json_default,ensure_ascii=False, default=lambda obj:obj.__dict__)
-        seredule_json = json.dumps(schedule_list,ensure_ascii=False,cls=DateTimeEncoder)
+        # append_deparment_list = {}
+        # append_duty_list = []
+        # append_user_list = {}
+        #
+        # for i in list_noRepeat:
+        #     for j in range(len(department_list)):
+        #         if i[0] == department_list[j].did:
+        #             append_user_list[user_list[j].username] = user_list[j]
+        #             append_duty_list[duty_list[j]] =append_user_list
+        #             append_deparment_list[department_list[i[1]].derpartmentname] = append_duty_list
+        #     append_department = department_duty_user(department_list[i[1]], append_duty_list)
+        #     append_duty_list = []
+        #     # append_duty_list[0].append(user_list[j])
+        #     # append_deparment_list.append(append_department)
+        #     append_deparment_list[department_list[i[1]].derpartmentname] = append_department
 
-        # return JsonResponse(seredule_json.data)
-        print(seredule_json)
-        # return JsonResponse(seredule_json)
-        return HttpResponse(seredule_json, content_type="application/json")
-        # return Response(seredule_json,status=status.HTTP_202_ACCEPTED)
-        # return HttpResponse(seredule_json.data)
-        # return Response(seredule_json.data)
-        # return Response(seredule_json.data)
+        append_deparment_list = {}
+        append_duty_list = []
+        for i in list_noRepeat:
+            for j in range(len(department_list)):
+                if i[0] == department_list[j].did:
+                    append_duty = duty_user(duty_list[j], user_list[j])
+                    append_duty_list.append(append_duty)
+            append_department = department_duty_user(department_list[i[1]], append_duty_list)
+            append_duty_list = []
+            # append_duty_list[0].append(user_list[j])
+            # append_deparment_list.append(append_department)
+            append_deparment_list[department_list[i[1]].derpartmentname] = append_department
 
-    def post(self,request):
-        ids=request.POST.getlist('id[]',None)
-        # id= request.post.get('id',None)
-        dutyschedule.objects.filter(id__in=ids).delete()
-        return Response(status=status.HTTP_202_ACCEPTED)
+        json_str = json.dumps(append_deparment_list)
+
+        # json_department = DepartmentDutyUserSerializer(append_deparment_list, many=True)
+        return Response(json_str)
+
+# class ScheduleListView(DutyScheduleBaseView):
+#     def get(self,request):
+#         '''
+#         根据部门id或组id获取人员list
+#         :param request:
+#           必须包含：
+#               user_id，
+#               group，
+#               selected_date
+#           可选：
+#             （均为数组）
+#              users_id，
+#              groups_id
+#         :return:
+#         '''
+#         query_dic=request.query_params
+#         # 分别获取users_id,groups_id,selected_date
+#         # 注意前端传过来的使用bootstrap-table get 时传递的data中若为数组会自动在原有名字后面加上一个[]，注意！
+#         uids=query_dic.get('users_id[]')
+#         dids=query_dic.get('groups_id[]')
+#         target_date=query_dic.get('selected_date')
+#
+#         # dids=map(lambda x:int(x),dids.split(','))
+#         dids=[int(temp) for temp in dids.split(',')]
+#         # uids=map(lambda x:int(x),list(uids))
+#         uids=[int(temp) for temp in uids.split(',')]
+#
+#         # dids=list(dids)
+#         # uids = list(uids)
+#         # 传入了一组部门
+#         # 找到对应的部门
+#         # 返回dutyschedule（值班表）
+#         # datetime.strptime(target_date,'')
+#         # convert_date=datetime.strptime(target_date, '%Y-%m-%d')
+#         schedule_list=self.getMergeScheduleListByDate(dids=dids,target_date=datetime.strptime(target_date, '%Y-%m-%d'))
+#         # schedule_list=self.getscheduleDetial(dids=dids,target_date=datetime.strptime(target_date, '%Y-%m-%d'))
+#         # seredule_json = DutyScheduleSerializer(schedule_list, many=True)
+#
+#         # seredule_json=serializers.serialize("json",schedule_list)
+#         class Date_Encoder(json.JSONEncoder):
+#             def default(self, value):
+#                 if isinstance(value, datetime):
+#                     return value.strftime('%Y-%m-%d %H:%M:%S')
+#                 elif isinstance(value, datetime.date):
+#                     return value.strftime('%Y-%m-%d')
+#                 else:
+#                     return value.__dict__
+#         # seredule_json = json.dumps(schedule_list,skipkeys=True,cls=json_default,ensure_ascii=False, default=lambda obj:obj.__dict__)
+#         seredule_json = json.dumps(schedule_list,ensure_ascii=False,cls=DateTimeEncoder)
+#
+#         # return JsonResponse(seredule_json.data)
+#         print(seredule_json)
+#         # return JsonResponse(seredule_json)
+#         return HttpResponse(seredule_json, content_type="application/json")
+#         # return Response(seredule_json,status=status.HTTP_202_ACCEPTED)
+#         # return HttpResponse(seredule_json.data)
+#         # return Response(seredule_json.data)
+#         # return Response(seredule_json.data)
+#
+#     def post(self,request):
+#         ids=request.POST.getlist('id[]',None)
+#         # id= request.post.get('id',None)
+#         dutyschedule.objects.filter(id__in=ids).delete()
+#         return Response(status=status.HTTP_202_ACCEPTED)
 
 class ScheduleDelView(DutyScheduleBaseView,R_Department_Duty_BaseView):
     def post(self,request):
