@@ -26,8 +26,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apps/users/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="70" column="61" lean-forward="true" selection-start-line="70" selection-start-column="61" selection-end-line="70" selection-end-column="61" />
+            <state relative-caret-position="206">
+              <caret line="68" selection-start-line="68" selection-end-line="68" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -38,7 +38,7 @@
       <file leaf-file-name="myAuthentication.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Common/myAuthentication.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
+            <state relative-caret-position="207">
               <caret line="10" selection-start-line="10" selection-end-line="10" />
               <folding>
                 <element signature="e#15#67#0" expanded="true" />
@@ -50,8 +50,8 @@
       <file leaf-file-name="AuthenticationMiddleware.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Common/AuthenticationMiddleware.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="9" column="32" lean-forward="true" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+            <state relative-caret-position="161">
+              <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
               <folding>
                 <element signature="e#0#51#0" expanded="true" />
               </folding>
@@ -62,8 +62,8 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rsbyDjango/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="624">
-              <caret line="42" column="47" lean-forward="true" selection-start-line="42" selection-start-column="47" selection-end-line="42" selection-end-column="47" />
+            <state relative-caret-position="851">
+              <caret line="42" column="47" selection-start-line="42" selection-start-column="47" selection-end-line="42" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -71,8 +71,8 @@
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/rsbyDjango/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="181">
-              <caret line="228" column="18" lean-forward="true" selection-start-line="228" selection-start-column="18" selection-end-line="228" selection-end-column="18" />
+            <state relative-caret-position="166">
+              <caret line="115" column="8" selection-start-line="115" selection-start-column="8" selection-end-line="116" selection-end-column="30" />
             </state>
           </provider>
         </entry>
@@ -80,7 +80,7 @@
       <file leaf-file-name="authentication.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../../virtalenvs/registsys/lib/python3.6/site-packages/rest_framework_jwt/authentication.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="276">
+            <state relative-caret-position="644">
               <caret line="38" selection-start-line="38" selection-end-line="38" />
             </state>
           </provider>
@@ -89,7 +89,7 @@
       <file leaf-file-name="request.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../../virtalenvs/registsys/lib/python3.6/site-packages/rest_framework/request.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
+            <state relative-caret-position="8349">
               <caret line="376" selection-start-line="376" selection-end-line="376" />
             </state>
           </provider>
@@ -98,7 +98,7 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../../virtalenvs/registsys/lib/python3.6/site-packages/rest_framework/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
+            <state relative-caret-position="10672">
               <caret line="481" selection-start-line="481" selection-end-line="481" />
             </state>
           </provider>
@@ -107,7 +107,7 @@
       <file leaf-file-name="authentication.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../../virtalenvs/registsys/lib/python3.6/site-packages/rest_framework/authentication.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
+            <state relative-caret-position="575">
               <caret line="36" column="6" selection-start-line="36" selection-start-column="6" selection-end-line="36" selection-end-column="6" />
             </state>
           </provider>
@@ -175,9 +175,9 @@
         <option value="$PROJECT_DIR$/apps/users/urls.py" />
         <option value="$PROJECT_DIR$/Common/authentication.py" />
         <option value="$PROJECT_DIR$/Common/myAuthentication.py" />
-        <option value="$PROJECT_DIR$/rsbyDjango/settings.py" />
         <option value="$PROJECT_DIR$/apps/users/views.py" />
         <option value="$PROJECT_DIR$/Common/AuthenticationMiddleware.py" />
+        <option value="$PROJECT_DIR$/rsbyDjango/settings.py" />
       </list>
     </option>
   </component>
@@ -190,11 +190,11 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="69" />
-    <option name="y" value="93" />
+    <option name="y" value="23" />
     <option name="width" value="1598" />
-    <option name="height" value="917" />
+    <option name="height" value="732" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -222,13 +222,6 @@
               <item name="rsbyDjango" type="462c0819:PsiDirectoryNode" />
               <item name="apps" type="462c0819:PsiDirectoryNode" />
               <item name="users" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="rsbyDjango" type="b2602c69:ProjectViewProjectNode" />
-              <item name="rsbyDjango" type="462c0819:PsiDirectoryNode" />
-              <item name="apps" type="462c0819:PsiDirectoryNode" />
-              <item name="users" type="462c0819:PsiDirectoryNode" />
-              <item name="views.py" type="8704e2dd:PyFileNode" />
             </path>
             <path>
               <item name="rsbyDjango" type="b2602c69:ProjectViewProjectNode" />
@@ -392,22 +385,23 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="69" y="93" width="1598" height="917" extended-state="1" />
+    <frame x="0" y="23" width="1280" height="726" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4978678" weight="0.32826087" />
-      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.42217484" side_tool="true" weight="0.3076087" />
+      <window_info active="true" anchor="bottom" id="Event Log" order="7" sideWeight="0.42265624" side_tool="true" visible="true" weight="0.30683625" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.22163309" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Python Console" order="7" sideWeight="0.48933902" weight="0.19512194" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.22163309" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49573562" weight="0.32826087" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1758448" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17578125" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="SciView" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" sideWeight="0.5778252" visible="true" weight="0.3682927" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.57734376" weight="0.3672496" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -422,31 +416,31 @@
       <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.31790122" />
     </layout>
     <layout-to-restore>
-      <window_info anchor="right" x="0" y="0" width="434" height="856" id="Documentation" order="5" weight="0.44936034" />
       <window_info anchor="bottom" id="运行" order="13" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="调试" order="9" weight="0.27566963" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.39320388" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" id="Data View" order="4" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4978678" weight="0.32900432" />
+      <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22068231" />
+      <window_info anchor="bottom" id="Python Console" order="11" sideWeight="0.48933902" weight="0.19588745" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3195652" />
       <window_info anchor="bottom" id="manage.py@rsbyDjango" order="14" sideWeight="0.60714287" weight="0.29347825" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22068231" />
+      <window_info anchor="right" x="0" y="0" width="434" height="856" id="Documentation" order="5" weight="0.44936034" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.49573562" weight="0.32826087" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.4195096" side_tool="true" weight="0.3728261" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="调试" order="9" weight="0.27566963" />
       <window_info anchor="right" id="SciView" order="6" />
-      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.5804904" weight="0.2902174" />
-      <window_info anchor="bottom" id="Python Console" order="11" sideWeight="0.48933902" weight="0.19588745" />
+      <window_info id="Favorites" order="2" side_tool="true" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -512,11 +506,6 @@
           <url>file://$PROJECT_DIR$/Common/myAuthentication.py</url>
           <line>10</line>
           <option name="timeStamp" value="248" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/apps/users/views.py</url>
-          <line>68</line>
-          <option name="timeStamp" value="251" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -813,7 +802,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../../../virtalenvs/registsys/lib/python3.6/site-packages/rest_framework/authentication.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
+        <state relative-caret-position="575">
           <caret line="36" column="6" selection-start-line="36" selection-start-column="6" selection-end-line="36" selection-end-column="6" />
         </state>
       </provider>
@@ -827,43 +816,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rsbyDjango/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="624">
-          <caret line="42" column="47" lean-forward="true" selection-start-line="42" selection-start-column="47" selection-end-line="42" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/rsbyDjango/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="181">
-          <caret line="228" column="18" lean-forward="true" selection-start-line="228" selection-start-column="18" selection-end-line="228" selection-end-column="18" />
+        <state relative-caret-position="851">
+          <caret line="42" column="47" selection-start-line="42" selection-start-column="47" selection-end-line="42" selection-end-column="47" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../../../virtalenvs/registsys/lib/python3.6/site-packages/rest_framework/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
+        <state relative-caret-position="10672">
           <caret line="481" selection-start-line="481" selection-end-line="481" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../../../virtalenvs/registsys/lib/python3.6/site-packages/rest_framework_jwt/authentication.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
+        <state relative-caret-position="644">
           <caret line="38" selection-start-line="38" selection-end-line="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../../../virtalenvs/registsys/lib/python3.6/site-packages/rest_framework/request.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="161">
+        <state relative-caret-position="8349">
           <caret line="376" selection-start-line="376" selection-end-line="376" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Common/AuthenticationMiddleware.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="9" column="32" lean-forward="true" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+        <state relative-caret-position="161">
+          <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
           <folding>
             <element signature="e#0#51#0" expanded="true" />
           </folding>
@@ -872,7 +854,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Common/myAuthentication.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
+        <state relative-caret-position="207">
           <caret line="10" selection-start-line="10" selection-end-line="10" />
           <folding>
             <element signature="e#15#67#0" expanded="true" />
@@ -880,10 +862,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/rsbyDjango/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="115" column="8" selection-start-line="115" selection-start-column="8" selection-end-line="116" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/apps/users/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="70" column="61" lean-forward="true" selection-start-line="70" selection-start-column="61" selection-end-line="70" selection-end-column="61" />
+        <state relative-caret-position="206">
+          <caret line="68" selection-start-line="68" selection-end-line="68" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
           </folding>
