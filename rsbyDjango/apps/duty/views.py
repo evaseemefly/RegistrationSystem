@@ -29,7 +29,7 @@ from rest_framework.permissions import IsAuthenticated
 
 from .models import DutyInfo,dutyschedule,R_DepartmentInfo_DutyInfo,DepartmentInfo,R_UserInfo_DepartmentInfo,UserInfo,dutyschedule, department_duty_user, duty_user
 from .serializers import DutyScheduleSerializer,UserSerializer,DutySerializer,R_User_DepartmentSerializer,R_User_Department_Simplify_Serializer,\
-    User_Simplify_Serializer,R_Department_User_Simplify_Serializer, DepartmentDutyUserSerializer
+    User_Simplify_Serializer,R_Department_User_Simplify_Serializer, DepartmentDutyUserSerializer,UserSerializer
 from .view_base import DutyScheduleBaseView,UserBaseView,DutyBaseView,GroupBaseView,R_Department_Duty_BaseView
 from .model_middle import R_User_Department_Middle
 from .forms import ScheduleForm
@@ -316,36 +316,40 @@ class ScheduleListView(APIView):
                 list_noRepeat.append([i, index])
             index = index +1
 
+        append_deparment = {}
+        append_deparment_list = {}
+        append_duty_list = {}
+        append_user_list = {}
+        append_user = {}
+
+        for i in list_noRepeat:
+            for j in range(len(department_list)):
+                if i[0] == department_list[j].did:
+                    append_user["uid"] = user_list[j].uid
+                    append_user["isdel"] = user_list[j].isdel
+                    append_user["username"] = user_list[j].username
+                    append_user_list[str(user_list[j].username)] = append_user
+                    append_duty_list[str(duty_list[j])] = append_user_list
+
+            append_deparment_list[str(department_list[i[1]].derpartmentname)] = append_duty_list
+            append_duty_list = {}
+            append_user_list = {}
+        append_deparment[str(target_date[0])] = append_deparment_list
+
         # append_deparment_list = {}
         # append_duty_list = []
-        # append_user_list = {}
-        #
         # for i in list_noRepeat:
         #     for j in range(len(department_list)):
         #         if i[0] == department_list[j].did:
-        #             append_user_list[user_list[j].username] = user_list[j]
-        #             append_duty_list[duty_list[j]] =append_user_list
-        #             append_deparment_list[department_list[i[1]].derpartmentname] = append_duty_list
+        #             append_duty = duty_user(duty_list[j], user_list[j])
+        #             append_duty_list.append(append_duty)
         #     append_department = department_duty_user(department_list[i[1]], append_duty_list)
         #     append_duty_list = []
         #     # append_duty_list[0].append(user_list[j])
         #     # append_deparment_list.append(append_department)
         #     append_deparment_list[department_list[i[1]].derpartmentname] = append_department
 
-        append_deparment_list = {}
-        append_duty_list = []
-        for i in list_noRepeat:
-            for j in range(len(department_list)):
-                if i[0] == department_list[j].did:
-                    append_duty = duty_user(duty_list[j], user_list[j])
-                    append_duty_list.append(append_duty)
-            append_department = department_duty_user(department_list[i[1]], append_duty_list)
-            append_duty_list = []
-            # append_duty_list[0].append(user_list[j])
-            # append_deparment_list.append(append_department)
-            append_deparment_list[department_list[i[1]].derpartmentname] = append_department
-
-        json_str = json.dumps(append_deparment_list)
+        json_str = json.dumps(append_deparment)
 
         # json_department = DepartmentDutyUserSerializer(append_deparment_list, many=True)
         return Response(json_str)

@@ -106,15 +106,15 @@ class duty_dutyDepartment(models.Model):
     aid = models.ForeignKey(User, verbose_name=u"auth用户", on_delete=models.CASCADE)
     did = models.ForeignKey(DepartmentInfo, verbose_name=u"部门", on_delete=models.CASCADE)
 
-class department_duty_user(object):
-    def __init__(self, deparment, duty_user):
-        self.deparment = deparment
-        self.dutyuser = duty_user
-
-class duty_user(object):
-    def __init__(self, duty, user):
-        self.duty = duty
-        self.user = user
+# class department_duty_user(object):
+#     def __init__(self, deparment, duty_user):
+#         self.deparment = deparment
+#         self.dutyuser = duty_user
+#
+# class duty_user(object):
+#     def __init__(self, duty, user):
+#         self.duty = duty
+#         self.user = user
 
 class dutyschedule(models.Model):
     id=models.AutoField(primary_key=True)
