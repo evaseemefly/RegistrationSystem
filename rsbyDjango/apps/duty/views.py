@@ -104,7 +104,8 @@ class GroupListView(GroupBaseView):
 
         did=request.query_params.get('department_id',None)
         # user_json=User_Simplify_Serializer([user],many=True).data
-        r_user_department=self.getgroupByDepartment(int(did))
+        # r_user_department=self.getgroupByDepartment(int(did))
+        r_user_department = self.getgroup(int(did))
         r_json=R_User_Department_Simplify_Serializer(r_user_department,many=True)
         r=R_User_Department_Middle()
         # finial_list=r.ToMiddleSerializer(r_user_department)
