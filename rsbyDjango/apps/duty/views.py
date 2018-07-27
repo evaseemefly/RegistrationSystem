@@ -282,7 +282,8 @@ class ScheduleModificationView(R_Department_Duty_BaseView,UserBaseView):
 
         return Response(status=status.HTTP_200_OK)
 
-class ScheduleListView(APIView):
+
+class ScheduleShowListView(APIView):
     def get(self,request):
         '''
         根据日期（yyyy-mm-dd）获取
@@ -305,8 +306,9 @@ class ScheduleListView(APIView):
         # dids=query_dic.get('groups_id[]')
         target_date=query_dic.get('selected_date')
 		
-		//王豹的东西
-		target_date = request.query_params.getlist('datetime')
+		#王豹的东西
+		# target_date = request.query_params.getlist('datetime')
+        # target_date = request.query_params.getlist('datetime')
         # target_datetime = datetime.strptime(target_date[0], "%Y-%m-%d")
         schedule_list = [r for r in dutyschedule.objects.filter(dutydate=target_date[0])]
 
@@ -390,70 +392,71 @@ class ScheduleListView(APIView):
         return HttpResponse(json_str,content_type='application/json')
         # return Response(json_str)
 
-# class ScheduleListView(DutyScheduleBaseView):
-#     def get(self,request):
-#         '''
-#         根据部门id或组id获取人员list
-#         :param request:
-#           必须包含：
-#               user_id，
-#               group，
-#               selected_date
-#           可选：
-#             （均为数组）
-#              users_id，
-#              groups_id
-#         :return:
-#         '''
-#         query_dic=request.query_params
-#         # 分别获取users_id,groups_id,selected_date
-#         # 注意前端传过来的使用bootstrap-table get 时传递的data中若为数组会自动在原有名字后面加上一个[]，注意！
-#         uids=query_dic.get('users_id[]')
-#         dids=query_dic.get('groups_id[]')
-#         target_date=query_dic.get('selected_date')
-#
-#         # dids=map(lambda x:int(x),dids.split(','))
-#         dids=[int(temp) for temp in dids.split(',')]
-#         # uids=map(lambda x:int(x),list(uids))
-#         uids=[int(temp) for temp in uids.split(',')]
-#
-#         # dids=list(dids)
-#         # uids = list(uids)
-#         # 传入了一组部门
-#         # 找到对应的部门
-#         # 返回dutyschedule（值班表）
-#         # datetime.strptime(target_date,'')
-#         # convert_date=datetime.strptime(target_date, '%Y-%m-%d')
-#         schedule_list=self.getMergeScheduleListByDate(dids=dids,target_date=datetime.strptime(target_date, '%Y-%m-%d'))
-#         # schedule_list=self.getscheduleDetial(dids=dids,target_date=datetime.strptime(target_date, '%Y-%m-%d'))
-#         # seredule_json = DutyScheduleSerializer(schedule_list, many=True)
-#
-#         # seredule_json=serializers.serialize("json",schedule_list)
-#         class Date_Encoder(json.JSONEncoder):
-#             def default(self, value):
-#                 if isinstance(value, datetime):
-#                     return value.strftime('%Y-%m-%d %H:%M:%S')
-#                 elif isinstance(value, datetime.date):
-#                     return value.strftime('%Y-%m-%d')
-#                 else:
-#                     return value.__dict__
-#         # seredule_json = json.dumps(schedule_list,skipkeys=True,cls=json_default,ensure_ascii=False, default=lambda obj:obj.__dict__)
-#         seredule_json = json.dumps(schedule_list,ensure_ascii=False,cls=DateTimeEncoder)
-#
-#         # return JsonResponse(seredule_json.data)
-#         print(seredule_json)
-#         # return JsonResponse(seredule_json)
-#         return HttpResponse(seredule_json, content_type="application/json")
-#         # return Response(seredule_json,status=status.HTTP_202_ACCEPTED)
-#         # return HttpResponse(seredule_json.data)
-#         # return Response(seredule_json.data)
-#         # return Response(seredule_json.data)
-#
-#     def post(self,request):
-#         ids=request.POST.getlist('id[]',None)
-#         # id= request.post.get('id',None)
-#         dutyschedule.objects.filter(id__in=ids).delete()
-#         return Response(status=status.HTTP_202_ACCEPTED)
+class ScheduleListView(DutyScheduleBaseView):
+    def get(self,request):
+        '''
+        根据部门id或组id获取人员list
+        :param request:
+          必须包含：
+              user_id，
+              group，
+              selected_date
+          可选：
+            （均为数组）
+             users_id，
+             groups_id
+        :return:
+        '''
+        query_dic=request.query_params
+        # 分别获取users_id,groups_id,selected_date
+        # 注意前端传过来的使用bootstrap-table get 时传递的data中若为数组会自动在原有名字后面加上一个[]，注意！
+        uids=query_dic.get('users_id[]')
+        dids=query_dic.get('group_id_new')
+        # dids=query_dic.get('groups_id[]')
+        target_date=query_dic.get('selected_date')
+
+        # dids=map(lambda x:int(x),dids.split(','))
+        dids=[int(temp) for temp in dids.split(',')]
+        # uids=map(lambda x:int(x),list(uids))
+        uids=[int(temp) for temp in uids.split(',')]
+
+        # dids=list(dids)
+        # uids = list(uids)
+        # 传入了一组部门
+        # 找到对应的部门
+        # 返回dutyschedule（值班表）
+        # datetime.strptime(target_date,'')
+        # convert_date=datetime.strptime(target_date, '%Y-%m-%d')
+        schedule_list=self.getMergeScheduleListByDate(dids=dids,target_date=datetime.strptime(target_date, '%Y-%m-%d'))
+        # schedule_list=self.getscheduleDetial(dids=dids,target_date=datetime.strptime(target_date, '%Y-%m-%d'))
+        # seredule_json = DutyScheduleSerializer(schedule_list, many=True)
+
+        # seredule_json=serializers.serialize("json",schedule_list)
+        class Date_Encoder(json.JSONEncoder):
+            def default(self, value):
+                if isinstance(value, datetime):
+                    return value.strftime('%Y-%m-%d %H:%M:%S')
+                elif isinstance(value, datetime.date):
+                    return value.strftime('%Y-%m-%d')
+                else:
+                    return value.__dict__
+        # seredule_json = json.dumps(schedule_list,skipkeys=True,cls=json_default,ensure_ascii=False, default=lambda obj:obj.__dict__)
+        seredule_json = json.dumps(schedule_list,ensure_ascii=False,cls=DateTimeEncoder)
+
+        # return JsonResponse(seredule_json.data)
+        print(seredule_json)
+        # return JsonResponse(seredule_json)
+        return HttpResponse(seredule_json, content_type="application/json")
+        # return Response(seredule_json,status=status.HTTP_202_ACCEPTED)
+        # return HttpResponse(seredule_json.data)
+        # return Response(seredule_json.data)
+        # return Response(seredule_json.data)
+
+    def post(self,request):
+        ids=request.POST.getlist('id[]',None)
+        # id= request.post.get('id',None)
+        dutyschedule.objects.filter(id__in=ids).delete()
+        return Response(status=status.HTTP_202_ACCEPTED)
 
 class ScheduleDelView(DutyScheduleBaseView,R_Department_Duty_BaseView):
     def post(self,request):
