@@ -27,9 +27,9 @@ from rest_framework import status
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
 
-from .models import DutyInfo,dutyschedule,R_DepartmentInfo_DutyInfo,DepartmentInfo,R_UserInfo_DepartmentInfo,UserInfo,dutyschedule, department_duty_user, duty_user
-from .serializers import DutyScheduleSerializer,UserSerializer,DutySerializer,R_User_DepartmentSerializer,R_User_Department_Simplify_Serializer,\
-    User_Simplify_Serializer,R_Department_User_Simplify_Serializer, DepartmentDutyUserSerializer,UserSerializer
+from .models import DutyInfo,dutyschedule,R_DepartmentInfo_DutyInfo,DepartmentInfo,R_UserInfo_DepartmentInfo,UserInfo,dutyschedule
+from .serializers import DutyScheduleSerializer,UserSerializer,DutySerializer,R_User_DepartmentSerializer,R_User_Department_Simplify_Serializer,User_Simplify_Serializer,R_Department_User_Simplify_Serializer,UserSerializer
+# from .serializers import DutyScheduleSerializer,UserSerializer,DutySerializer,R_User_DepartmentSerializer,R_User_Department_Simplify_Serializer,User_Simplify_Serializer,R_Department_User_Simplify_Serializer, DepartmentDutyUserSerializer,UserSerializer
 from .view_base import DutyScheduleBaseView,UserBaseView,DutyBaseView,GroupBaseView,R_Department_Duty_BaseView
 from .model_middle import R_User_Department_Middle
 from .forms import ScheduleForm
@@ -306,35 +306,58 @@ class ScheduleListView(APIView):
         duty_list = [t.rDepartmentDuty.duid for t in schedule_list]
 
         '''以department id 为标识组合值班查询结果'''
-        list_deparmentID = []
-        for i in range(len(department_list)):
-            list_deparmentID.append(department_list[i].did)
-        list_noRepeat = []
-        index = 0
-        for i in list_deparmentID:
-            if not i in [x[0] for x in list_noRepeat]:
-                list_noRepeat.append([i, index])
-            index = index +1
 
-        append_deparment = {}
-        append_deparment_list = {}
-        append_duty_list = {}
-        append_user_list = {}
-        append_user = {}
+        class DutyUserMiddelModel(object):
+            def __init__(self,duty,users):
+                duty=duty
+                user_list=users
 
-        for i in list_noRepeat:
-            for j in range(len(department_list)):
-                if i[0] == department_list[j].did:
-                    append_user["uid"] = user_list[j].uid
-                    append_user["isdel"] = user_list[j].isdel
-                    append_user["username"] = user_list[j].username
-                    append_user_list[str(user_list[j].username)] = append_user
-                    append_duty_list[str(duty_list[j])] = append_user_list
+        class DepartmentDutyMiddelModel(object):
+            def __init__(self,deparment,duty_list):
+                deparment=deparment
+                duty_list=duty_list
 
-            append_deparment_list[str(department_list[i[1]].derpartmentname)] = append_duty_list
-            append_duty_list = {}
-            append_user_list = {}
-        append_deparment[str(target_date[0])] = append_deparment_list
+        class SearchModel(object):
+            def __init__(self,deps):
+                department_list=deps
+        from .serializers import DutyUserSerializer,DepartmentDutySerializer,SchedulelSerializer
+        dutyuser_list=DutyUserMiddelModel(duty_list[0],user_list[:2])
+        temp= DutyUserSerializer(dutyuser_list).data
+
+        DepartmentDutyMiddelModel(department_list[0],DutyUserMiddelModel)
+        # merage_json=
+
+
+        # list_deparmentID = []
+        # for i in range(len(department_list)):
+        #     list_deparmentID.append(department_list[i].did)
+        # list_noRepeat = []
+        # index = 0
+        # for i in list_deparmentID:
+        #     if not i in [x[0] for x in list_noRepeat]:
+        #         list_noRepeat.append([i, index])
+        #     index = index +1
+        #
+        # append_deparment = {}
+        # append_deparment_list = {}
+        # append_duty_list = {}
+        # append_user_list = {}
+        # append_user = {}
+
+        # for i in list_noRepeat:
+        #     for j in range(len(department_list)):
+        #         if i[0] == department_list[j].did:
+        #             append_user["uid"] = user_list[j].uid
+        #             append_user["isdel"] = user_list[j].isdel
+        #             append_user["username"] = user_list[j].username
+        #             append_user_list[str(user_list[j].username)] = append_user
+        #             append_user_list[]
+        #             append_duty_list[str(duty_list[j])] = append_user_list
+        #
+        #     append_deparment_list[str(department_list[i[1]].derpartmentname)] = append_duty_list
+        #     append_duty_list = {}
+        #     append_user_list = {}
+        # append_deparment[str(target_date[0])] = append_deparment_list
 
         # append_deparment_list = {}
         # append_duty_list = []
@@ -349,10 +372,12 @@ class ScheduleListView(APIView):
         #     # append_deparment_list.append(append_department)
         #     append_deparment_list[department_list[i[1]].derpartmentname] = append_department
 
-        json_str = json.dumps(append_deparment)
-
+        json_str = json.dumps(append_deparment,ensure_ascii=False)
+        print(json_str)
         # json_department = DepartmentDutyUserSerializer(append_deparment_list, many=True)
-        return Response(json_str)
+        # return JsonResponse(append_deparment,encoder=)
+        return HttpResponse(json_str,content_type='application/json')
+        # return Response(json_str)
 
 # class ScheduleListView(DutyScheduleBaseView):
 #     def get(self,request):
