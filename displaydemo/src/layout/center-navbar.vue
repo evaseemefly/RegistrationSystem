@@ -2,8 +2,9 @@
     <div>
         <div class="topcenterbar">
             <a href="#" class="current">预警室</a>
-            <a href="#" class="current">海啸室</a>
-            <a href="#">环境室</a>
+             <a href="#" class="current">环境室</a>
+            <a href="#" >海啸室</a>
+           
             <a href="#">气象室</a>
             <a href="#">极地室</a>
             <a href="#">气候室</a>

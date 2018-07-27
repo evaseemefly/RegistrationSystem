@@ -18,6 +18,8 @@ from duty.models import DepartmentInfo
 from duty.serializers import DutySerializer,DepartmentSerializer,MerageDepartmentDutyserializer
 from duty.models import MerageDepartmentDutyModel
 from duty.view_base import DutyBaseView
+
+from Common.myAuthentication import CookieAuthentication
 # Create your views here.
 
 class UserListView(APIView):
@@ -53,7 +55,7 @@ class AuthDepartmentView(AuthDepartmentBaseView):
         return Response(deparment_json)
 
 class AuthDepartmentDutyView(AuthDepartmentBaseView,DutyBaseView):
-    authentication_classes = (JSONWebTokenAuthentication, SessionAuthentication, BaseAuthentication)
+    authentication_classes = (JSONWebTokenAuthentication, SessionAuthentication)
     '''
         根据auth获取其拥有的department，并根据department获取Duty
     '''

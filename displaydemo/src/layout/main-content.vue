@@ -2,7 +2,7 @@
     <div id="content">
         <centernavbar></centernavbar>
         <div class="container">
-            <div class="col-md-3" v-for="user in users">
+            <div class="col-md-2" v-for="user in users">
                 <photoframe v-bind:person=user></photoframe>
             </div>
 
@@ -35,8 +35,8 @@
             });
             this.users.push({
                 level: "import",
-                img_url: './src/img/person/预警室/董剑希.jpg',
-                name: '董剑希',
+                img_url: './src/img/person/环境室/李云.jpg',
+                name: '李云',
                 desc: '带班主任',
                 group: '室主任',
                 duty: '带班主任'
@@ -72,6 +72,22 @@
                 desc: '风暴潮 警报班',
                 group: '风暴潮',
                 duty: '警报班'
+            });
+            this.users.push({
+                level: "norm",
+                img_url: './src/img/person/环境室/于寒.jpg',
+                name: '于寒',
+                desc: '环境 24小时',
+                group: '环境',
+                duty: '24小时岗'
+            });
+            this.users.push({
+                level: "norm",
+                img_url: './src/img/person/环境室/李志杰.jpg',
+                name: '李志杰',
+                desc: '环境 主班',
+                group: '环境',
+                duty: '主班'
             });
         }
     }

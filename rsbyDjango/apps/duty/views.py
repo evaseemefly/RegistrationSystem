@@ -105,7 +105,8 @@ class GroupListView(GroupBaseView):
 
         did=request.query_params.get('department_id',None)
         # user_json=User_Simplify_Serializer([user],many=True).data
-        r_user_department=self.getgroupByDepartment(int(did))
+        # r_user_department=self.getgroupByDepartment(int(did))
+        r_user_department = self.getgroup(int(did))
         r_json=R_User_Department_Simplify_Serializer(r_user_department,many=True)
         r=R_User_Department_Middle()
         # finial_list=r.ToMiddleSerializer(r_user_department)
@@ -296,9 +297,19 @@ class ScheduleListView(APIView):
              groups_id
         :return:
         '''
-        target_date = request.query_params.getlist('datetime')
+        query_dic=request.query_params
+        # 分别获取users_id,groups_id,selected_date
+        # 注意前端传过来的使用bootstrap-table get 时传递的data中若为数组会自动在原有名字后面加上一个[]，注意！
+        uids=query_dic.get('users_id[]')
+        dids=query_dic.get('group_id_new')
+        # dids=query_dic.get('groups_id[]')
+        target_date=query_dic.get('selected_date')
+		
+		//王豹的东西
+		target_date = request.query_params.getlist('datetime')
         # target_datetime = datetime.strptime(target_date[0], "%Y-%m-%d")
         schedule_list = [r for r in dutyschedule.objects.filter(dutydate=target_date[0])]
+
 
         '''取出查询日期当天的uer，department和duty信息'''
         user_list = [t.user for t in schedule_list]

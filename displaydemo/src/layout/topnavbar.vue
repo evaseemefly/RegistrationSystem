@@ -4,7 +4,7 @@
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse">
                 <span class="sr-only">Toggle navigation</span>
             </button>
-            <calendar></calendar>
+            <!-- <calendar></calendar> -->
             <!-- <a class="navbar-brand" href="#">预报中心九楼值班系统</a>
             <a class="navbar-brand" href="#">值班信息</a> -->
         </div>
@@ -14,7 +14,7 @@
     // import calendar from "./calendar.vue";
     export default {
         components: {
-            calendar
+            // calendar
         }
     }
 </script>
