@@ -220,3 +220,9 @@ class R_Department_Duty_BaseView(APIView):
             r_list=R_DepartmentInfo_DutyInfo.objects.filter(did_id__in=dids)
         return r_list
 
+class ScheduleListBaseView(APIView):
+    def getScheduleListByData(self, date):
+        if len(date) == 6:
+            schedule_list=[r.did for r in R_Author_Department.objects.filter(aid=userid)]
+        return department_list
+

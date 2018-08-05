@@ -50,6 +50,11 @@ class DepartmentSerializer(serializers.ModelSerializer):
         model=DepartmentInfo
         fields='__all__'
 
+# class DepartmentDutyUserSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model=department_duty_user
+#         fields='__all__'
+
 class Department_Simplify_Serializer(serializers.ModelSerializer):
     '''
     精简后的department序列化对象，只保留did,pid,name
@@ -129,10 +134,21 @@ class DutyScheduleSerializer(serializers.ModelSerializer):
         model=dutyschedule
         fields=('id','dutydate','user','rDepartmentDuty')
 
-class MerageDepartmentDutyserializer(serializers.Serializer):
+class \
+        MerageDepartmentDutyserializer(serializers.Serializer):
     department = DepartmentSerializer()
     duty_list = DutySerializer(many=True)
 
+class DutyUserSerializer(serializers.Serializer):
+    duty=DutySerializer()
+    user_list=UserSerializer(many=True)
+
+class DepartmentDutySerializer(serializers.Serializer):
+    department=DepartmentSerializer()
+    duty_list=DutyUserSerializer(many=True)
+
+class SchedulelSerializer(serializers.Serializer):
+    department_list=DepartmentDutySerializer(many=True)
     # class Meta:
     #     model=dutyschedule
     #     fields='__all__'
