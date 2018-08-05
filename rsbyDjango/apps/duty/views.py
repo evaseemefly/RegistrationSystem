@@ -142,9 +142,9 @@ class ScheduleCreateView(DutyScheduleBaseView,R_Department_Duty_BaseView,UserBas
         # duid = query_dic.get('duid',None)
         target_date = query_dic.get('selected_date',None)
         schedule_dutydate = datetime.strptime(target_date, '%Y-%m-%d')
-        duids=query_dic.getlist('duids[]',None)
+        duids=query_dic.get('duids',None)
 
-        schedulelist= self.getMergeScheduleListByDate(dids=did,target_date=datetime.strptime(target_date, '%Y-%m-%d'),oneday=True)
+        schedulelist= self.getMergeScheduleListByDate(dids=[did],target_date=datetime.strptime(target_date, '%Y-%m-%d'),oneday=True)
         if(len(schedulelist)==0):
             # 指定日期，指定的group未有值班信息，则创建新的
             schedule_rd_list = self.get_r_list([did], duids)
