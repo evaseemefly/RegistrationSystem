@@ -14,101 +14,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/apps/users/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="8" column="58" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="58" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/apps/users/views.py">
+        <entry file="file://$PROJECT_DIR$/apps/duty/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="206">
-              <caret line="68" selection-start-line="68" selection-end-line="68" />
+            <state relative-caret-position="457">
+              <caret line="150" column="54" lean-forward="true" selection-start-line="150" selection-start-column="54" selection-end-line="150" selection-end-column="54" />
               <folding>
-                <element signature="e#0#35#0" expanded="true" />
+                <element signature="e#55#90#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="myAuthentication.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Common/myAuthentication.py">
+      <file leaf-file-name="_strptime.py" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/anaconda3/lib/python3.6/_strptime.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="10" selection-start-line="10" selection-end-line="10" />
-              <folding>
-                <element signature="e#15#67#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="226">
+              <caret line="565" selection-start-line="565" selection-end-line="565" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AuthenticationMiddleware.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Common/AuthenticationMiddleware.py">
+      <file leaf-file-name="view_base.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/apps/duty/view_base.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="161">
-              <caret line="9" column="32" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
-              <folding>
-                <element signature="e#0#51#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rsbyDjango/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="851">
-              <caret line="42" column="47" selection-start-line="42" selection-start-column="47" selection-end-line="42" selection-end-column="47" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/rsbyDjango/settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="166">
-              <caret line="115" column="8" selection-start-line="115" selection-start-column="8" selection-end-line="116" selection-end-column="30" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="authentication.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../virtalenvs/registsys/lib/python3.6/site-packages/rest_framework_jwt/authentication.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="644">
-              <caret line="38" selection-start-line="38" selection-end-line="38" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="request.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../virtalenvs/registsys/lib/python3.6/site-packages/rest_framework/request.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="8349">
-              <caret line="376" selection-start-line="376" selection-end-line="376" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../virtalenvs/registsys/lib/python3.6/site-packages/rest_framework/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="10672">
-              <caret line="481" selection-start-line="481" selection-end-line="481" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="authentication.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/../../../virtalenvs/registsys/lib/python3.6/site-packages/rest_framework/authentication.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="575">
-              <caret line="36" column="6" selection-start-line="36" selection-start-column="6" selection-end-line="36" selection-end-column="6" />
+            <state relative-caret-position="196">
+              <caret line="36" selection-start-line="36" selection-end-line="36" />
             </state>
           </provider>
         </entry>
@@ -141,6 +72,7 @@
       <find>DutyListView</find>
       <find>AUTHENTICATION_BACKENDS</find>
       <find>duthdepdutylist</find>
+      <find>schedulelist</find>
     </findStrings>
   </component>
   <component name="IdeDocumentHistory">
@@ -164,8 +96,6 @@
         <option value="$PROJECT_DIR$/apps/rsdb/models.py" />
         <option value="$PROJECT_DIR$/apps/users/models.py" />
         <option value="$PROJECT_DIR$/apps/users/serializers.py" />
-        <option value="$PROJECT_DIR$/apps/duty/urls.py" />
-        <option value="$PROJECT_DIR$/apps/duty/views.py" />
         <option value="$PROJECT_DIR$/apps/duty/view_base.py" />
         <option value="$PROJECT_DIR$/apps/duty/serializers.py" />
         <option value="$PROJECT_DIR$/apps/duty/models.py" />
@@ -178,6 +108,8 @@
         <option value="$PROJECT_DIR$/apps/users/views.py" />
         <option value="$PROJECT_DIR$/Common/AuthenticationMiddleware.py" />
         <option value="$PROJECT_DIR$/rsbyDjango/settings.py" />
+        <option value="$PROJECT_DIR$/apps/duty/urls.py" />
+        <option value="$PROJECT_DIR$/apps/duty/views.py" />
       </list>
     </option>
   </component>
@@ -190,11 +122,10 @@
   <component name="NodePackageJsonFileManager">
     <packageJsonPaths />
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="69" />
+  <component name="ProjectFrameBounds">
     <option name="y" value="23" />
-    <option name="width" value="1598" />
-    <option name="height" value="732" />
+    <option name="width" value="1920" />
+    <option name="height" value="1108" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -204,7 +135,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -216,6 +146,12 @@
               <item name="rsbyDjango" type="b2602c69:ProjectViewProjectNode" />
               <item name="rsbyDjango" type="462c0819:PsiDirectoryNode" />
               <item name="apps" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="rsbyDjango" type="b2602c69:ProjectViewProjectNode" />
+              <item name="rsbyDjango" type="462c0819:PsiDirectoryNode" />
+              <item name="apps" type="462c0819:PsiDirectoryNode" />
+              <item name="duty" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="rsbyDjango" type="b2602c69:ProjectViewProjectNode" />
@@ -237,6 +173,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -385,23 +322,23 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1280" height="726" extended-state="6" />
+    <frame x="0" y="23" width="1920" height="1108" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4978678" weight="0.32826087" />
-      <window_info active="true" anchor="bottom" id="Event Log" order="7" sideWeight="0.42265624" side_tool="true" visible="true" weight="0.30683625" />
+      <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.4234375" side_tool="true" visible="true" weight="0.371909" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Python Console" order="7" sideWeight="0.48933902" weight="0.19512194" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.22163309" />
       <window_info anchor="bottom" id="Terminal" order="7" sideWeight="0.49573562" weight="0.32826087" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17578125" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17552084" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="SciView" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.57734376" weight="0.3672496" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.5765625" weight="0.371909" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -416,18 +353,18 @@
       <window_info anchor="bottom" id="Find" order="1" visible="true" weight="0.31790122" />
     </layout>
     <layout-to-restore>
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.5804904" weight="0.2902174" />
       <window_info anchor="bottom" id="运行" order="13" />
       <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.39320388" />
-      <window_info anchor="right" id="Data View" order="4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22068231" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" sideWeight="0.4978678" weight="0.32900432" />
-      <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22068231" />
-      <window_info anchor="bottom" id="Python Console" order="11" sideWeight="0.48933902" weight="0.19588745" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="right" id="Data View" order="4" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3195652" />
       <window_info anchor="bottom" id="manage.py@rsbyDjango" order="14" sideWeight="0.60714287" weight="0.29347825" />
       <window_info anchor="right" x="0" y="0" width="434" height="856" id="Documentation" order="5" weight="0.44936034" />
@@ -435,12 +372,12 @@
       <window_info anchor="bottom" id="Terminal" order="12" sideWeight="0.49573562" weight="0.32826087" />
       <window_info anchor="bottom" id="Event Log" order="7" sideWeight="0.4195096" side_tool="true" weight="0.3728261" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Version Control" order="10" show_stripe_button="false" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="调试" order="9" weight="0.27566963" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" id="SciView" order="6" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.5804904" weight="0.2902174" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Python Console" order="11" sideWeight="0.48933902" weight="0.19588745" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -479,12 +416,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/apps/duty/views.py</url>
-          <line>388</line>
+          <line>389</line>
           <option name="timeStamp" value="226" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/apps/duty/views.py</url>
-          <line>385</line>
+          <line>386</line>
           <option name="timeStamp" value="227" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -515,20 +452,16 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="252" />
+      <option name="time" value="260" />
     </breakpoint-manager>
-    <watches-manager>
-      <configuration name="Python.DjangoServer">
-        <watch expression="request.COOKIES" language="Python" />
-        <watch expression="request.COOKIES" language="Python" />
-        <watch expression="request.path" language="Python" />
-        <watch expression="request.GET" language="Python" />
-        <watch expression="request.COOKIES" language="Python" />
-      </configuration>
-    </watches-manager>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
+      <expression>
+        <expression-string>query_dic.get('duids')</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>EXPRESSION</evaluation-mode>
+      </expression>
       <expression>
         <expression-string>request.COOKIES</expression-string>
         <language-id>Python</language-id>
@@ -577,9 +510,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/apps/rsdb/admin.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/rsdb/tests.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -736,13 +666,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/duty/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="15" column="56" lean-forward="true" selection-start-line="15" selection-start-column="56" selection-end-line="15" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/users/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="145">
@@ -760,13 +683,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/apps/duty/view_base.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5133">
-          <caret line="193" column="8" selection-start-line="193" selection-start-column="8" selection-end-line="193" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/duty/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3596">
@@ -780,16 +696,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3770">
           <caret line="133" column="41" selection-start-line="133" selection-start-column="41" selection-end-line="133" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/apps/duty/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="388" column="24" selection-start-line="388" selection-start-column="24" selection-end-line="388" selection-end-column="24" />
-          <folding>
-            <element signature="e#55#90#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -818,13 +724,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="851">
           <caret line="42" column="47" selection-start-line="42" selection-start-column="47" selection-end-line="42" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../../virtalenvs/registsys/lib/python3.6/site-packages/rest_framework/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10672">
-          <caret line="481" selection-start-line="481" selection-end-line="481" />
         </state>
       </provider>
     </entry>
@@ -864,17 +763,55 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/rsbyDjango/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
+        <state relative-caret-position="2645">
           <caret line="115" column="8" selection-start-line="115" selection-start-column="8" selection-end-line="116" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/duty/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="8" column="49" selection-start-line="8" selection-start-column="33" selection-end-line="8" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../virtalenvs/registsys/lib/python3.6/site-packages/rest_framework/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="482" selection-start-line="482" selection-end-line="482" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/users/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="206">
-          <caret line="68" selection-start-line="68" selection-end-line="68" />
+        <state relative-caret-position="408">
+          <caret line="82" lean-forward="true" selection-start-line="82" selection-end-line="82" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda3/lib/python3.6/_strptime.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="565" selection-start-line="565" selection-end-line="565" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/duty/view_base.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/apps/duty/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="457">
+          <caret line="150" column="54" lean-forward="true" selection-start-line="150" selection-start-column="54" selection-end-line="150" selection-end-column="54" />
+          <folding>
+            <element signature="e#55#90#0" expanded="true" />
           </folding>
         </state>
       </provider>
