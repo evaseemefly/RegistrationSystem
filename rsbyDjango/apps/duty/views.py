@@ -139,14 +139,17 @@ class ScheduleCreateView(DutyScheduleBaseView,R_Department_Duty_BaseView,UserBas
         query_dic = request.data
         # 分别获取users_id,groups_id,selected_date
         # 注意前端传过来的使用bootstrap-table get 时传递的data中若为数组会自动在原有名字后面加上一个[]，注意！
-        did=query_dic.get('did',None)
+        # 前端传递过来的did是一个int数值，需要改为[]
+        # 注意python三元运算符
+        did = query_dic.get('did', None)
+        dids=[did] if did!=None else []
         uid=query_dic.get('uid',-999)
         # duid = query_dic.get('duid',None)
         target_date = query_dic.get('selected_date',None)
         schedule_dutydate = datetime.strptime(target_date, '%Y-%m-%d')
-        duids=query_dic.getlist('duids[]',None)
+        duids=query_dic.get('duids',None)
 
-        schedulelist= self.getMergeScheduleListByDate(dids=did,target_date=datetime.strptime(target_date, '%Y-%m-%d'),oneday=True)
+        schedulelist= self.getMergeScheduleListByDate(dids=dids,target_date=datetime.strptime(target_date, '%Y-%m-%d'),oneday=True)
         if(len(schedulelist)==0):
             # 指定日期，指定的group未有值班信息，则创建新的
             schedule_rd_list = self.get_r_list([did], duids)
