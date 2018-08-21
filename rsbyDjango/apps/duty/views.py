@@ -500,5 +500,8 @@ class CreateUserView(APIView):
         token=Token.objects.create(user=user)
         print(token.key)
         pass
+class DutyDemoView(View):
+    def get(self,request):
+        return render(request,"index.html")
 
 

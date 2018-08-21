@@ -15,5 +15,6 @@ urlpatterns = [
     # 创建值班信息
     url(r'^schedulelist/creat/$',views.ScheduleCreateView.as_view()),
     url(r'^schedulelist/del/$',views.ScheduleDelView.as_view()),
-    url(r'^create/user$',views.CreateUserView.as_view())
+    url(r'^create/user$',views.CreateUserView.as_view()),
+    url(r'^demo/$',views.DutyDemoView.as_view())
 ]
