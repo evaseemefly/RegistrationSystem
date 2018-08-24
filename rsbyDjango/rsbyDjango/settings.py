@@ -109,8 +109,8 @@ DATABASES = {
         'NAME':'registrationsystem',
 
         # linux
-        'USER':'tongxin',
-        'PASSWORD':'123456',
+        # 'USER':'tongxin',
+        # 'PASSWORD':'123456',
 
         # 单位台式机
         'USER':'admin',
