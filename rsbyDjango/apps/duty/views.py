@@ -28,8 +28,10 @@ from rest_framework.authentication import SessionAuthentication, BasicAuthentica
 from rest_framework.permissions import IsAuthenticated
 
 from .models import DutyInfo,dutyschedule,R_DepartmentInfo_DutyInfo,DepartmentInfo,R_UserInfo_DepartmentInfo,UserInfo,dutyschedule
-from .serializers import DutyScheduleSerializer,UserSerializer,DutySerializer,R_User_DepartmentSerializer,R_User_Department_Simplify_Serializer,User_Simplify_Serializer,R_Department_User_Simplify_Serializer,UserSerializer
+from .serializers import DutyScheduleSerializer,UserSerializer,DutySerializer,R_User_DepartmentSerializer,R_User_Department_Simplify_Serializer,User_Simplify_Serializer,R_Department_User_Simplify_Serializer,UserSerializer,SchedulelSerializer
+
 # from .serializers import DutyScheduleSerializer,UserSerializer,DutySerializer,R_User_DepartmentSerializer,R_User_Department_Simplify_Serializer,User_Simplify_Serializer,R_Department_User_Simplify_Serializer, DepartmentDutyUserSerializer,UserSerializer
+
 from .view_base import DutyScheduleBaseView,UserBaseView,DutyBaseView,GroupBaseView,R_Department_Duty_BaseView
 from .model_middle import R_User_Department_Middle
 from .forms import ScheduleForm
@@ -313,9 +315,10 @@ class ScheduleShowListView(APIView):
 		# target_date = request.query_params.getlist('datetime')
         # target_date = request.query_params.getlist('datetime')
         # target_datetime = datetime.strptime(target_date[0], "%Y-%m-%d")
-        schedule_list = [r for r in dutyschedule.objects.filter(dutydate=target_date)]
-
-
+        # schedule_list = [r for r in dutyschedule.objects.filter(dutydate=target_date)]
+        schedule_list=dutyschedule.objects.filter(dutydate=target_date)
+        serializer=SchedulelSerializer(schedule_list)
+        schedule_data=serializer.data
         '''取出查询日期当天的uer，department和duty信息'''
         user_list = [t.user for t in schedule_list]
         department_list = [t.rDepartmentDuty.did for t in schedule_list]
@@ -336,7 +339,7 @@ class ScheduleShowListView(APIView):
         class SearchModel(object):
             def __init__(self,deps):
                 department_list=deps
-        from .serializers import DutyUserSerializer,DepartmentDutySerializer,SchedulelSerializer
+        from .serializers import DutyUserSerializer,DepartmentDutySerializer
         dutyuser_list=DutyUserMiddelModel(duty_list[0],user_list[:2])
         temp= DutyUserSerializer(dutyuser_list).data
 

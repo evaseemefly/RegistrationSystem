@@ -134,8 +134,7 @@ class DutyScheduleSerializer(serializers.ModelSerializer):
         model=dutyschedule
         fields=('id','dutydate','user','rDepartmentDuty')
 
-class \
-        MerageDepartmentDutyserializer(serializers.Serializer):
+class MerageDepartmentDutyserializer(serializers.Serializer):
     department = DepartmentSerializer()
     duty_list = DutySerializer(many=True)
 
