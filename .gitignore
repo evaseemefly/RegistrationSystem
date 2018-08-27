@@ -10,3 +10,5 @@
 /displaydemo/node_modules
 /displaydemo/dist
 /displaydemo/src/img/person
+/rsbyDjango/extra_sourcecode/xadmin/__pycache__
+/rsbyDjango/data/__pycache__

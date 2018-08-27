@@ -21,7 +21,9 @@
                 items: [],
                 page_index: 0,
                 pagelist_count: 12,
-                footer_count: 2
+                footer_count: 2,
+                //显示要素集合
+                finial_objs:[]
             }
         },
         methods: {
@@ -31,9 +33,14 @@
                     this.pageIndex = index;
                     this.pageCount = count;
                 }
+                function Detail(color,img_url){
+                    //显示中的详细信息
+                    this.color=color;
+                    this.img_url=img_url;
+                }
                 getPersonList().then(res => {
                     //注意此时返回的data中包含now_date与persons
-                    finial_objs = [];
+                    // finial_objs = [];
                     //分别取出时间与persons
                     now_date = myself.now_date
                     persons = myself.persons
@@ -48,10 +55,13 @@
                     //向上取整,有小数就整数部分加1
                     footer_count = Math.ceil(myself.listcount / page_count)
                     $(persons).each(function (index, element) {
-                        element.color = dic[element.job];
-                        element.img_url = "/static/img/" + element.department + "/" + element.name +
-                            ".jpg"
-                        finial_objs.push(element)
+                        var url_img=`/static/img/${element.department}/${element.name}.jpg`
+                        // "/static/img/" + element.department + "/" + element.name +".jpg"
+                        var element=new Detail(dic[element.job],url_img)
+                        // element.color = dic[element.job];
+                        // element.img_url = "/static/img/" + element.department + "/" + element.name +
+                        //     ".jpg"
+                        myself.finial_objs.push(element)
                     })
                 })
             }

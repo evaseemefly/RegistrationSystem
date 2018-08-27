@@ -313,7 +313,7 @@ class ScheduleShowListView(APIView):
 		# target_date = request.query_params.getlist('datetime')
         # target_date = request.query_params.getlist('datetime')
         # target_datetime = datetime.strptime(target_date[0], "%Y-%m-%d")
-        schedule_list = [r for r in dutyschedule.objects.filter(dutydate=target_date[0])]
+        schedule_list = [r for r in dutyschedule.objects.filter(dutydate=target_date)]
 
 
         '''取出查询日期当天的uer，department和duty信息'''
