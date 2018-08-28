@@ -14,7 +14,6 @@ User=get_user_model()
 # Create your models here.
 
 
-
 class UserInfo(models.Model):
     uid=models.AutoField(primary_key=True)
     username=models.CharField(default='值班员',max_length=20)

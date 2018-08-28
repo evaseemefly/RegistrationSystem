@@ -151,3 +151,24 @@ class SchedulelSerializer(serializers.Serializer):
     # class Meta:
     #     model=dutyschedule
     #     fields='__all__'
+
+class DutyScheduleMiddleSerializer(serializers.ModelSerializer):
+    user_list=serializers.SerializerMethodField()
+    department
+    def get_user_list(self,obj):
+        user_list=[temp.user for temp in obj]
+        return UserSerializer(user_list).data
+
+
+    class Meta:
+        model=dutyschedule
+        fields='__all__'
+
+
+class SchedulelSerializer(serializers.ModelSerializer):
+    department_list=DepartmentDutySerializer(many=True)
+    # class Meta:
+    #     model=dutyschedule
+    #     fields='__all__'
+
+# class
