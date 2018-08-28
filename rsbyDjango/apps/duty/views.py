@@ -21,22 +21,35 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 
-
+from django.db.models import Q
 
 # drf权限验证
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
 
 from .models import DutyInfo,dutyschedule,R_DepartmentInfo_DutyInfo,DepartmentInfo,R_UserInfo_DepartmentInfo,UserInfo,dutyschedule
-from .serializers import DutyScheduleSerializer,UserSerializer,DutySerializer,R_User_DepartmentSerializer,R_User_Department_Simplify_Serializer,User_Simplify_Serializer,R_Department_User_Simplify_Serializer,UserSerializer,SchedulelSerializer,DutyScheduleMiddleSerializer
+from .serializers import DutyScheduleSerializer,UserSerializer,DutySerializer,R_User_DepartmentSerializer,R_User_Department_Simplify_Serializer,User_Simplify_Serializer,R_Department_User_Simplify_Serializer,UserSerializer,SchedulelSerializer,DepartmentSerializer
 
 # from .serializers import DutyScheduleSerializer,UserSerializer,DutySerializer,R_User_DepartmentSerializer,R_User_Department_Simplify_Serializer,User_Simplify_Serializer,R_Department_User_Simplify_Serializer, DepartmentDutyUserSerializer,UserSerializer
 
 from .view_base import DutyScheduleBaseView,UserBaseView,DutyBaseView,GroupBaseView,R_Department_Duty_BaseView
-# from .model_middle import R_User_Department_Middle
+from .model_middle import R_User_Department_Middle,DepartmentMidModel
 from .forms import ScheduleForm
 from Common.MyJsonEncoder import DateTimeEncoder
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
+
+class DepartmentListView(APIView):
+    def get(self,request):
+        '''
+            获取全部的department（且pid=0的）
+        :param request:
+        :return:
+        '''
+        query_dic = request.query_params
+        departments=DepartmentInfo.objects.filter(Q(pid=0),~Q(did=-999))
+        json_list= DepartmentSerializer(departments,many=True).data
+        return Response(json_list)
+
 
 class DutyListView(APIView):
     # authentication_classes = (SessionAuthentication,BasicAuthentication)
@@ -289,7 +302,10 @@ class ScheduleModificationView(R_Department_Duty_BaseView,UserBaseView):
 
 
 class ScheduleShowListView(APIView):
-    def get(self,request):
+    '''
+        获取指定日期及指定部门的所有值班人员
+    '''
+    def get_1(self,request):
         '''
         根据日期（yyyy-mm-dd）获取
         :param request:
@@ -315,13 +331,62 @@ class ScheduleShowListView(APIView):
 		# target_date = request.query_params.getlist('datetime')
         # target_date = request.query_params.getlist('datetime')
         # target_datetime = datetime.strptime(target_date[0], "%Y-%m-%d")
+
+        # 以下此种方式无法序列化
+        # serializer=DutyScheduleMiddleSerializer(schedule_list)
+        # schedule_data=serializer.data
+        '''
+            取出查询日期当天的uer，department和duty信息
+            2018-08-28 重新修改
+            具体流程：
+                1 根据rDepartmentDuty找到所有的department对象，存在department_list中
+                2 获取所有的顶部department（pid=0）
+                注意，此处存在问题：
+                    由于保存的关系表中均为组一级别（实际包含室领导，是否加入管理组？），
+                    所以获取pid为0需要单独获取
+                3 获取取到的所有的department所对应的user list
+        '''
         # schedule_list = [r for r in dutyschedule.objects.filter(dutydate=target_date)]
-        schedule_list=dutyschedule.objects.filter(dutydate=target_date)
-        serializer=DutyScheduleMiddleSerializer(schedule_list)
-        schedule_data=serializer.data
-        '''取出查询日期当天的uer，department和duty信息'''
-        user_list = [t.user for t in schedule_list]
+        # schedule_list=dutyschedule.objects.filter(dutydate=target_date).exclude(user_id=-999)
+        # 根据传入的值班日期获取该日的值班信息
+        # 1
+        schedule_list = dutyschedule.objects.filter(Q(dutydate=target_date), ~Q(user=-999))
         department_list = [t.rDepartmentDuty.did for t in schedule_list]
+        # 2-1 去重
+        department_list=list(set(department_list))
+        # departemnt_top_list=[d for d in department_list if d.pid==0]
+        # 2-2 找到顶部department
+        departemnt_top_list = DepartmentInfo.objects.filter(pid=0)
+        # 暂时注释掉，放在model_middle.py中
+        # class DepartmentMidModel():
+        #     def __init__(self,dep_top,list):
+        #         department_parent=dep_top
+        #         departments_child=list
+        # 2-3 找到指定日期的值班信息中包含的全部department list
+        list_dep_mid=[]
+        # 方式1：此种方式有问题，会将所有的top department全部输出，暂时注释掉
+        # for d_part in departemnt_top_list:
+        #     list_temp=[]
+        #     for d_child in department_list:
+        #         if(d_part.did==d_child.pid):
+        #             list_temp.append(d_child)
+        #
+        #     list_dep_mid.append(DepartmentMidModel(d_part,list_temp))
+        # 方式2：优先遍历schedule中有的department
+        for d_child in department_list:
+            list_temp=[]
+            for d_part in departemnt_top_list:
+                if(d_part.did==d_child.pid):
+                    list_temp.append(d_child)
+            list_dep_mid.append(DepartmentMidModel(d_part,list_temp))
+        # 方式3：使用列表推导
+        # list=[DepartmentMidModel(d_part) for d_child in department_list for d_part in departemnt_top_list if d_child.pid==d_part.did]
+
+        # department_mid_list=[{d_child,d_part} for d_child in department_list for d_part in departemnt_top_list if d_part.did==d_child.pid]
+
+
+        user_list = [t.user for t in schedule_list]
+
         duty_list = [t.rDepartmentDuty.duid for t in schedule_list]
 
         '''以department id 为标识组合值班查询结果'''
@@ -398,6 +463,26 @@ class ScheduleShowListView(APIView):
         # return JsonResponse(append_deparment,encoder=)
         return HttpResponse(json_str,content_type='application/json')
         # return Response(json_str)
+    def get(selfs,request):
+        '''
+            根据selected_date与did获取所有匹配的值班人员名单
+        :param request:
+        :return:
+        '''
+        query_dic = request.query_params
+        # 分别获取users_id,groups_id,selected_date
+        # 注意前端传过来的使用bootstrap-table get 时传递的data中若为数组会自动在原有名字后面加上一个[]，注意！
+        # 1 获取指定的 日期 与 部门id
+        target_date = query_dic.get('selected_date')
+        target_department=query_dic.get('did')
+
+        # 2 过滤值班信息表，并去掉user_id为-999的
+        list= dutyschedule.objects.filter(Q(dutydate=target_date),Q(rDepartmentDuty__did__did__in=target_department),~Q(user_id=-999))
+
+        # 3
+        json_list=DutyScheduleSerializer(list,many=True).data
+
+        return Response(json_list)
 
 class ScheduleListView(DutyScheduleBaseView):
     def get(self,request):

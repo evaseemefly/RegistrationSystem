@@ -1,40 +1,52 @@
 <template>
     <div>
-        <div class="topcenterbar">
-            <a href="#" class="current">预警室</a>
-             <a href="#" class="current">环境室</a>
-            <a href="#" >海啸室</a>
-           
-            <a href="#">气象室</a>
-            <a href="#">极地室</a>
-            <a href="#">气候室</a>
-            <a href="#">数值室</a>
-            <a href="#">网络部</a>
-            <a href="#">产品部</a>
-            <a href="#">信息室</a>
-            
+        <div class="topcenterbar" >
+
+            <a href="#" v-on:click="onClick(index,obj)" :class="{'current':index===mark}" v-for="(obj,index) in departments" :key="index">{{obj.name}}</a>
+            <!-- <a href="#" class="current">预警室</a>
+            <a href="#" class="current">环境室</a>
+            <a href="#">海啸室</a> -->
+
         </div>
-        <!-- <nav class="navbar navbar-center">
-            <div class="container-fluid">
-                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                    <ul class="nav navbar-nav">
-                        <li class="active">
-                            <a href="#">预警室
-                                <span class="sr-only">(current)</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#">气象室</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav> -->
     </div>
 </template>
 <script>
+    import {
+        getDepartmentList
+    } from "../api/api.js";
+    import {
+        Department
+    } from "../common/model.js";
     export default {
+        data() {
+            return {
+                departments: [],
+                mark:0
+            }
+        },
+        methods: {
+            onClick: function (index,obj) {
+                this.mark=index;
+                console.log(index,obj);
+            },
+            //加载部门list
+            loadDepartment: function () {
+                var myself = this;
+                var now_date = '2018-08-02'
 
+                getDepartmentList().then(res => {
+                    $.each(res.data, function (index, val) {
+                        var department=new Department(val.did, val.pid, val.derpartmentname);
+                        myself.departments.push(department);
+                    })
+                    // alert(res);
+                })
+
+            }
+        },
+        mounted: function () {
+            this.loadDepartment();
+        }
     }
 </script>
 <style scoped>

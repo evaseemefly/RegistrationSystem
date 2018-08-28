@@ -36,7 +36,8 @@ class DepartmentInfo(models.Model):
         (4, '预警室')
     }
     did=models.AutoField(primary_key=True)
-    pid=models.IntegerField(choices=parent_department_choices)
+    # pid=models.IntegerField(choices=parent_department_choices)
+    pid = models.IntegerField(default=0)
     derpartmentname=models.CharField(default='默认部门',max_length=20)
 
     class Meta:

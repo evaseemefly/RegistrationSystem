@@ -10,6 +10,7 @@
     import maincontent from "./main-content.vue";
     import staticcontent from "./static-content.vue";
     import getPersonList from "../api/api.js";
+    // import x from "../api/api.js"
     export default {
 
         components: {

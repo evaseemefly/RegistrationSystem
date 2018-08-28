@@ -5,3 +5,7 @@ let host='http://127.0.0.1:8000';
 export const getPersonList=params=>{
     return axios.get(`${host}/getPersonList`,params)
 }
+
+export const getDepartmentList=params=>{
+    return axios.get(`${host}/duty/departmentlist`,params)
+}
