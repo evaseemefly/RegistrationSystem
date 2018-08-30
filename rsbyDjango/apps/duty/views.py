@@ -591,6 +591,24 @@ class ScheduleShowListView(APIView):
             return HttpResponse(json_str, content_type='application/json')
             # return Response(json_str)
 
+class ScheduleShowStaticListView(APIView):
+    '''
+        读取左侧导航栏的中心领导以及业务处领导
+        只需要传入日期selectedDate即可
+    '''
+    def get(self,request):
+        query_dic = request.query_params
+        # 1 获取指定的 日期 与 部门id
+        target_date = query_dic.get('selectedDate')
+
+        # 2 过滤值班信息表，并去掉user_id为-999的
+        # 注意此处有一个bug，现已修改：
+        # 过滤的是department的pid为传入的did（查询某个部门的全部的值班信息）
+        list = dutyschedule.objects.filter(Q(dutydate=target_date), Q(user__level__lte=2),
+                                           ~Q(user_id=-999))
+        # 3
+        json_list = DutyScheduleSerializer(list, many=True).data
+        return Response(json_list)
 
 class ScheduleListView(DutyScheduleBaseView):
     def get(self,request):

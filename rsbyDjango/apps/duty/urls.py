@@ -18,5 +18,7 @@ urlpatterns = [
     url(r'^create/user$',views.CreateUserView.as_view()),
     url(r'^demo/$',views.DutyDemoView.as_view()),
     url(r'^schdeulelistshow/$',views.ScheduleShowListView.as_view()),
+    # 左侧固定位置的两人
+    url(r'^schdeulestaticlistshow/$',views.ScheduleShowStaticListView.as_view()),
     url(r'^departmentlist/$',views.DepartmentListView.as_view())
 ]

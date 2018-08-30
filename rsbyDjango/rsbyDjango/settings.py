@@ -112,9 +112,13 @@ DATABASES = {
         # 'USER':'tongxin',
         # 'PASSWORD':'123456',
 
+        # P52S
+        'USER':'root',
+        'PASSWORD':'123456',
+
         # 单位台式机
-        'USER':'admin',
-        'PASSWORD':'admin123',
+        # 'USER':'admin',
+        # 'PASSWORD':'admin123',
 
         # mac
         # 'USER':'root',

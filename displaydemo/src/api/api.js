@@ -22,6 +22,17 @@ export const getUserListByDepartment = params => {
     })
 }
 
+/**
+ *  获取左侧的固定显示两个领导信息
+ *
+ * @param {*} params
+ */
+export const getStaticUser=params=>{
+    return axios.get(`${host}/duty/schdeulestaticlistshow`, {
+        params: params
+    })
+}
+
 // export const getUserImg=paramas=>{
 //     return 
 // }
