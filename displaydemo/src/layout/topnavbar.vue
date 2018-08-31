@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar_myself navbar-default navbar-fixed-top">
+    <nav id="my-top-navbar" class="navbar navbar_myself navbar-default navbar-fixed-top">
         <div class="navbar-header" id="my_navbar">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse">
                 <span class="sr-only">Toggle navigation</span>
@@ -11,26 +11,30 @@
     </nav>
 </template>
 <script>
-    // import calendar from "./calendar.vue";
-    export default {
-        components: {
-            // calendar
-        }
-    }
+// import calendar from "./calendar.vue";
+export default {
+  components: {
+    // calendar
+  }
+};
 </script>
 
 <style scoped>
-    .navbar_myself div a {
-        font-family: "Microsoft YaHei";
-        color: #f7fcfb;
-    }
+/* #my-top-navbar {
+  position: absolute;
+  top: 0px;
+} */
+.navbar_myself div a {
+  font-family: "Microsoft YaHei";
+  color: #f7fcfb;
+}
 
-    .navbar_myself {
-        background-color: rgba(1, 32, 100, 0.746);
-        /* height: 100px; */
-        background: url(../img/topbar-background.jpg);
-        background-size: 100% 100%;
-        background-repeat: no-repeat;
-        height: 200px;
-    }
+.navbar_myself {
+  background-color: rgba(1, 32, 100, 0.746);
+  /* height: 100px; */
+  background: url(../img/topbar-background.jpg);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  height: 200px;
+}
 </style>

@@ -1,8 +1,8 @@
 <template>
     <div id="content">
-        <centernavbar @loadUserList="loadUserList"></centernavbar>
-        <div class="container">
-            <div class="col-md-2" v-for="user in users">
+        <centernavbar class="my-top-navbar" @loadUserList="loadUserList"></centernavbar>
+        <div class="container my-box">
+            <div class="col-md-4 my-row" v-for="user in users">
                 <photoframe v-bind:person=user></photoframe>
             </div>
 
@@ -29,6 +29,7 @@ export default {
     //加载userlist
     loadUserList: function(params) {
       var myself = this;
+
       //为当前时间赋值
       myself.selected_date = "2018-08-02";
       myself.users = [];
@@ -131,13 +132,31 @@ export default {
   /* width: 100%; */
   /* height: 100%; */
   position: fixed;
+
   z-index: 2;
   /* background: url(../img/content-background.jpg);
         background-size: 100% 100%;
         background-repeat: no-repeat; */
-}
 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.my-top-navbar {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+}
 .container {
   margin-top: 0px;
+}
+
+.my-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.my-box > .my-row {
+  /* width: 250px; */
 }
 </style>
