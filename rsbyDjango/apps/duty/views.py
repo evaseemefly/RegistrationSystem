@@ -287,7 +287,42 @@ class ScheduleModificationView(R_Department_Duty_BaseView,UserBaseView):
 
         return Response(status=status.HTTP_200_OK)
 
-class ScheduleShowListView_wb(APIView):
+'''根据输入的起止时间和department的did信息，统计时间范围内指定department值班总数'''
+class DepartmentStatisticsView(APIView):
+    '''
+    根据起止日期（yyyy-mm-dd）获取
+        :param request:
+          必须包含：
+              startDate：起始时间
+              endDat: 终止时间
+              isMonth: 是否统计起止时间范围内，还是只统计该月
+              did：department的did
+        :return:
+    '''
+    def get(self,request):
+        startDate = request.query_params.getlist('startDate')
+        endDate = request.query_params.getlist('endDate')
+        isMonth = request.query_params.getlist('isMonth')
+        did = request.query_params.getlist('did')
+        count = 0
+
+        if isMonth[0] == '0':
+            dutyStatic_list = [r for r in dutyschedule.objects.filter(dutydate=startDate[0])]
+
+            for line in dutyStatic_list:
+                if (line.user.username != '默认值') & (line.rDepartmentDuty.did.did == int(did[0])):
+                    count += 1
+        else:
+            dutyStatic_list = [r for r in dutyschedule.objects.filter(dutydate__gte=startDate[0], dutydate__lte=endDate[0])]
+            for line in dutyStatic_list:
+                if (line.user.username != '默认值') & (line.rDepartmentDuty.did.did == int(did[0])):
+                    count += 1
+        result = {'count': count}
+        json_str = json.dumps(result, ensure_ascii=False)
+
+        return HttpResponse(json_str, content_type='application/json')
+
+class ScheduleShowListView(APIView):
     def get(self,request):
         '''
         根据日期（yyyy-mm-dd）获取
@@ -369,7 +404,7 @@ class ScheduleShowListView_wb(APIView):
         return HttpResponse(json_str,content_type='application/json')
 
 		
-class ScheduleShowListView(APIView):
+class ScheduleShowListView_old(APIView):
     def get(self,request):
         '''
         根据日期（yyyy-mm-dd）获取

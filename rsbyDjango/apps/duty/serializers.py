@@ -154,7 +154,6 @@ class SchedulelSerializer(serializers.Serializer):
 
 class DutyScheduleMiddleSerializer(serializers.ModelSerializer):
     user_list=serializers.SerializerMethodField()
-    department
     def get_user_list(self,obj):
         user_list=[temp.user for temp in obj]
         return UserSerializer(user_list).data

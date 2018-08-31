@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^schedulelist/creat/$',views.ScheduleCreateView.as_view()),
     url(r'^schedulelist/del/$',views.ScheduleDelView.as_view()),
     url(r'^create/user$',views.CreateUserView.as_view()),
-    url(r'^tempTestJson/$',views.tempTestJson),
-	url(r'^scheduleshowlist/',views.ScheduleShowListView.as_view())
+    # url(r'^tempTestJson/$',views.tempTestJson),
+	url(r'^scheduleshowlist/',views.ScheduleShowListView.as_view()),
+    url(r'^departmentStatistics/',views.DepartmentStatisticsView.as_view())
 ]
