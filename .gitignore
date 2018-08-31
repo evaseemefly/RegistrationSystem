@@ -32,3 +32,5 @@
 /rsbyDjango/apps/duty/migrations
 /rsbyDjango/extra_sourcecode/xadmin/templatetags/__pycache__
 /rsbyDjango/extra_sourcecode/xadmin/migrations/__pycache__
+/rsbyDjango/rsbyDjango/__pycache__
+/rsbyDjango/Common/__pycache__
