@@ -311,6 +311,7 @@ class DepartmentStatisticsView(APIView):
               isMonth: 是否统计起止时间范围内，还是只统计该月
               did：department的did
         :return:
+    by：wb
     '''
     def get(self,request):
         startDate = request.query_params.getlist('startDate')
