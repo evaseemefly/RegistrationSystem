@@ -336,7 +336,7 @@ class DepartmentStatisticsView(APIView):
 
         return HttpResponse(json_str, content_type='application/json')
 
-class ScheduleShowListView_backup(APIView):
+class ScheduleShowListView(APIView):
     '''
         获取指定日期及指定部门的所有值班人员
     '''
