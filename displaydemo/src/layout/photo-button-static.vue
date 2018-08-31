@@ -1,7 +1,8 @@
 <template>
 
     <div class="my_buttons">
-        <div class='consumetime'>{{detail.other}}</div>
+        <!-- <div class='consumetime'>{{detail.other}}</div> -->
+        <div class='consumetime'>{{detail.group}}</div>
     </div>
 </template>
 <script>
