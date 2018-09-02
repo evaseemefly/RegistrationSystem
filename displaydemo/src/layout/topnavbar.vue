@@ -13,9 +13,9 @@
 <script>
 // import calendar from "./calendar.vue";
 export default {
-  components: {
-    // calendar
-  }
+	components: {
+		// calendar
+	}
 };
 </script>
 

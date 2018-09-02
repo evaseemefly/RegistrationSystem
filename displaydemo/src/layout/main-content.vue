@@ -1,13 +1,13 @@
 <template>
-    <div id="content">
-        <centernavbar class="my-top-navbar" @loadUserList="loadUserList"></centernavbar>
-        <div class="container my-box">
-            <div class="col-md-4 my-row" v-for="user in users">
-                <photoframe v-bind:person=user></photoframe>
-            </div>
+  <div id="content">
+    <centernavbar class="my-top-navbar" @loadUserList="loadUserList"></centernavbar>
+    <div class="container my-box">
+      <div class="col-md-4 my-row" v-for="user in users">
+        <photoframe v-bind:person=user></photoframe>
+      </div>
 
-        </div>
     </div>
+  </div>
 </template>
 <script>
 import { getUserListByDepartment, getLevel } from "../api/api.js";
@@ -19,15 +19,16 @@ export default {
     photoframe,
     centernavbar
   },
-  data() {
+  data () {
     return {
       users: [],
-      selected_date: ""
+      selected_date: "",
+      nowDate: null
     };
   },
   methods: {
     //加载userlist
-    loadUserList: function(params) {
+    loadUserList: function (params) {
       var myself = this;
 
       //为当前时间赋值
@@ -36,7 +37,7 @@ export default {
       var mid_model = new DepartmentMid(params.did, myself.selected_date);
       getUserListByDepartment(mid_model).then(res => {
         // console.log(res)
-        $.each(res.data, function(index, val) {
+        $.each(res.data, function (index, val) {
           var user_temp = new User(
             val.user.username,
             getLevel(val.user.level),
@@ -50,7 +51,7 @@ export default {
       });
     }
   },
-  mounted: function() {
+  mounted: function () {
     // this.users.push({
     // 	level: 'import',
     // 	img_url: './src/img/person/预警室/董剑希.jpg',

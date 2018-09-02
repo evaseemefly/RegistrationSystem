@@ -46,7 +46,7 @@ class DepartmentListView(APIView):
         :return:
         '''
         query_dic = request.query_params
-        departments=DepartmentInfo.objects.filter(Q(pid=0),~Q(did=-999))
+        departments=DepartmentInfo.objects.filter(Q(pid=0),~Q(did=-999),Q(isShow=True))
         json_list= DepartmentSerializer(departments,many=True).data
         return Response(json_list)
 
@@ -300,12 +300,129 @@ class ScheduleModificationView(R_Department_Duty_BaseView,UserBaseView):
 
         return Response(status=status.HTTP_200_OK)
 
+'''根据输入的起止时间和department的did信息，统计时间范围内指定department值班总数'''
+class DepartmentStatisticsView(APIView):
+    '''
+    根据起止日期（yyyy-mm-dd）获取
+        :param request:
+          必须包含：
+              startDate：起始时间
+              endDat: 终止时间
+              isMonth: 是否统计起止时间范围内，还是只统计该月
+              did：department的did
+        :return:
+    by：wb
+    '''
+    def get(self,request):
+        startDate = request.query_params.getlist('startDate')
+        endDate = request.query_params.getlist('endDate')
+        isMonth = request.query_params.getlist('isMonth')
+        did = request.query_params.getlist('did')
+        count = 0
+
+        if isMonth[0] == '0':
+            dutyStatic_list = [r for r in dutyschedule.objects.filter(dutydate=startDate[0])]
+
+            for line in dutyStatic_list:
+                if (line.user.username != '默认值') & (line.rDepartmentDuty.did.did == int(did[0])):
+                    count += 1
+        else:
+            dutyStatic_list = [r for r in dutyschedule.objects.filter(dutydate__gte=startDate[0], dutydate__lte=endDate[0])]
+            for line in dutyStatic_list:
+                if (line.user.username != '默认值') & (line.rDepartmentDuty.did.did == int(did[0])):
+                    count += 1
+        result = {'count': count}
+        json_str = json.dumps(result, ensure_ascii=False)
+
+        return HttpResponse(json_str, content_type='application/json')
 
 class ScheduleShowListView(APIView):
     '''
         获取指定日期及指定部门的所有值班人员
     '''
     def get_backup_1(self,request):
+        '''
+        根据日期（yyyy-mm-dd）获取
+        :param request:
+          必须包含：
+              user_id，
+              isdel，
+              isdel
+        :return:
+        '''
+
+        target_date = request.query_params.getlist('datetime')
+        schedule_list = [r for r in dutyschedule.objects.filter(dutydate=target_date[0])]
+
+        '''取出查询日期当天的uer，department和duty信息'''
+        user_list = [t.user for t in schedule_list]
+        department_list = [t.rDepartmentDuty.did for t in schedule_list]
+        duty_list = [t.rDepartmentDuty.duid for t in schedule_list]
+
+        '''刘思晗的东西'''
+        #
+        # '''以department id 为标识组合值班查询结果'''
+        #
+        # class DutyUserMiddelModel(object):
+        #     def __init__(self,duty,users):
+        #         duty=duty
+        #         user_list=users
+        #
+        # class DepartmentDutyMiddelModel(object):
+        #     def __init__(self,deparment,duty_list):
+        #         deparment=deparment
+        #         duty_list=duty_list
+        #
+        # class SearchModel(object):
+        #     def __init__(self,deps):
+        #         department_list=deps
+        # from .serializers import DutyUserSerializer,DepartmentDutySerializer,SchedulelSerializer
+        # dutyuser_list=DutyUserMiddelModel(duty_list[0],user_list[:2])
+        # temp= DutyUserSerializer(dutyuser_list).data
+        #
+        # DepartmentDutyMiddelModel(department_list[0],DutyUserMiddelModel)
+        # merage_json=
+
+        '''找到指定日期下所有deparment的id，并去除重复id'''
+        list_deparmentID = []
+        for i in range(len(department_list)):
+            list_deparmentID.append(department_list[i].did)
+        list_noRepeat = []
+        index = 0
+        for i in list_deparmentID:
+            if not i in [x[0] for x in list_noRepeat]:
+                list_noRepeat.append([i, index])
+            index = index +1
+
+        append_deparment = {}
+        append_deparment_list = {}
+        append_duty_list = {}
+        append_user_list = {}
+        append_user = {}
+
+        '''遍历无重复值的departmentID，依据该id找出对应department的user信息'''
+        for i in list_noRepeat:
+            for j in range(len(department_list)):
+                if i[0] == department_list[j].did:
+                    append_user["uid"] = user_list[j].uid
+                    append_user["isdel"] = user_list[j].isdel
+                    append_user["username"] = user_list[j].username
+                    append_user_list[str(user_list[j].username)] = append_user
+                    append_duty_list[str(duty_list[j])] = append_user_list
+
+            append_deparment_list[str(department_list[i[1]].derpartmentname)] = append_duty_list
+            append_duty_list = {}
+            append_user_list = {}
+        append_deparment[str(target_date[0])] = append_deparment_list
+
+        json_str = json.dumps(append_deparment,ensure_ascii=False)
+        print(json_str)
+
+        return HttpResponse(json_str,content_type='application/json')
+
+		
+class ScheduleShowListView(APIView):
+    def get_old(self,request):
         '''
         根据日期（yyyy-mm-dd）获取
         :param request:
@@ -463,6 +580,7 @@ class ScheduleShowListView(APIView):
         # return JsonResponse(append_deparment,encoder=)
         return HttpResponse(json_str,content_type='application/json')
         # return Response(json_str)
+    
     def get(selfs,request):
         '''
             根据selected_date与did获取所有匹配的值班人员名单

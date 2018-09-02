@@ -1,53 +1,61 @@
 <template>
-    <div id="left-content" class="col-md-2">
-        <div class="container">
-            <div v-for="vip in vips">
-                <photoframe v-bind:person=vip></photoframe>
-            </div>
+  <div id="left-content" class="col-md-2">
+    <div class="container">
+      <div v-for="vip in vips">
+        <photoframe v-bind:person=vip></photoframe>
+      </div>
 
-        </div>
     </div>
+  </div>
 </template>
 <script>
-import { getStaticUser,getLevel } from "../api/api.js";
+import { getStaticUser, getLevel } from "../api/api.js";
 import { DepartmentMid, User } from "../common/model.js";
+// import {x} from "../api/api.js";
 import photoframe from "./photoframe.vue";
+
 export default {
   components: {
     photoframe
   },
+  props: {
+    nowDate: {
+      type: Object,
+      required: true
+    }
+  },
   methods: {
     //读取左侧的两个当日固定的领导值班员相关信息
-    loadStaticPersonList: function() {
-      var myself=this;
+    loadStaticPersonList: function () {
+      var myself = this;
 
       // console.log("");
-      var mid_model = new DepartmentMid(null, myself.selectedDate)
-      getStaticUser(mid_model).then(res=>{
+      var mid_model = new DepartmentMid(null, myself.nowDate.toDateString());
+      getStaticUser(mid_model).then(res => {
         // console.log(res);
-        $.each(res.data,function(index,val){
-          var user_temp=new User(
+        $.each(res.data, function (index, val) {
+          var user_temp = new User(
             val.user.username,
-						getLevel(val.user.level),
-						val.rDepartmentDuty.duid.desc,
-						val.rDepartmentDuty.did.derpartmentname,
-						val.rDepartmentDuty.duid.dutyname,
-						val.user.imgUrl
-          )
-          myself.vips.push(user_temp)
-        })
+            getLevel(val.user.level),
+            val.rDepartmentDuty.duid.desc,
+            val.rDepartmentDuty.did.derpartmentname,
+            val.rDepartmentDuty.duid.dutyname,
+            val.user.imgUrl
+          );
+          myself.vips.push(user_temp);
+        });
       });
     }
   },
-  data() {
+  data () {
     return {
       vips: [],
-      selectedDate:'2018-08-02'
+      selectedDate: "2018-08-02"
     };
   },
-  compiled: () => {},
-  mounted: () => {},
-  mounted: function() {
+  compiled: () => { },
+  // mounted: () => {},
+  mounted: function () {
     var myself = this;
 
     //下面固定人员改为从后端读取
@@ -81,6 +89,7 @@ export default {
 .container {
   margin-top: 15px;
 }
+
 #left-content {
   left: 0px;
   top: 200px;
