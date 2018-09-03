@@ -1,0 +1,10 @@
+/*----map----*/
+#basemap { 
+  width:1400px; /*---实际中可采用百分比，以适应弹性布局---*/
+  height:800px;   
+}
+#latlon{
+	color:#000000;
+	font:"Times New Roman";
+}
+

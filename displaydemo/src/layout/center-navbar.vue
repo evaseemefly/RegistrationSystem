@@ -43,6 +43,8 @@ export default {
           myself.departments.push(department);
         });
         // alert(res);
+        //加载完部门后制定点击操作
+        myself.onClick(0,myself.departments[0]);
       });
     },
     //加载指定部门的人员
@@ -55,6 +57,8 @@ export default {
   },
   mounted: function() {
     this.loadDepartment();
+    //加入默认点击第一个a标签的操作
+    // this.onClick(0,this.departments[0]);
   }
 };
 </script>

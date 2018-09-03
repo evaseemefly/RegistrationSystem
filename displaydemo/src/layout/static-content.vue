@@ -30,7 +30,7 @@ export default {
       var myself = this;
 
       // console.log("");
-      var mid_model = new DepartmentMid(null, myself.nowDate.toDateString());
+      var mid_model = new DepartmentMid(null, myself.nowDate.format('YYYY-MM-DD'));
       getStaticUser(mid_model).then(res => {
         // console.log(res);
         $.each(res.data, function (index, val) {
@@ -50,7 +50,7 @@ export default {
   data () {
     return {
       vips: [],
-      selectedDate: "2018-08-02"
+      selectedDate: ""
     };
   },
   compiled: () => { },

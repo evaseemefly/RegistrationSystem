@@ -19,6 +19,12 @@ export default {
     photoframe,
     centernavbar
   },
+  props:{
+    nowDate:{
+      type:Object,
+      required:true
+    }
+  },
   data () {
     return {
       users: [],
@@ -32,7 +38,7 @@ export default {
       var myself = this;
 
       //为当前时间赋值
-      myself.selected_date = "2018-08-02";
+      myself.selected_date = myself.nowDate.format('YYYY-MM-DD');
       myself.users = [];
       var mid_model = new DepartmentMid(params.did, myself.selected_date);
       getUserListByDepartment(mid_model).then(res => {
