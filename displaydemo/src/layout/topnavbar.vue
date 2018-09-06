@@ -7,8 +7,8 @@
             <a class="navbar-brand" href="#">预报中心九楼值班系统</a>
             <a class="navbar-brand" href="#">值班信息</a>
         </div> -->
-        <div class="FlexInner">国家海洋环境预报中心</div>
-        <div class="FlexInner">值班信息</div>
+        <!-- <div class="FlexInner">国家海洋环境预报中心</div>
+        <div class="FlexInner">值班信息</div> -->
     </nav>
 </template>
 <script>
@@ -35,12 +35,15 @@
         
         /* background: linear-gradient(30deg,rgba(11, 26, 160, 0.746), rgba(11, 105, 160, 0.746) ); */
         /* height: 100px; */
-        /* background: url(../img/topbar-background.jpg); */
+        background: url(../img/topbar-background.jpg);
         /* background: linear-gradient(left top,rgba(13, 71, 231, 0.856),rgba(11, 105, 160, 0.746)); */
-        background: linear-gradient(30deg,rgba(11, 26, 160, 0.746), rgba(11, 105, 160, 0.746) );
+        /* 最终实现版v1 */
+        /* background: linear-gradient(30deg,#34495e, #1abc9c ); */
+        /* 最终实现版v2 */
+        /* background:linear-gradient(135deg,#32607ed3 25%,#4f9accd8 75%);  */
         background-size: 100% 100%;
         background-repeat: no-repeat;
-        height: 100px;
+        height: 150px;
         display: flex;
         justify-content: center;
         /* 设置交叉轴上如何对其 */
@@ -54,7 +57,11 @@
         color: rgb(229, 233, 25);
         height: 80px;
         font-family: 'Oswald', sans-serif;
-
+        /* 加入文字阴影 */
+        /* text-shadow: 2px 2px 10px grey; */
+        text-shadow: 2px 2px 10px #000;
+        /* text-shadow: 2px 2px white,
+                     6px 6px rgba(50,50,50,.25); */
         font-weight: 700;
         font-size: 2.5em;
         width: 40%;

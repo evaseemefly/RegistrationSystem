@@ -1,6 +1,6 @@
 <template>
-  <div id="left-content" class="col-md-2">
-    <div class="container">
+  <div id="left-content" class="col-md-2 content-shadow">
+    <div class="my-container">
       <div v-for="vip in vips">
         <photoframe v-bind:person=vip></photoframe>
       </div>
@@ -103,23 +103,33 @@
   };
 </script>
 <style scoped>
-  .container {
+  .my-container {
     margin-top: 15px;
   }
-
+  /* 为元素加入阴影 */
+  .content-shadow{
+    box-shadow: 4px 4px 5px #999;
+  }
   #left-content {
     left: 0px;
-    top: 100px;
+    /* top: 100px; */
     /* margin-left: 0px;
         margin-top: 130px; */
     /* margin-bottom:0px; */
-    width: 350px;
+    width: 330px;
     height: 100%;
     position: fixed;
     z-index: 2;
-    /* overflow: scroll; */
+    /* overflow: auto; */
+
     /* background-color: rgba(3, 45, 184, 0.493); */
     /* background: rgba(73, 74, 95, 0.541); */
-    background-color: rgb(249, 242, 187);
+    /* background-color: rgb(249, 242, 187); */
+    /* background: #95a5a6; */
+    /* 最终实现版v1 */
+    /* background:#3498dba2; */
+
+    /* 最终实现版v2 */
+    background: #F9F2BB;
   }
 </style>
