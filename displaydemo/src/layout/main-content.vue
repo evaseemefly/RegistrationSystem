@@ -2,10 +2,10 @@
   <div id="content">
     <centernavbar class="my-top-navbar" @loadUserList="loadUserList"></centernavbar>
     <div class="container my-box">
-      <div class="col-md-4 my-row" v-for="user in users">
+      <!-- <div class="col-md-4 my-row" v-for="user in users"> -->
+      <div class="my-row" v-for="user in users">
         <photoframe v-bind:person=user></photoframe>
       </div>
-
     </div>
   </div>
 </template>
@@ -132,19 +132,19 @@ export default {
         margin-top:100px;
         margin-right: 0px; */
   bottom: 0px;
-  top: 200px;
+  top: 100px;
   right: 0px;
   left: 350px;
   /* margin-right: 0px; */
   /* width: 100%; */
   /* height: 100%; */
   position: fixed;
-
+  background: rgba(11, 105, 160, 0.746);
   z-index: 2;
   /* background: url(../img/content-background.jpg);
         background-size: 100% 100%;
         background-repeat: no-repeat; */
-
+  /* overflow: scroll; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -159,11 +159,16 @@ export default {
 }
 
 .my-box {
+  margin-top: 65px;
   display: flex;
   flex-direction: row;
+  /* 注意需要加入wrap，因为flex-wrap的默认值是nowrap（不换行） */
+  flex-flow: row wrap;
   justify-content: center;
 }
 .my-box > .my-row {
+  flex:0 0 25%;
+
   /* width: 250px; */
 }
 </style>

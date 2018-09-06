@@ -212,6 +212,11 @@ class ScheduleModificationView(R_Department_Duty_BaseView,UserBaseView):
 
         schedule_dutydate=modification_data.get('dutydate',None) or datetime.now().strftime('%Y-%m-%d')
         schedule_dutydate=datetime.strptime(schedule_dutydate,'%Y-%m-%d')
+        # 获取修改之前的日期
+        schedule_dutyOldDate = modification_data.get('old_date', None)
+        if schedule_dutyOldDate!=None:
+
+            schedule_dutyOldDate = datetime.strptime(schedule_dutyOldDate, '%Y-%m-%d')
         # 以上三个变量均不为none
         if None in [schedule_code]:
             return
@@ -282,9 +287,13 @@ class ScheduleModificationView(R_Department_Duty_BaseView,UserBaseView):
             pass
 
         # 修改日期
+        '''
+            根据之前的修改日期以及部门，获取指定的值班list，并用新的schedule_dutydate修改
+        '''
         if schedule_code=='date':
-            schedule_obj=dutyschedule.objects.filter(id=schedule_id)
-            schedule_obj.update(dutydate=schedule_dutydate)
+            schedule_list=dutyschedule.objects.filter(Q(dutydate=schedule_dutyOldDate),Q(rDepartmentDuty__did__did=schedule_did))
+            # schedule_obj=dutyschedule.objects.filter(id=schedule_id)
+            schedule_list.update(dutydate=schedule_dutydate)
             pass
 
         # 提交的为 user以及 duty（说明为新建）

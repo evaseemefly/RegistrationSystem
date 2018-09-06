@@ -102,8 +102,8 @@
     right: 0px;
     left: 0px;
     position: fixed;
-    background: url(../img/content-background.jpg);
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
+    /* background: url(../img/content-background.jpg); */
+    /* background-size: 100% 100%;
+    background-repeat: no-repeat; */
   }
 </style>
