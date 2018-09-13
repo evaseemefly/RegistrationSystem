@@ -827,7 +827,12 @@ class DutyListView(DutyBaseView):
         :param request:
         :return:
         '''
-        dids = request.query_params.getlist('group_id')
+        # 2018-09-13 此处修改
+        # 前端改为axios提交，而不使用ajax
+        query_dic = request.query_params
+        # 由于前端使用axios的get请求，所以后端注释掉下面代码，改为
+        # dids = query_dic.getlist('group_id')
+        dids=query_dic.get('group_id[]')
         duty_list=self.getdutylistbydepartment(dids=dids)
         duty_json=DutySerializer(duty_list,many=True).data
         return Response(duty_json)
