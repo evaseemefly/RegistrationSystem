@@ -2,7 +2,7 @@
     <div id="content">
         <centernavbar></centernavbar>
         <div class="container">
-            <div class="col-md-3" v-for="user in users">
+            <div class="col-md-2" v-for="user in users">
                 <photoframe v-bind:person=user></photoframe>
             </div>
 
@@ -28,7 +28,15 @@
             this.users.push({
                 level: "import",
                 img_url: './src/img/person/预警室/董剑希.jpg',
-                name: '主任A',
+                name: '董剑希',
+                desc: '带班主任',
+                group: '室主任',
+                duty: '带班主任'
+            });
+            this.users.push({
+                level: "import",
+                img_url: './src/img/person/环境室/李云.jpg',
+                name: '李云',
                 desc: '带班主任',
                 group: '室主任',
                 duty: '带班主任'
@@ -36,35 +44,51 @@
             this.users.push({
                 level: "norm",
                 img_url: './src/img/person/预警室/侯放.jpg',
-                name: '值班员A',
+                name: '侯放',
                 desc: '风暴潮 主班',
                 group: '风暴潮',
                 duty: '主班'
             });
-            // this.users.push({
-            //     level: "norm",
-            //     img_url: './src/img/person/预警室/梁森栋.jpg',
-            //     name: '值班员B',
-            //     desc: '风暴潮 副班',
-            //     group: '风暴潮',
-            //     duty: '副班'
-            // });
-            // this.users.push({
-            //     level: "norm",
-            //     img_url: './src/img/person/预警室/徐瑞.jpg',
-            //     name: '值班员C',
-            //     desc: '风暴潮 24小时岗',
-            //     group: '风暴潮',
-            //     duty: '24小时岗'
-            // });
-            // this.users.push({
-            //     level: "norm",
-            //     img_url: './src/img/person/预警室/傅赐福.jpg',
-            //     name: '值班员D',
-            //     desc: '风暴潮 警报班',
-            //     group: '风暴潮',
-            //     duty: '警报班'
-            // });
+            this.users.push({
+                level: "norm",
+                img_url: './src/img/person/预警室/梁森栋.jpg',
+                name: '梁森栋',
+                desc: '风暴潮 副班',
+                group: '风暴潮',
+                duty: '副班'
+            });
+            this.users.push({
+                level: "norm",
+                img_url: './src/img/person/预警室/徐瑞.jpg',
+                name: '徐瑞',
+                desc: '风暴潮 24小时岗',
+                group: '风暴潮',
+                duty: '24小时岗'
+            });
+            this.users.push({
+                level: "norm",
+                img_url: './src/img/person/预警室/傅赐福.jpg',
+                name: '傅赐福',
+                desc: '风暴潮 警报班',
+                group: '风暴潮',
+                duty: '警报班'
+            });
+            this.users.push({
+                level: "norm",
+                img_url: './src/img/person/环境室/于寒.jpg',
+                name: '于寒',
+                desc: '环境 24小时',
+                group: '环境',
+                duty: '24小时岗'
+            });
+            this.users.push({
+                level: "norm",
+                img_url: './src/img/person/环境室/李志杰.jpg',
+                name: '李志杰',
+                desc: '环境 主班',
+                group: '环境',
+                duty: '主班'
+            });
         }
     }
 </script>

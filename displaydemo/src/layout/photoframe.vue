@@ -8,6 +8,7 @@
                 </div>
                 <div class="post-content" :class=person.level :style="postcontentHeight(person)">
                     <photobutton v-show="isShowButton(person)" :detail=person></photobutton>
+                    <photobuttonstatic v-show="!isShowButton(person)" :detail=person></photobuttonstatic>
                     <h1 class="title">{{person.name}}</h1>
                 </div>
             </div>
@@ -16,6 +17,7 @@
 </template>
 <script>
     import photobutton from "./photo-button.vue";
+    import photobuttonstatic from "./photo-button-static.vue";
     export default {
         data() {
             return {
@@ -25,7 +27,8 @@
             }
         },
         components: {
-            photobutton
+            photobutton,
+            photobuttonstatic
         },
         computed: {
             

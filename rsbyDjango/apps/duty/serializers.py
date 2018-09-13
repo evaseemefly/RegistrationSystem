@@ -23,6 +23,8 @@ class MergeScheduleSerializer():
         self.dutydate=dutydate
         self.DutyUserList=duSer
 
+
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model=UserInfo
@@ -47,6 +49,11 @@ class DepartmentSerializer(serializers.ModelSerializer):
     class Meta:
         model=DepartmentInfo
         fields='__all__'
+
+# class DepartmentDutyUserSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model=department_duty_user
+#         fields='__all__'
 
 class Department_Simplify_Serializer(serializers.ModelSerializer):
     '''
@@ -127,6 +134,21 @@ class DutyScheduleSerializer(serializers.ModelSerializer):
         model=dutyschedule
         fields=('id','dutydate','user','rDepartmentDuty')
 
+class \
+        MerageDepartmentDutyserializer(serializers.Serializer):
+    department = DepartmentSerializer()
+    duty_list = DutySerializer(many=True)
+
+class DutyUserSerializer(serializers.Serializer):
+    duty=DutySerializer()
+    user_list=UserSerializer(many=True)
+
+class DepartmentDutySerializer(serializers.Serializer):
+    department=DepartmentSerializer()
+    duty_list=DutyUserSerializer(many=True)
+
+class SchedulelSerializer(serializers.Serializer):
+    department_list=DepartmentDutySerializer(many=True)
     # class Meta:
     #     model=dutyschedule
     #     fields='__all__'

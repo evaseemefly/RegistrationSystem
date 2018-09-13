@@ -28,12 +28,13 @@ from rest_framework.authentication import SessionAuthentication, BasicAuthentica
 from rest_framework.permissions import IsAuthenticated
 
 from .models import DutyInfo,dutyschedule,R_DepartmentInfo_DutyInfo,DepartmentInfo,R_UserInfo_DepartmentInfo,UserInfo,dutyschedule
-from .serializers import DutyScheduleSerializer,UserSerializer,DutySerializer,R_User_DepartmentSerializer,R_User_Department_Simplify_Serializer,User_Simplify_Serializer,R_Department_User_Simplify_Serializer
+from .serializers import DutyScheduleSerializer,UserSerializer,DutySerializer,R_User_DepartmentSerializer,R_User_Department_Simplify_Serializer,User_Simplify_Serializer,R_Department_User_Simplify_Serializer,UserSerializer
+# from .serializers import DutyScheduleSerializer,UserSerializer,DutySerializer,R_User_DepartmentSerializer,R_User_Department_Simplify_Serializer,User_Simplify_Serializer,R_Department_User_Simplify_Serializer, DepartmentDutyUserSerializer,UserSerializer
 from .view_base import DutyScheduleBaseView,UserBaseView,DutyBaseView,GroupBaseView,R_Department_Duty_BaseView
 from .model_middle import R_User_Department_Middle
 from .forms import ScheduleForm
-
 from Common.MyJsonEncoder import DateTimeEncoder
+from rest_framework_jwt.authentication import JSONWebTokenAuthentication
 
 class DutyListView(APIView):
     # authentication_classes = (SessionAuthentication,BasicAuthentication)
@@ -104,7 +105,8 @@ class GroupListView(GroupBaseView):
 
         did=request.query_params.get('department_id',None)
         # user_json=User_Simplify_Serializer([user],many=True).data
-        r_user_department=self.getgroupByDepartment(int(did))
+        # r_user_department=self.getgroupByDepartment(int(did))
+        r_user_department = self.getgroup(int(did))
         r_json=R_User_Department_Simplify_Serializer(r_user_department,many=True)
         r=R_User_Department_Middle()
         # finial_list=r.ToMiddleSerializer(r_user_department)
@@ -122,6 +124,7 @@ class GroupListView(GroupBaseView):
         return HttpResponse(r_json,content_type='application/json')
 
 class ScheduleCreateView(DutyScheduleBaseView,R_Department_Duty_BaseView,UserBaseView):
+
     def post(self,request):
         '''
             根据前台提交的内容新建该日的记录
@@ -280,6 +283,115 @@ class ScheduleModificationView(R_Department_Duty_BaseView,UserBaseView):
         return Response(status=status.HTTP_200_OK)
 
 
+class ScheduleShowListView(APIView):
+    def get(self,request):
+        '''
+        根据日期（yyyy-mm-dd）获取
+        :param request:
+          必须包含：
+              user_id，
+              group，
+              selected_date
+          可选：
+            （均为数组）
+             users_id，
+             groups_id
+        :return:
+        '''
+        query_dic=request.query_params
+        # 分别获取users_id,groups_id,selected_date
+        # 注意前端传过来的使用bootstrap-table get 时传递的data中若为数组会自动在原有名字后面加上一个[]，注意！
+        uids=query_dic.get('users_id[]')
+        dids=query_dic.get('group_id_new')
+        # dids=query_dic.get('groups_id[]')
+        target_date=query_dic.get('selected_date')
+		
+		#王豹的东西
+		# target_date = request.query_params.getlist('datetime')
+        # target_date = request.query_params.getlist('datetime')
+        # target_datetime = datetime.strptime(target_date[0], "%Y-%m-%d")
+        schedule_list = [r for r in dutyschedule.objects.filter(dutydate=target_date[0])]
+
+
+        '''取出查询日期当天的uer，department和duty信息'''
+        user_list = [t.user for t in schedule_list]
+        department_list = [t.rDepartmentDuty.did for t in schedule_list]
+        duty_list = [t.rDepartmentDuty.duid for t in schedule_list]
+
+        '''以department id 为标识组合值班查询结果'''
+
+        class DutyUserMiddelModel(object):
+            def __init__(self,duty,users):
+                duty=duty
+                user_list=users
+
+        class DepartmentDutyMiddelModel(object):
+            def __init__(self,deparment,duty_list):
+                deparment=deparment
+                duty_list=duty_list
+
+        class SearchModel(object):
+            def __init__(self,deps):
+                department_list=deps
+        from .serializers import DutyUserSerializer,DepartmentDutySerializer,SchedulelSerializer
+        dutyuser_list=DutyUserMiddelModel(duty_list[0],user_list[:2])
+        temp= DutyUserSerializer(dutyuser_list).data
+
+        DepartmentDutyMiddelModel(department_list[0],DutyUserMiddelModel)
+        # merage_json=
+
+
+        # list_deparmentID = []
+        # for i in range(len(department_list)):
+        #     list_deparmentID.append(department_list[i].did)
+        # list_noRepeat = []
+        # index = 0
+        # for i in list_deparmentID:
+        #     if not i in [x[0] for x in list_noRepeat]:
+        #         list_noRepeat.append([i, index])
+        #     index = index +1
+        #
+        # append_deparment = {}
+        # append_deparment_list = {}
+        # append_duty_list = {}
+        # append_user_list = {}
+        # append_user = {}
+
+        # for i in list_noRepeat:
+        #     for j in range(len(department_list)):
+        #         if i[0] == department_list[j].did:
+        #             append_user["uid"] = user_list[j].uid
+        #             append_user["isdel"] = user_list[j].isdel
+        #             append_user["username"] = user_list[j].username
+        #             append_user_list[str(user_list[j].username)] = append_user
+        #             append_user_list[]
+        #             append_duty_list[str(duty_list[j])] = append_user_list
+        #
+        #     append_deparment_list[str(department_list[i[1]].derpartmentname)] = append_duty_list
+        #     append_duty_list = {}
+        #     append_user_list = {}
+        # append_deparment[str(target_date[0])] = append_deparment_list
+
+        # append_deparment_list = {}
+        # append_duty_list = []
+        # for i in list_noRepeat:
+        #     for j in range(len(department_list)):
+        #         if i[0] == department_list[j].did:
+        #             append_duty = duty_user(duty_list[j], user_list[j])
+        #             append_duty_list.append(append_duty)
+        #     append_department = department_duty_user(department_list[i[1]], append_duty_list)
+        #     append_duty_list = []
+        #     # append_duty_list[0].append(user_list[j])
+        #     # append_deparment_list.append(append_department)
+        #     append_deparment_list[department_list[i[1]].derpartmentname] = append_department
+
+        json_str = json.dumps(append_deparment,ensure_ascii=False)
+        print(json_str)
+        # json_department = DepartmentDutyUserSerializer(append_deparment_list, many=True)
+        # return JsonResponse(append_deparment,encoder=)
+        return HttpResponse(json_str,content_type='application/json')
+        # return Response(json_str)
+
 class ScheduleListView(DutyScheduleBaseView):
     def get(self,request):
         '''
@@ -299,7 +411,8 @@ class ScheduleListView(DutyScheduleBaseView):
         # 分别获取users_id,groups_id,selected_date
         # 注意前端传过来的使用bootstrap-table get 时传递的data中若为数组会自动在原有名字后面加上一个[]，注意！
         uids=query_dic.get('users_id[]')
-        dids=query_dic.get('groups_id[]')
+        dids=query_dic.get('group_id_new')
+        # dids=query_dic.get('groups_id[]')
         target_date=query_dic.get('selected_date')
 
         # dids=map(lambda x:int(x),dids.split(','))

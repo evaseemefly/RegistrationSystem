@@ -1,9 +1,18 @@
 <template>
     <div>
         <div class="topcenterbar">
-            <a href="#" class="current">部门1</a>
-            <a href="#">部门2</a>
-            <a href="#">部门3</a>
+            <a href="#" class="current">预警室</a>
+             <a href="#" class="current">环境室</a>
+            <a href="#" >海啸室</a>
+           
+            <a href="#">气象室</a>
+            <a href="#">极地室</a>
+            <a href="#">气候室</a>
+            <a href="#">数值室</a>
+            <a href="#">网络部</a>
+            <a href="#">产品部</a>
+            <a href="#">信息室</a>
+            
         </div>
         <!-- <nav class="navbar navbar-center">
             <div class="container-fluid">

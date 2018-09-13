@@ -189,6 +189,10 @@ class GroupBaseView(APIView):
         # r_user_depart= R_UserInfo_DepartmentInfo.objects.filter(did=groups)
         r_user_depart = R_UserInfo_DepartmentInfo.objects.filter(did_id__in=groups)
         return r_user_depart
+    def getgroup(self,did=None):
+        groups=DepartmentInfo.objects.filter(did=did)
+        r_user_depart = R_UserInfo_DepartmentInfo.objects.filter(did_id__in=groups)
+        return r_user_depart
 
 class DutyBaseView(APIView):
     def getdutylistbydepartment(self,dids=[]):
@@ -215,3 +219,10 @@ class R_Department_Duty_BaseView(APIView):
         elif len(duids)==0:
             r_list=R_DepartmentInfo_DutyInfo.objects.filter(did_id__in=dids)
         return r_list
+
+class ScheduleListBaseView(APIView):
+    def getScheduleListByData(self, date):
+        if len(date) == 6:
+            schedule_list=[r.did for r in R_Author_Department.objects.filter(aid=userid)]
+        return department_list
+
