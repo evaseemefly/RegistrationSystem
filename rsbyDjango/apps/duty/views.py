@@ -91,9 +91,10 @@ class UserListView(UserBaseView):
     def get(self,request):
         # did = [3,5]
         # 注意使用此种方式无法获取list
-        # dids= request.query_params.get('group_id',None)
+        # dids= request.query_params.get('group_id[]',None)
         # 使用此种方式可以获取list
-        dids=request.query_params.getlist('group_id')
+        # 09-13 注释掉如下代码
+        dids=request.query_params.getlist('group_id[]')
         user_list=self.getuserlistbydepartment(dids)
         user_json = UserSerializer(user_list, many=True)
         return Response(user_json.data)
@@ -831,9 +832,10 @@ class DutyListView(DutyBaseView):
         # 前端改为axios提交，而不使用ajax
         query_dic = request.query_params
         # 由于前端使用axios的get请求，所以后端注释掉下面代码，改为
-        # dids = query_dic.getlist('group_id')
-        dids=query_dic.get('group_id[]')
+        dids = query_dic.getlist('group_id[]')
+        # dids=query_dic.get('group_id[]')
         duty_list=self.getdutylistbydepartment(dids=dids)
+        # duty_list = self.getdutylistbydepartment(dids=[dids])
         duty_json=DutySerializer(duty_list,many=True).data
         return Response(duty_json)
 
