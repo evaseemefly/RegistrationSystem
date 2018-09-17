@@ -72,7 +72,7 @@ body {
 .background-line {
   /* background: linear-gradient(45deg, #3498db 25%rgb(22, 160, 132)85 50%); */
   /* 实现版v1 */
-  /* background:linear-gradient(135deg,#32607e8f 25%,#0ac29dbd 75%);  */
+  background:linear-gradient(135deg,#32607e8f 25%,#0ac29dbd 75%); 
   /* 实现版v2 */
   /* background:linear-gradient(135deg,#32607e8f 25%,#4f9acc8f 75%);  */
   height: 100%;
@@ -87,7 +87,10 @@ body {
         margin-top:100px;
         margin-right: 0px; */
   bottom: 0px;
-  top: 150px;
+  /* 最终实现v1 */
+  top: 100px;
+  /* 最终实现v2 */
+  /* top: 150px; */
   right: 0px;
   left: 350px;
   /* margin-right: 0px; */
