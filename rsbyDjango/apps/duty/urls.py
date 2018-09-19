@@ -13,5 +13,11 @@ urlpatterns = [
     url(r'^grouplist/',views.GroupListView.as_view()),
     url(r'^schedulelist/creat/$',views.ScheduleCreateView.as_view()),
     url(r'^schedulelist/del/$',views.ScheduleDelView.as_view()),
-    url(r'^create/user$',views.CreateUserView.as_view())
+    url(r'^create/user$',views.CreateUserView.as_view()),
+    url(r'^demo/$',views.DutyDemoView.as_view()),
+    url(r'^schdeulelistshow/$',views.ScheduleShowListView.as_view()),
+
+    url(r'^schdeulestaticlistshow/$',views.ScheduleShowStaticListView.as_view()),
+    url(r'^departmentlist/$',views.DepartmentListView.as_view()),
+    url(r'^departmentStatistics/',views.DepartmentStatisticsView.as_view())
 ]

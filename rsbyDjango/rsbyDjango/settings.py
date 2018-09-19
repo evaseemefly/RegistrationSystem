@@ -32,7 +32,7 @@ SECRET_KEY = 'seuko=23hh1b(02dj1b#qi^)=wv8q#18a*y8_xthu-u_+)gze$'
 DEBUG = True
 
 # ALLOWED_HOSTS = ['localhost:8000','localhost:8020','127.0.0.1','127.0.0.1:8000']
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # AUTH_USER_MODEL = 'users.UserProfile'
 # Application definition
@@ -107,6 +107,14 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         'NAME':'registrationsystem',
+
+        # linux
+        # 'USER':'tongxin',
+        # 'PASSWORD':'123456',
+
+        # P52S
+        # 'USER':'root',
+        # 'PASSWORD':'123456',
 
         # 单位台式机
         # 'USER':'admin',

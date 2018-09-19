@@ -2,8 +2,12 @@
 __author__ = 'evaseemefly'
 __date__ = '2018/5/10 11:12'
 
-from .models import R_UserInfo_DepartmentInfo,UserInfo,DepartmentInfo,R_Department_User_Simplify
+from django.db import models
+
+from .models import R_UserInfo_DepartmentInfo,UserInfo,DepartmentInfo,R_Department_User_Simplify,R_DepartmentInfo_DutyInfo
 from .serializers import R_Department_User_Simplify_Serializer
+from .baseModel import BaseModel
+
 
 class R_User_Department_Middle(object):
     def __init__(self):
@@ -107,3 +111,23 @@ class R_User_Department_Middle(object):
 
         return finial_list
 
+class DutyScheduleMidModel(BaseModel):
+    rDepartmentDuty = models.ForeignKey(R_DepartmentInfo_DutyInfo, on_delete=models.CASCADE)
+    # 注意需要把auto_now去掉，不然每次修改后都会重修修改该时间
+    # dutydate=models.DateField(auto_now=True)
+    dutydate = models.DateField()
+    # duty=models.ForeignKey(DutyInfo,on_delete=models.CASCADE)
+    user = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
+
+
+class DepartmentMidModel:
+    def __init__(self, dep_top, list):
+        self.department_parent = dep_top
+        self.departments_child = list
+
+class ScheduleMidModel:
+    def __int__(self,dep_parent,dep_child,duty,user):
+        self.department_child=dep_child
+        self.department_parent=dep_parent
+        self.duty=duty
+        self.user=user

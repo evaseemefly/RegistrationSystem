@@ -1,118 +1,141 @@
 <template>
-    <div id="content">
-        <centernavbar></centernavbar>
-        <div class="container">
-            <div class="col-md-2" v-for="user in users">
-                <photoframe v-bind:person=user></photoframe>
-            </div>
-
-
+  <div id="content">
+    <div class="background-line">
+      <centernavbar class="my-top-navbar" @loadUserList="loadUserList"></centernavbar>
+      <div class="container my-box">
+        <!-- <div class="col-md-4 my-row" v-for="user in users"> -->
+        <div class="my-row" v-for="user in users">
+          <photoframe v-bind:person=user></photoframe>
         </div>
+      </div>
     </div>
+  </div>
 </template>
 <script>
-    import photoframe from "./photoframe.vue";
-    import centernavbar from "./center-navbar.vue";
-    export default {
-        components: {
-            photoframe,
-            centernavbar
-        },
-        data() {
-            return {
-                users: []
-            };
-
-        },
-        mounted: function () {
-            this.users.push({
-                level: "import",
-                img_url: './src/img/person/预警室/董剑希.jpg',
-                name: '董剑希',
-                desc: '带班主任',
-                group: '室主任',
-                duty: '带班主任'
-            });
-            this.users.push({
-                level: "import",
-                img_url: './src/img/person/环境室/李云.jpg',
-                name: '李云',
-                desc: '带班主任',
-                group: '室主任',
-                duty: '带班主任'
-            });
-            this.users.push({
-                level: "norm",
-                img_url: './src/img/person/预警室/侯放.jpg',
-                name: '侯放',
-                desc: '风暴潮 主班',
-                group: '风暴潮',
-                duty: '主班'
-            });
-            this.users.push({
-                level: "norm",
-                img_url: './src/img/person/预警室/梁森栋.jpg',
-                name: '梁森栋',
-                desc: '风暴潮 副班',
-                group: '风暴潮',
-                duty: '副班'
-            });
-            this.users.push({
-                level: "norm",
-                img_url: './src/img/person/预警室/徐瑞.jpg',
-                name: '徐瑞',
-                desc: '风暴潮 24小时岗',
-                group: '风暴潮',
-                duty: '24小时岗'
-            });
-            this.users.push({
-                level: "norm",
-                img_url: './src/img/person/预警室/傅赐福.jpg',
-                name: '傅赐福',
-                desc: '风暴潮 警报班',
-                group: '风暴潮',
-                duty: '警报班'
-            });
-            this.users.push({
-                level: "norm",
-                img_url: './src/img/person/环境室/于寒.jpg',
-                name: '于寒',
-                desc: '环境 24小时',
-                group: '环境',
-                duty: '24小时岗'
-            });
-            this.users.push({
-                level: "norm",
-                img_url: './src/img/person/环境室/李志杰.jpg',
-                name: '李志杰',
-                desc: '环境 主班',
-                group: '环境',
-                duty: '主班'
-            });
-        }
+import { getUserListByDepartment, getLevel } from "../api/api.js";
+import { DepartmentMid, User } from "../common/model.js";
+import photoframe from "./photoframe.vue";
+import centernavbar from "./center-navbar.vue";
+export default {
+  components: {
+    photoframe,
+    centernavbar
+  },
+  props: {
+    nowDate: {
+      type: Object,
+      required: true
     }
+  },
+  data () {
+    return {
+      users: [],
+      selected_date: "",
+      nowDate: null
+    };
+  },
+  methods: {
+    //加载userlist
+    loadUserList: function (params) {
+      var myself = this;
+
+      //为当前时间赋值
+      myself.selected_date = myself.nowDate.format('YYYY-MM-DD');
+      myself.users = [];
+      var mid_model = new DepartmentMid(params.did, myself.selected_date);
+      getUserListByDepartment(mid_model).then(res => {
+        // console.log(res)
+        $.each(res.data, function (index, val) {
+          var user_temp = new User(
+            val.user.username,
+            getLevel(val.user.level),
+            val.rDepartmentDuty.duid.desc,
+            val.rDepartmentDuty.did.derpartmentname,
+            val.rDepartmentDuty.duid.dutyname,
+            val.user.imgUrl
+          );
+          myself.users.push(user_temp);
+        });
+      });
+    }
+  },
+  mounted: function () {
+  }
+};
 </script>
 <style scoped>
-    #content {
-        background-color: rgba(0, 68, 255, 0.109);
-        /* margin-left: 350px;
+/* html,
+body {
+  background: linear-gradient(45deg, #3498db 25%, #16a085 50%);
+  height: 100%;
+} */
+.background-line {
+  /* background: linear-gradient(45deg, #3498db 25%rgb(22, 160, 132)85 50%); */
+  /* 实现版v1 */
+  /* background:linear-gradient(135deg,#32607e8f 25%,#0ac29dbd 75%);  */
+  /* 实现版v2 */
+  /* background:linear-gradient(135deg,#32607e8f 25%,#4f9acc8f 75%);  */
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#content {
+  /* background-color: rgba(0, 68, 255, 0.109); */
+  /* margin-left: 350px;
         margin-top:100px;
         margin-right: 0px; */
-        bottom: 0px;
-        top: 200px;
-        right: 0px;
-        left: 350px;
-        /* margin-right: 0px; */
-        /* width: 100%; */
-        /* height: 100%; */
-        position: fixed;
-        z-index: 2;
-        /* background: url(../img/content-background.jpg);
-        background-size: 100% 100%;
-        background-repeat: no-repeat; */
-    }
+  bottom: 0px;
+  top: 150px;
+  right: 0px;
+  left: 350px;
+  /* margin-right: 0px; */
+  /* width: 100%; */
+  /* height: 100%; */
+  position: fixed;
+  /* background: #7f8c8d; */
 
-    .container {
-        margin-top: 0px;
-    }
+  /* 最后使用的背景颜色 */
+  /* background: rgba(11, 105, 160, 0.746); */
+  /* z-index: -2; */
+  /* 渐变色背景 */
+  /* background: url(../img/content-background_2.jpg);
+  background-size: 100% 100%;
+  background-repeat: no-repeat; */
+  /* 实现的渐变色背景_v1 */
+  /* background: linear-gradient(135deg, #32607e8f 25%, #0ac29dbd 75%); */
+  /* background: url('../img/other/background_1.jpg');
+  background-size: cover; */
+  /* 加入透明滤镜 */
+  /* filter: opacity(60%); */
+
+  height: 100%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.my-top-navbar {
+  position: absolute;
+  top: 0px;
+  width: 100%;
+}
+.container {
+  margin-top: 0px;
+}
+
+.my-box {
+  margin-top: 65px;
+  display: flex;
+  flex-direction: row;
+  /* 注意需要加入wrap，因为flex-wrap的默认值是nowrap（不换行） */
+  flex-flow: row wrap;
+  justify-content: center;
+}
+.my-box > .my-row {
+  flex: 0 0 25%;
+
+  /* width: 250px; */
+}
 </style>
