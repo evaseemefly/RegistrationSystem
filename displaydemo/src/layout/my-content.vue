@@ -98,13 +98,18 @@ export default {
 <style>
 #mycontent {
   bottom: 0px;
-  top: 150px;
+  /* 最终实现版v1 */
+  top: 100px;
+  /* 最终实现版v2 */
+  /* top: 150px; */
   right: 0px;
   left: 0px;
   position: fixed;
   z-index: -10;
-  /* background: url('../img/other/background_1.jpg'); */
-  background: url('../img/content-background.jpg');
+  /* 实现样式1 */
+  background: url('../img/other/background_1.jpg');
+  /* 实现样式2：比较丑的图片 */
+  /* background: url('../img/content-background.jpg'); */
   background-size: cover;
   /* 加入透明滤镜 */
   /* filter: opacity(60%); */
