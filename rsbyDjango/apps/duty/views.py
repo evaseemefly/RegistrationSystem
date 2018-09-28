@@ -28,12 +28,12 @@ from rest_framework.authentication import SessionAuthentication, BasicAuthentica
 from rest_framework.permissions import IsAuthenticated
 
 from .models import DutyInfo,dutyschedule,R_DepartmentInfo_DutyInfo,DepartmentInfo,R_UserInfo_DepartmentInfo,UserInfo,dutyschedule
-from .serializers import DutyScheduleSerializer,UserSerializer,DutySerializer,R_User_DepartmentSerializer,R_User_Department_Simplify_Serializer,User_Simplify_Serializer,R_Department_User_Simplify_Serializer,UserSerializer,SchedulelSerializer,DepartmentSerializer
+from .serializers import DutyScheduleSerializer,UserSerializer,DutySerializer,R_User_DepartmentSerializer,R_User_Department_Simplify_Serializer,User_Simplify_Serializer,R_Department_User_Simplify_Serializer,UserSerializer,SchedulelSerializer,DepartmentSerializer,DutyScheduleStatisticsSerializer
 
 # from .serializers import DutyScheduleSerializer,UserSerializer,DutySerializer,R_User_DepartmentSerializer,R_User_Department_Simplify_Serializer,User_Simplify_Serializer,R_Department_User_Simplify_Serializer, DepartmentDutyUserSerializer,UserSerializer
 
 from .view_base import DutyScheduleBaseView,UserBaseView,DutyBaseView,GroupBaseView,R_Department_Duty_BaseView
-from .model_middle import R_User_Department_Middle,DepartmentMidModel
+from .model_middle import R_User_Department_Middle,DepartmentMidModel,DutyScheduleCountMidModel
 from .forms import ScheduleForm
 from Common.MyJsonEncoder import DateTimeEncoder
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
@@ -324,27 +324,59 @@ class DepartmentStatisticsView(APIView):
     by：wb
     '''
     def get(self,request):
-        startDate = request.query_params.getlist('selected_date')
+        startDateStr = request.query_params.getlist('selected_date')
+        # 将startDate转换为datetime类型
+        startDate=datetime.strptime(startDateStr[0],'%Y-%m-%d')
+
         endDate = request.query_params.getlist('endDate')
         isMonth = request.query_params.getlist('isMonth')
-        did = request.query_params.getlist('group_id')
+        # did = request.query_params.getlist('group_id')
+        did=int(request.query_params.get('group_id_new'))
         count = 0
 
-        if isMonth[0] == '0':
-            dutyStatic_list = [r for r in dutyschedule.objects.filter(dutydate=startDate[0])]
+        # if isMonth[0] == '0':
+        if isMonth[0]=='1':
+            # 注意此处有问题，需要过滤的为指定月份的所有值班列表
+            # dutyStatic_list = [r for r in dutyschedule.objects.filter(dutydate=startDate[0])]
+            dutyStatic_filter=dutyschedule.objects.filter(dutydate__year=startDate.year,dutydate__month=startDate.month)
+            dutyStatic_list = [r for r in dutyStatic_filter]
 
-            for line in dutyStatic_list:
-                if (line.user.username != '默认值') & (line.rDepartmentDuty.did.did == int(did[0])):
-                    count += 1
+            # 找到在时间范围内的全部值班信息
+            # 下面要做如下操作：
+            # 1 获取所有不同的日期
+            # 2 获取每个不同的日期的值班人数
+            # 3 嵌套为一个list，并序列化
+
+            # 1
+            date_list=[]
+            # date_list=[s.dutydate for s in dutyStatic_list if s.dutydate in date_list]
+            for s in dutyStatic_list:
+                if s.dutydate not in date_list:
+                    date_list.append(s.dutydate)
+
+            # 2
+            dutyDateCount_list=[]
+            for d in date_list:
+                count=dutyStatic_filter.filter(dutydate=d).count()
+                mid=DutyScheduleCountMidModel(d,count)
+                dutyDateCount_list.append(mid)
+
+            dutyCount_json=DutyScheduleStatisticsSerializer(dutyDateCount_list,many=True).data
+
+
+            # for line in dutyStatic_list:
+            #     if (line.user.username != '默认值') & (line.rDepartmentDuty.did.did == did):
+            #         count += 1
         else:
             dutyStatic_list = [r for r in dutyschedule.objects.filter(dutydate__gte=startDate[0], dutydate__lte=endDate[0])]
             for line in dutyStatic_list:
-                if (line.user.username != '默认值') & (line.rDepartmentDuty.did.did == int(did[0])):
+                if (line.user.username != '默认值') & (line.rDepartmentDuty.did.did == did):
                     count += 1
-        result = {'count': count}
-        json_str = json.dumps(result, ensure_ascii=False)
+        # result = {'count': count}
+        # json_str = json.dumps(result, ensure_ascii=False)
 
-        return HttpResponse(json_str, content_type='application/json')
+        return Response(dutyCount_json)
+        # return HttpResponse(json_str, content_type='application/json')
 
 class ScheduleShowListView(APIView):
     '''

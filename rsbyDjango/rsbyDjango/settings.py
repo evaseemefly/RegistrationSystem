@@ -113,16 +113,16 @@ DATABASES = {
         # 'PASSWORD':'123456',
 
         # P52S
-        'USER':'root',
-        'PASSWORD':'123456',
+        # 'USER':'root',
+        # 'PASSWORD':'123456',
 
         # 单位台式机
         # 'USER':'admin',
         # 'PASSWORD':'admin123',
 
         # mac
-        # 'USER':'root',
-        # 'PASSWORD':'12345678',
+        'USER':'root',
+        'PASSWORD':'12345678',
 
         # 540配置
         # 'USER':'root',

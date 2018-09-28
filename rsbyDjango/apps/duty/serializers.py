@@ -152,6 +152,13 @@ class SchedulelSerializer(serializers.Serializer):
     #     model=dutyschedule
     #     fields='__all__'
 
+class DutyScheduleStatisticsSerializer(serializers.Serializer):
+    dutydate=serializers.DateField()
+    count=serializers.IntegerField()
+    # def get_count(self,obj):
+
+
+
 class DutyScheduleMiddleSerializer(serializers.ModelSerializer):
     user_list=serializers.SerializerMethodField()
     # department

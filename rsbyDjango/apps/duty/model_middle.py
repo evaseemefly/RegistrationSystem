@@ -119,6 +119,11 @@ class DutyScheduleMidModel(BaseModel):
     # duty=models.ForeignKey(DutyInfo,on_delete=models.CASCADE)
     user = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
 
+class DutyScheduleCountMidModel:
+    def __init__(self,dutydate,count):
+        self.dutydate=dutydate
+        self.count=count
+
 
 class DepartmentMidModel:
     def __init__(self, dep_top, list):
