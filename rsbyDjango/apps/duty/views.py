@@ -324,10 +324,10 @@ class DepartmentStatisticsView(APIView):
     by：wb
     '''
     def get(self,request):
-        startDate = request.query_params.getlist('startDate')
+        startDate = request.query_params.getlist('selected_date')
         endDate = request.query_params.getlist('endDate')
         isMonth = request.query_params.getlist('isMonth')
-        did = request.query_params.getlist('did')
+        did = request.query_params.getlist('group_id')
         count = 0
 
         if isMonth[0] == '0':
