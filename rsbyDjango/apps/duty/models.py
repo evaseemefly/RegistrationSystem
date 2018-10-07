@@ -14,14 +14,22 @@ User=get_user_model()
 # Create your models here.
 
 
-
 class UserInfo(models.Model):
+    level_choices={
+        (1,'中心领导'),
+        (2,'业务处'),
+        (3,'室主任'),
+        (4,'值班员')
+    }
     uid=models.AutoField(primary_key=True)
     username=models.CharField(default='值班员',max_length=20)
     isdel=models.BooleanField(default=False)
+    # 值班人员等级，默认是值班员
+    level=models.IntegerField(choices=level_choices,default=4)
     #注意不能使用default=datetime.now
     createdate=models.DateField(auto_now_add=True,null=True)
     modeificateddate=models.DateField(auto_now=True,null=True)
+    imgUrl=models.CharField(null=True,max_length=200)
     class Meta:
         verbose_name="用户信息"
         verbose_name_plural=verbose_name
@@ -37,9 +45,10 @@ class DepartmentInfo(models.Model):
         (4, '预警室')
     }
     did=models.AutoField(primary_key=True)
-    pid=models.IntegerField(choices=parent_department_choices)
+    # pid=models.IntegerField(choices=parent_department_choices)
+    pid = models.IntegerField(default=0)
     derpartmentname=models.CharField(default='默认部门',max_length=20)
-
+    isShow=models.BooleanField(default=True)
     class Meta:
         # 设置了此名称后在xadmin中可以显示该别名
         verbose_name="部门信息"
@@ -53,7 +62,8 @@ class DutyInfo(models.Model):
     isdel=models.BooleanField(default=False)
     createdate=models.DateField(auto_now_add=True,null=True)
     modeificateddate=models.DateField(auto_now=True,null=True)
-
+    # 岗位描述信息
+    desc=models.CharField(null=True,max_length=50)
     class Meta:
         verbose_name="值班类别"
         verbose_name_plural=verbose_name

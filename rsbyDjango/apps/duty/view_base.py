@@ -177,6 +177,9 @@ class UserBaseView(APIView):
             user_list=[r.uid for r in R_UserInfo_DepartmentInfo.objects.filter(did_id__in=dids) if r.uid.isdel==False]
         return user_list
 
+    def getDefaultUser(self):
+        return self.getuserlistbyuid([-999])
+
 class GroupBaseView(APIView):
     def getgroupByDepartment(self,did=None):
         '''

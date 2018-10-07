@@ -134,8 +134,7 @@ class DutyScheduleSerializer(serializers.ModelSerializer):
         model=dutyschedule
         fields=('id','dutydate','user','rDepartmentDuty')
 
-class \
-        MerageDepartmentDutyserializer(serializers.Serializer):
+class MerageDepartmentDutyserializer(serializers.Serializer):
     department = DepartmentSerializer()
     duty_list = DutySerializer(many=True)
 
@@ -152,3 +151,31 @@ class SchedulelSerializer(serializers.Serializer):
     # class Meta:
     #     model=dutyschedule
     #     fields='__all__'
+
+class DutyScheduleStatisticsSerializer(serializers.Serializer):
+    dutydate=serializers.DateField()
+    count=serializers.IntegerField()
+    # def get_count(self,obj):
+
+
+
+class DutyScheduleMiddleSerializer(serializers.ModelSerializer):
+    user_list=serializers.SerializerMethodField()
+    # department
+    def get_user_list(self,obj):
+        user_list=[temp.user for temp in obj]
+        return UserSerializer(user_list).data
+
+
+    class Meta:
+        model=dutyschedule
+        fields='__all__'
+
+
+class SchedulelSerializer(serializers.ModelSerializer):
+    department_list=DepartmentDutySerializer(many=True)
+    # class Meta:
+    #     model=dutyschedule
+    #     fields='__all__'
+
+# class

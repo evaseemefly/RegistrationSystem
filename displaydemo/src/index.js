@@ -4,7 +4,7 @@ import $ from 'jquery'
 
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap/dist/js/bootstrap.js'
-
+// import moment from 'moment'
 
 import moment from 'moment'
 

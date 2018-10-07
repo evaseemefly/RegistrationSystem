@@ -5,7 +5,8 @@
    }
 
    .post-container {
-     width: 250px;
+     /* width: 250px; */
+     width: 280px;
      margin-top: 20px;
    }
 
@@ -95,7 +96,7 @@
    }
 
    .post-module .my_frame {
-     background: #000000;
+     /* background: #000000; */
      height: 280px;
      width: 172.25px;
      overflow: hidden;

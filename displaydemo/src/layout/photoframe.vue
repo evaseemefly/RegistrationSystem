@@ -16,80 +16,80 @@
     </div>
 </template>
 <script>
-    import photobutton from "./photo-button.vue";
-    import photobuttonstatic from "./photo-button-static.vue";
-    export default {
-        data() {
-            return {
-                level_dict: [
-                    "urgency", "minor"
-                ]
+import photobutton from "./photo-button.vue";
+import photobuttonstatic from "./photo-button-static.vue";
+export default {
+    data () {
+        return {
+            level_dict: [
+                "urgency", "minor"
+            ]
+        }
+    },
+    components: {
+        photobutton,
+        photobuttonstatic
+    },
+    computed: {
+
+    },
+    methods: {
+        postcontentHeight: function (item) {
+            var height = "";
+            if (this.level_dict.indexOf(item.level) >= 0) {
+                height = "padding-top: 13px;";
             }
+            return height;
         },
-        components: {
-            photobutton,
-            photobuttonstatic
-        },
-        computed: {
-            
-        },
-        methods: {
-            postcontentHeight: function (item) {
-                var height = "";
-                if (this.level_dict.indexOf(item.level) >= 0) {
-                    height = "padding-top: 13px;";
-                }
-                return height;
-            },
-            isShowButton(item) {
-                var isShow = true;
-                if (this.level_dict.indexOf(item.level) >= 0) {
-                    isShow = false;
-                }
-                // if(item.level in this.level_dict){
-                //     isShow=true;
-                // }
-                return isShow;
+        isShowButton (item) {
+            var isShow = true;
+            if (this.level_dict.indexOf(item.level) >= 0) {
+                isShow = false;
             }
-        },
-        props: {
-            person: {
-                type: Object,
-                required: true
-            }
-        },
-        // props:['person'],
-    }
+            // if(item.level in this.level_dict){
+            //     isShow=true;
+            // }
+            return isShow;
+        }
+    },
+    props: {
+        person: {
+            type: Object,
+            required: true
+        }
+    },
+    // props:['person'],
+}
 </script>
 <style>
-    @import "../assets/styles/post-module.css";
+@import '../assets/styles/post-module.css';
 
-    .post-module {
-        margin-bottom: 20px;
-    }
+.post-module {
+  margin-bottom: 20px;
+}
 
-    .norm {
-        background-color: #ffffff;
-    }
+.norm {
+  background-color: #ffffff;
+}
 
-    .import {
-        background-color: #ffffff;
-        /* background: linear-gradient(left bottom,red,white); */
-        /* background-color:linear-gradient(right,red,white); */
-        /* background-color: rgba(3, 87, 182, 0.575)  */
-    }
+.import {
+  background-color: #ffffff;
+  /* background: linear-gradient(left bottom,red,white); */
+  /* background-color:linear-gradient(right,red,white); */
+  /* background-color: rgba(3, 87, 182, 0.575)  */
+}
 
-    .urgency {
-        background-color: #ffffff;
-        /* background-color: rgba(182, 3, 182, 0.575)  */
-        /* background: linear-gradient(left bottom,blue,white); */
-        /* background-color:linear-gradient(right,blue,white); */
-    }
+.urgency {
+  background-color: #ffffff;
+  /* background-color: rgba(182, 3, 182, 0.575)  */
+  /* background: linear-gradient(left bottom,blue,white); */
+  /* background-color:linear-gradient(right,blue,white); */
+}
 
-    .minor {
-        background-color: #ffffff;
-        /* background-color: rgba(3, 146, 182, 0.575)  */
-        /* background: linear-gradient(left bottom,yellowgreen,white); */
-        /* background-color:linear-gradient(right,yellowgreen,white); */
-    }
+.minor {
+  background-color: #ffffff;
+  /* background-color: rgba(3, 146, 182, 0.575)  */
+  /* background: linear-gradient(left bottom,yellowgreen,white); */
+  /* background-color:linear-gradient(right,yellowgreen,white); */
+}
 </style>
