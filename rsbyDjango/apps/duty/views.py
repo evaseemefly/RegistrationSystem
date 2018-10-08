@@ -311,7 +311,7 @@ class ScheduleModificationView(R_Department_Duty_BaseView,UserBaseView):
         return Response(status=status.HTTP_200_OK)
 
 '''根据输入的起止时间和department的did信息，统计时间范围内指定department值班总数'''
-class DepartmentStatisticsView(APIView):
+class DepartmentStatisticsView(UserBaseView):
     '''
     根据起止日期（yyyy-mm-dd）获取
         :param request:
@@ -337,8 +337,14 @@ class DepartmentStatisticsView(APIView):
         # if isMonth[0] == '0':
         if isMonth[0]=='1':
             # 注意此处有问题，需要过滤的为指定月份的所有值班列表
+            # 条件2：指定部门（did）
+            # 条件3：非默认联系人
             # dutyStatic_list = [r for r in dutyschedule.objects.filter(dutydate=startDate[0])]
-            dutyStatic_filter=dutyschedule.objects.filter(dutydate__year=startDate.year,dutydate__month=startDate.month)
+            default_User=self.getDefaultUser()[0]
+            # 注意django中没有!=，只能通过~Q(条件)的方式获取不等于的条件查询
+            #filter(~Q(user=default_User))，.exclude(user=default_User)使用此种方式有问题
+            dutyStatic_filter=dutyschedule.objects.filter(dutydate__year=startDate.year,dutydate__month=startDate.month,rDepartmentDuty__did__did=did)
+            dutyStatic_filter=dutyStatic_filter.filter(~Q(user__uid=default_User.uid))
             dutyStatic_list = [r for r in dutyStatic_filter]
 
             # 找到在时间范围内的全部值班信息
