@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-let host = 'http://127.0.0.1:8000';
-// let host = 'http://128.5.9.20:8015';
+// let host = 'http://127.0.0.1:8000';
+let host = 'http://128.5.9.20:8015';
 
 export const getPersonList = params => {
     return axios.get(`${host}/getPersonList`, params)

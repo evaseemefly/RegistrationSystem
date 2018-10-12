@@ -28,12 +28,12 @@ from rest_framework.authentication import SessionAuthentication, BasicAuthentica
 from rest_framework.permissions import IsAuthenticated
 
 from .models import DutyInfo,dutyschedule,R_DepartmentInfo_DutyInfo,DepartmentInfo,R_UserInfo_DepartmentInfo,UserInfo,dutyschedule
-from .serializers import DutyScheduleSerializer,UserSerializer,DutySerializer,R_User_DepartmentSerializer,R_User_Department_Simplify_Serializer,User_Simplify_Serializer,R_Department_User_Simplify_Serializer,UserSerializer,SchedulelSerializer,DepartmentSerializer,DutyScheduleStatisticsSerializer
+from .serializers import DutyScheduleSerializer,UserSerializer,DutySerializer,R_User_DepartmentSerializer,R_User_Department_Simplify_Serializer,User_Simplify_Serializer,R_Department_User_Simplify_Serializer,UserSerializer,SchedulelSerializer,DepartmentSerializer,DutyScheduleStatisticsSerializer,DutyCountSerializer
 
 # from .serializers import DutyScheduleSerializer,UserSerializer,DutySerializer,R_User_DepartmentSerializer,R_User_Department_Simplify_Serializer,User_Simplify_Serializer,R_Department_User_Simplify_Serializer, DepartmentDutyUserSerializer,UserSerializer
 
 from .view_base import DutyScheduleBaseView,UserBaseView,DutyBaseView,GroupBaseView,R_Department_Duty_BaseView
-from .model_middle import R_User_Department_Middle,DepartmentMidModel,DutyScheduleCountMidModel
+from .model_middle import R_User_Department_Middle,DepartmentMidModel,DutyScheduleCountMidModel,DutyCountMidModel
 from .forms import ScheduleForm
 from Common.MyJsonEncoder import DateTimeEncoder
 from rest_framework_jwt.authentication import JSONWebTokenAuthentication
@@ -309,6 +309,46 @@ class ScheduleModificationView(R_Department_Duty_BaseView,UserBaseView):
             )
 
         return Response(status=status.HTTP_200_OK)
+
+class DutyUserStatisticsView(DutyScheduleBaseView,DutyBaseView):
+    '''
+        2018-10-08
+        根据时间以及部门（群组）获取该部门（群组）在指定时间范围内的
+        各类岗位总数
+    '''
+    def get(self,request):
+        # 获取前台传过来的 日期，是否为月份以及部门（群组）id
+        startDate=request.query_params.get('selectedDate')
+        startDateStr=datetime.strptime(startDate, '%Y-%m')
+        isMonth=request.query_params.get('isMonth')
+        did=request.query_params.get('groupId')
+        schedule_list=[]
+        if isMonth=='true':
+            # 此处有问题
+            # 此处的问题是执行完该方法后还会继续执行该父类的其他方法？
+            # schedule_list= self.getscheduleDetial([did],startDateStr)
+            # 暂时先使用以下的方法
+            # 1 获取该月的所有值班信息
+            # 以下内容封装至 getScheduleGroupbyGroupList 方法中
+            # rd_list = [temp.id for temp in R_DepartmentInfo_DutyInfo.objects.filter(did_id__in=[did])]
+            # schedule_list = dutyschedule.objects.filter(
+            #     rDepartmentDuty__in=rd_list,
+            #     dutydate__year=startDateStr.year,
+            #     dutydate__month=startDateStr.month,
+            #     )
+            schedule_list=self.getScheduleGroupbyGroupList([did],startDateStr)
+            # 2 获取指定部门的duty
+            duty_list=self.getdutylistbydepartment([did])
+
+            # 3 遍历部门对应的duty list，创建middle model
+            dutyCountMid_list=[]
+            # 3-1 先将制定部门的duty集合遍历，创建count为0的 middel list
+            for temp in duty_list:
+                temp_list=[temp_schedule for temp_schedule in schedule_list if temp_schedule.rDepartmentDuty.duid==temp]
+
+                dutyCountMid_list.append(DutyCountMidModel(temp.dutyname,len(temp_list)))
+        dutyCount_json = DutyCountSerializer(dutyCountMid_list, many=True).data
+        return Response(dutyCount_json)
 
 '''根据输入的起止时间和department的did信息，统计时间范围内指定department值班总数'''
 class DepartmentStatisticsView(UserBaseView):
@@ -645,7 +685,7 @@ class ScheduleShowListView(APIView):
         # 2 过滤值班信息表，并去掉user_id为-999的
         # 注意此处有一个bug，现已修改：
         # 过滤的是department的pid为传入的did（查询某个部门的全部的值班信息）
-        list= dutyschedule.objects.filter(Q(dutydate=target_date),Q(rDepartmentDuty__did__pid__in=target_department),~Q(user_id=-999))
+        list= dutyschedule.objects.filter(Q(dutydate=target_date),Q(rDepartmentDuty__did__pid=target_department),~Q(user_id=-999))
 
         # 3
         json_list=DutyScheduleSerializer(list,many=True).data
@@ -812,10 +852,22 @@ class ScheduleListView(DutyScheduleBaseView):
         # datetime.strptime(target_date,'')
         # convert_date=datetime.strptime(target_date, '%Y-%m-%d')
         schedule_list=self.getMergeScheduleListByDate(dids=dids,target_date=datetime.strptime(target_date, '%Y-%m-%d'))
+
         # schedule_list=self.getscheduleDetial(dids=dids,target_date=datetime.strptime(target_date, '%Y-%m-%d'))
         # seredule_json = DutyScheduleSerializer(schedule_list, many=True)
 
         # seredule_json=serializers.serialize("json",schedule_list)
+
+        # 2018-10-09
+        # 此处加入修改
+        # 判断schedule list是否为空，若为空，则直接创建当前月份的全部数据
+        if(len(schedule_list)==0):
+            # 创建
+            self.createMonthScheduleList(dids=dids,target_date=datetime.strptime(target_date, '%Y-%m-%d'))
+            schedule_list = self.getMergeScheduleListByDate(dids=dids,
+                                                            target_date=datetime.strptime(target_date, '%Y-%m-%d'))
+
+
         class Date_Encoder(json.JSONEncoder):
             def default(self, value):
                 if isinstance(value, datetime):

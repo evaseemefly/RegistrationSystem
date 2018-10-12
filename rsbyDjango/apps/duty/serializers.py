@@ -30,6 +30,13 @@ class UserSerializer(serializers.ModelSerializer):
         model=UserInfo
         fields='__all__'
 
+class UserMidSerializer(serializers.Serializer):
+    '''
+        配合嵌套序列化器使用的用户序列化类
+    '''
+    uid=serializers.IntegerField()
+    username=serializers.CharField()
+
 class User_Simplify_Serializer(serializers.ModelSerializer):
     '''
     精简后的user序列化对象，只保留uid以及username
@@ -73,6 +80,35 @@ class R_Department_DutySerializer(serializers.ModelSerializer):
     class Meta:
         model=R_DepartmentInfo_DutyInfo
         fields=('id','did','duid')
+
+class DepartmentMidSerializer(serializers.Serializer):
+    '''
+        配合嵌套序列化器使用的部门序列化类
+    '''
+    did=serializers.IntegerField()
+    pid=serializers.IntegerField()
+    departmentname=serializers.CharField()
+
+class DutyMidSerializer(serializers.Serializer):
+    '''
+        配合嵌套序列化器使用的岗位序列化类
+    '''
+    duid=serializers.IntegerField()
+    dutyname=serializers.CharField()
+
+class RDepartmentDutyMidSerializer(serializers.Serializer):
+    '''
+        配合嵌套序列化器使用的 部门-岗位 关系 序列化类
+    '''
+    # id=serializers.IntegerField()
+    did=DepartmentMidSerializer()
+    duid=DutyMidSerializer()
+
+class MerageMidSerializer(serializers.Serializer):
+    user = UserMidSerializer()
+    dutydate = serializers.DateField()
+    # rDepartmentDuty = RDepartmentDutyMidSerializer(required=False)
+
 
 class R_User_DepartmentSerializer(serializers.ModelSerializer):
     id=serializers.IntegerField()
@@ -153,11 +189,21 @@ class SchedulelSerializer(serializers.Serializer):
     #     fields='__all__'
 
 class DutyScheduleStatisticsSerializer(serializers.Serializer):
+    '''
+        指定时间，及值班人数
+    '''
     dutydate=serializers.DateField()
     count=serializers.IntegerField()
     # def get_count(self,obj):
 
-
+class DutyCountSerializer(serializers.Serializer):
+    '''
+        指定时间段内
+            岗位名称，
+            人数
+    '''
+    dutyname=serializers.CharField()
+    count=serializers.IntegerField()
 
 class DutyScheduleMiddleSerializer(serializers.ModelSerializer):
     user_list=serializers.SerializerMethodField()

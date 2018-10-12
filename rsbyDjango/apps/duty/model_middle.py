@@ -120,10 +120,22 @@ class DutyScheduleMidModel(BaseModel):
     user = models.ForeignKey(UserInfo, on_delete=models.CASCADE)
 
 class DutyScheduleCountMidModel:
+    '''
+        日期及对应的人数
+    '''
     def __init__(self,dutydate,count):
         self.dutydate=dutydate
         self.count=count
 
+class DutyCountMidModel:
+    '''
+        指定时间段内
+            岗位名称，
+            人数
+    '''
+    def __init__(self,dutyname,count):
+        self.dutyname=dutyname
+        self.count=count
 
 class DepartmentMidModel:
     def __init__(self, dep_top, list):
@@ -136,3 +148,31 @@ class ScheduleMidModel:
         self.department_parent=dep_parent
         self.duty=duty
         self.user=user
+
+class RDepartmentDutyMidModel:
+    def __init__(self,did,duid):
+        self.did=did
+        self.duid=duid
+        # self.dutydate=dutydate
+
+class DepartmentMIDModel:
+    def __init__(self,did,pid,departmentname):
+        self.did=did
+        self.pid=pid
+        self.departmentname=departmentname
+
+class UserMidModel:
+    def __init__(self,uid,username):
+        self.uid = uid
+        self.username = username
+
+class DutyMIDModel:
+    def __init__(self,duid,name):
+        self.duid=duid
+        self.dutyname=name
+
+class MerageMidModel:
+    def __init__(self,user,dutydate):
+        self.user=user
+        self.dutydate=dutydate
+        # self.rDepartmentDuty=rDepDuty

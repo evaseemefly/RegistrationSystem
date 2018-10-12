@@ -127,9 +127,9 @@
     /* background-color: rgb(249, 242, 187); */
     /* background: #95a5a6; */
     /* 最终实现版v1 */
-    /* background:#3498dba2; */
+    background:#3498dba2;
 
     /* 最终实现版v2：丑逼版 */
-    background: #F9F2BB;
+    /* background: #F9F2BB; */
   }
 </style>

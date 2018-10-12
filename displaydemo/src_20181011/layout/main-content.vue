@@ -71,9 +71,8 @@ body {
 } */
 .background-line {
   /* background: linear-gradient(45deg, #3498db 25%rgb(22, 160, 132)85 50%); */
-  /* 20181011 去掉背景的线性渐变效果 */
   /* 实现版v1 */
-  /* background:linear-gradient(135deg,#32607e8f 25%,#0ac29dbd 75%);  */
+  background:linear-gradient(135deg,#32607e8f 25%,#0ac29dbd 75%); 
   /* 实现版v2 */
   /* background:linear-gradient(135deg,#32607e8f 25%,#4f9acc8f 75%);  */
   height: 100%;
@@ -89,9 +88,9 @@ body {
         margin-right: 0px; */
   bottom: 0px;
   /* 最终实现v1 */
-  /* top: 100px; */
+  top: 100px;
   /* 最终实现v2 */
-  top: 150px;
+  /* top: 150px; */
   right: 0px;
   left: 350px;
   /* margin-right: 0px; */
@@ -104,9 +103,9 @@ body {
   /* background: rgba(11, 105, 160, 0.746); */
   /* z-index: -2; */
   /* 渐变色背景 */
-  background: url(../img/content-background.jpg);
+  /* background: url(../img/content-background_2.jpg);
   background-size: 100% 100%;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; */
   /* 实现的渐变色背景_v1 */
   /* background: linear-gradient(135deg, #32607e8f 25%, #0ac29dbd 75%); */
   /* background: url('../img/other/background_1.jpg');

@@ -112,6 +112,10 @@ DATABASES = {
         # 'USER':'tongxin',
         # 'PASSWORD':'123456',
 
+        'USER':'admin',
+        'PASSWORD':'123456',
+        'HOST':'128.5.9.20',
+
         # P52S
         # 'USER':'root',
         # 'PASSWORD':'123456',
@@ -121,8 +125,8 @@ DATABASES = {
         # 'PASSWORD':'admin123',
 
         # mac
-        'USER':'root',
-        'PASSWORD':'12345678',
+        # 'USER':'root',
+        # 'PASSWORD':'12345678',
 
         # 540配置
         # 'USER':'root',
