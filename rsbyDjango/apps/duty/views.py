@@ -46,7 +46,7 @@ class DepartmentListView(APIView):
         :return:
         '''
         query_dic = request.query_params
-        departments=DepartmentInfo.objects.filter(Q(pid=0),~Q(did=-999),Q(isShow=True))
+        departments=DepartmentInfo.objects.filter(Q(pid=0),~Q(did=-999),Q(isShow=True)).order_by("sort")
         json_list= DepartmentSerializer(departments,many=True).data
         return Response(json_list)
 

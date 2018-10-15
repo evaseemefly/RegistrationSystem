@@ -48,7 +48,8 @@ class DepartmentInfo(models.Model):
     # pid=models.IntegerField(choices=parent_department_choices)
     pid = models.IntegerField(default=0)
     derpartmentname=models.CharField(default='默认部门',max_length=20)
-    isShow=models.BooleanField(default=True)
+    isShow=models.BooleanField(default=True,max_length=100)
+    sort=models.IntegerField(default=0)
     class Meta:
         # 设置了此名称后在xadmin中可以显示该别名
         verbose_name="部门信息"
@@ -64,6 +65,7 @@ class DutyInfo(models.Model):
     modeificateddate=models.DateField(auto_now=True,null=True)
     # 岗位描述信息
     desc=models.CharField(null=True,max_length=50)
+    sort =models.IntegerField(default=0)
     class Meta:
         verbose_name="值班类别"
         verbose_name_plural=verbose_name

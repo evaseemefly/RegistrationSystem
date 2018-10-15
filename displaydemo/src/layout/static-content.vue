@@ -112,9 +112,9 @@
   }
   #left-content {
     left: 0px;
-    /* top: 100px; */
-    /* margin-left: 0px;
-        margin-top: 130px; */
+    top: 150px;
+    /* margin-left: 0px; */
+        /* margin-top: 130px; */
     /* margin-bottom:0px; */
     width: 330px;
     height: 100%;
