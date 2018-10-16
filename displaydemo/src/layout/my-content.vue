@@ -10,6 +10,7 @@
 import maincontent from "./main-content.vue";
 import staticcontent from "./static-content.vue";
 import getPersonList from "../api/api.js";
+import bus from '../assets/eventBus.js';
 // import x from "../api/api.js"
 export default {
   components: {
@@ -76,8 +77,10 @@ export default {
     initNowDate: function () {
       // this.nowDate = new Date();
       // this.nowDate=moment();
+      var myself=this;
       this.nowDate = this.moment();
 
+      bus.$emit('on-reloadDate',myself.nowDate);
     },
     //重新加载页面
     reaload: function () {

@@ -1,6 +1,6 @@
 <template>
     <div class="topcalendar">
-        2018年7月2日
+        {{dateStr}}
         <!-- <div class="year">2018年</div>
         <div class="month">7月</div>
         <div class="day">2日</div> -->
@@ -8,7 +8,9 @@
 </template>
 <script>
     export default {
-
+        props:{
+            dateStr:String
+        }
     }
 </script>
 <style>
@@ -20,9 +22,10 @@
     .topcalendar {
         position: absolute;
         bottom: 10px;
-        right: 10px;
+        right: 150px;
 
         color: whitesmoke;
+        /* color: rgb(229, 233, 25); */
         font-weight: 500;
         font-size: 40px;
         /* margin: 0;
