@@ -96,10 +96,10 @@ export default {
   align-items: flex-end;
 }
 .navbar_myself > .logo {
-  float: left;
+  float: right;
   height: 90px;
   position: absolute;
-  right: 30px;
+  left: 100px;
   bottom: 30px;
 
   /* src:url(../img/logo.png); */

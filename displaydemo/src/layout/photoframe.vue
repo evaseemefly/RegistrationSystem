@@ -61,9 +61,11 @@ export default {
     // props:['person'],
 }
 </script>
-<style>
+<style scoped>
 @import '../assets/styles/post-module.css';
-
+.post-container{
+    margin-bottom: 40px;
+}
 .post-module {
   margin-bottom: 20px;
 }

@@ -94,7 +94,7 @@ export default {
     var myself = this;
     this.initNowDate();
     //定期刷新页面
-    var timer = window.setInterval(myself.reaload, myself.interval);
+    // var timer = window.setInterval(myself.reaload, myself.interval);
   }
 };
 </script>

@@ -21,7 +21,7 @@ export default {
   computed:{
     isTwoline:function(){
       // 若长度小于四（1,,2,3）不用换行，若大于等于四则换行
-      return this.detail.group.length<4?false:true;
+      return this.detail.group.length<5?false:true;
     }
   }
 };
@@ -44,7 +44,7 @@ export default {
   /* float: left;
         display: inline; */
   flex: none;
-  width: 80px;
+  width: 90px;
   background: #e74c3c;
   font-size: 14px;
   font-weight: 600;
