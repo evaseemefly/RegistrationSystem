@@ -21,7 +21,13 @@ export default {
   computed:{
     isTwoline:function(){
       // 若长度小于四（1,,2,3）不用换行，若大于等于四则换行
-      return this.detail.group.length<5?false:true;
+      if(this.detail.group.length<5&&this.detail.duty.length<4){
+        return false;
+      }
+      else{
+        return true;
+      }
+      // return this.detail.group.length<5?false:true;
     }
   }
 };
