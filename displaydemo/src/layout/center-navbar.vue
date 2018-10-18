@@ -17,16 +17,28 @@ export default {
     return {
       departments: [],
       mark: 0,
-      selected_department: {}
+      selected_department: {},
+      // 当前选中的a标签
+      currentIndex: 0
+      // 当前部门的一些信息
+      // currentDepartment:{}
     };
+  },
+  watch: {
+    // 监视当mark发生变化时，触发a标签的事件
+    mark: function() {
+      this.selected_department = this.departments[this.mark];
+      // 触发点击事件
+      this.onClick(this.mark,this.selected_department);
+      this.loadUsers(this.selected_department);
+    }
   },
   methods: {
     //切换之后根据不同的部门id加载该部门该日的值班人员
     onClick: function(index, obj) {
       this.mark = index;
       console.log(index, obj);
-      this.selected_department = obj;
-      this.loadUsers(obj);
+      this.selected_department = obj;      
     },
     //加载部门list
     loadDepartment: function() {
@@ -44,7 +56,7 @@ export default {
         });
         // alert(res);
         //加载完部门后制定点击操作
-        myself.onClick(0,myself.departments[0]);
+        myself.onClick(0, myself.departments[0]);
       });
     },
     //加载指定部门的人员
@@ -53,10 +65,25 @@ export default {
       // bus.$emit("loadUserList",obj);
       // 调用父组件中的loadUserList方法并将选中的department传入
       this.$emit("loadUserList", obj);
+    },
+    // a标签轮播
+    autoPlay: function() {
+      // 当前a标签索引加1
+      this.mark++;
+
+      var count_dep = this.departments.length; 
+
+      if (this.mark == count_dep) {
+        this.mark = 0;
+      }
+    },
+    toPaly:function(){
+      setInterval(this.autoPlay,15000);
     }
   },
   mounted: function() {
     this.loadDepartment();
+    this.toPaly();
     //加入默认点击第一个a标签的操作
     // this.onClick(0,this.departments[0]);
   }
