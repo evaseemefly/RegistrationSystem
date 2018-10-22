@@ -5,10 +5,11 @@
  * @class Department
  */
 export class Department {
-  constructor(pid, did, name) {
+  constructor(pid, did, name, phone) {
     this.pid = pid;
     this.did = did;
     this.name = name;
+    this.phone = phone;
   }
 }
 

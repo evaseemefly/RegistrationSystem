@@ -1,12 +1,13 @@
 <template>
   <div id="content">
     <div class="background-line">
-      <centernavbar class="my-top-navbar" @loadUserList="loadUserList"></centernavbar>
+      <centernavbar class="my-top-navbar" @loadUserList="loadUserList" @loadDepartment="loadDepartemtn"></centernavbar>
       <div class="container my-box">
         <!-- <div class="col-md-4 my-row" v-for="user in users"> -->
         <div class="my-row" v-for="user in users">
           <photoframe v-bind:person=user></photoframe>
         </div>
+        <phoneframe :department="departemtnTemp"></phoneframe>
       </div>
     </div>
   </div>
@@ -16,10 +17,12 @@ import { getUserListByDepartment, getLevel } from "../api/api.js";
 import { DepartmentMid, User } from "../common/model.js";
 import photoframe from "./photoframe.vue";
 import centernavbar from "./center-navbar.vue";
+import phoneframe from "./phoneframe.vue"
 export default {
   components: {
     photoframe,
-    centernavbar
+    centernavbar,
+    phoneframe
   },
   props: {
     nowDate: {
@@ -31,7 +34,8 @@ export default {
     return {
       users: [],
       selected_date: "",
-      nowDate: null
+      nowDate: null,
+      departemtnTemp:null
     };
   },
   methods: {
@@ -57,10 +61,18 @@ export default {
           myself.users.push(user_temp);
         });
       });
+    },
+    loadDepartemtn:function(params){
+      console.log(params);
+      this.departemtnTemp=params;
     }
   },
-  mounted: function () {
-  }
+  // mounted: function () {
+  //   bus.$on("on-reloadDate", (msg) => {
+  //       console.log(msg);
+  //     myself.nowDate = msg;
+  //   });
+  // }
 };
 </script>
 <style scoped>

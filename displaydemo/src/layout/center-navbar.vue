@@ -29,8 +29,9 @@ export default {
     mark: function() {
       this.selected_department = this.departments[this.mark];
       // 触发点击事件
-      this.onClick(this.mark,this.selected_department);
+      this.onClick(this.mark, this.selected_department);
       this.loadUsers(this.selected_department);
+      this.loadTargetDepartment(this.selected_department);
     }
   },
   methods: {
@@ -38,7 +39,7 @@ export default {
     onClick: function(index, obj) {
       this.mark = index;
       console.log(index, obj);
-      this.selected_department = obj;      
+      this.selected_department = obj;
     },
     //加载部门list
     loadDepartment: function() {
@@ -50,7 +51,8 @@ export default {
           var department = new Department(
             val.pid,
             val.did,
-            val.derpartmentname
+            val.derpartmentname,
+            val.phone
           );
           myself.departments.push(department);
         });
@@ -66,18 +68,23 @@ export default {
       // 调用父组件中的loadUserList方法并将选中的department传入
       this.$emit("loadUserList", obj);
     },
+    loadTargetDepartment: function(obj) {
+      var myself = this;
+
+      this.$emit("loadDepartment", obj);
+    },
     // a标签轮播
     autoPlay: function() {
       // 当前a标签索引加1
       this.mark++;
 
-      var count_dep = this.departments.length; 
-
+      var count_dep = this.departments.length;
       if (this.mark == count_dep) {
         this.mark = 0;
       }
     },
-    toPaly:function(){
+    toPaly: function() {
+      // 暂时注释掉
       setInterval(this.autoPlay,15000);
     }
   },
