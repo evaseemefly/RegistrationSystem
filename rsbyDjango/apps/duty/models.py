@@ -50,6 +50,8 @@ class DepartmentInfo(models.Model):
     derpartmentname=models.CharField(default='默认部门',max_length=20)
     isShow=models.BooleanField(default=True,max_length=100)
     sort=models.IntegerField(default=0)
+    # 每个部门的联系电话
+    phone=models.CharField(default='',max_length=18)
     class Meta:
         # 设置了此名称后在xadmin中可以显示该别名
         verbose_name="部门信息"

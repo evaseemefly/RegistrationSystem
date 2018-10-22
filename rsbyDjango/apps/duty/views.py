@@ -50,6 +50,9 @@ class DepartmentListView(APIView):
         json_list= DepartmentSerializer(departments,many=True).data
         return Response(json_list)
 
+# class DepartmentInfoView(APIView):
+#     def get(self,request):
+
 
 class DutyListView(APIView):
     # authentication_classes = (SessionAuthentication,BasicAuthentication)
