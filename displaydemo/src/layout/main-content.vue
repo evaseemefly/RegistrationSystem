@@ -7,7 +7,7 @@
         <div class="my-row" v-for="user in users">
           <photoframe v-bind:person=user></photoframe>
         </div>
-        <phoneframe :department="departemtnTemp"></phoneframe>
+        <!-- <phoneframe :department="departemtnTemp"></phoneframe> -->
       </div>
     </div>
   </div>
@@ -17,12 +17,12 @@ import { getUserListByDepartment, getLevel } from "../api/api.js";
 import { DepartmentMid, User } from "../common/model.js";
 import photoframe from "./photoframe.vue";
 import centernavbar from "./center-navbar.vue";
-import phoneframe from "./phoneframe.vue"
+// import phoneframe from "./phoneframe.vue"
 export default {
   components: {
     photoframe,
     centernavbar,
-    phoneframe
+    // phoneframe
   },
   props: {
     nowDate: {

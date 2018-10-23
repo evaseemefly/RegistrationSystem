@@ -19,6 +19,8 @@ urlpatterns = [
 
     url(r'^schdeulestaticlistshow/$',views.ScheduleShowStaticListView.as_view()),
     url(r'^departmentlist/$',views.DepartmentListView.as_view()),
+    # 根据部门did获取该部门的部门联系list
+    url(r'^departmentcontactlist/$',views.DepartmentConactListView.as_view()),
     # 根据输入的起止时间和department的did信息，统计时间范围内指定department值班总数
     url(r'^departmentStatistics/',views.DepartmentStatisticsView.as_view()),
     # 根据时间，部门id获取该月份的岗位及人数

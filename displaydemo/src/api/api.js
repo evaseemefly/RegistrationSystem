@@ -10,6 +10,12 @@ export const getPersonList = params => {
 export const getDepartmentList = params => {
     return axios.get(`${host}/duty/departmentlist`, params)
 }
+
+export const getConactDepartmentList=params=>{
+    return axios.get(`${host}/duty/departmentcontactlist`, {
+        params:params
+    })
+}
 /**
  *  根据传入的选中时间以及did获取值班人员信息表
  *

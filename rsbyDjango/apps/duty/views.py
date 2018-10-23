@@ -53,6 +53,32 @@ class DepartmentListView(APIView):
 # class DepartmentInfoView(APIView):
 #     def get(self,request):
 
+class DepartmentConactListView(APIView):
+    '''
+        获取指定部门的联系电话
+
+    '''
+    def get(self,request):
+        # 获取传过来的部门id
+        # 根据该部门id，查询其child dep
+        did=request.query_params.get('did')
+        contact_list=DepartmentInfo.objects.filter(
+            Q(isContact=True)
+        ).filter(
+            Q(did=did) |Q(pid=did)
+        )
+
+        # DepartmentInfo.objects.filter(
+        #     Q(isContact=True)
+        # ).filter(
+        #     Q(did=did) or Q(pid=did)
+        # )
+
+        json_list=DepartmentSerializer(contact_list,many=True).data
+        return Response(json_list)
+
+        # pass
+
 
 class DutyListView(APIView):
     # authentication_classes = (SessionAuthentication,BasicAuthentication)

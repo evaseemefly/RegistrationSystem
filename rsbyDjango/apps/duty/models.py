@@ -50,6 +50,7 @@ class DepartmentInfo(models.Model):
     derpartmentname=models.CharField(default='默认部门',max_length=20)
     isShow=models.BooleanField(default=True,max_length=100)
     sort=models.IntegerField(default=0)
+    isContact=models.BooleanField(default=False,max_length=2)
     # 每个部门的联系电话
     phone=models.CharField(default='',max_length=18)
     class Meta:

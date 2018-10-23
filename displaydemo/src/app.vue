@@ -12,7 +12,7 @@
     import maincontent from "./layout/main-content.vue";
     import staticcontent from "./layout/static-content.vue";
     import mycontent from "./layout/my-content.vue";
-    import tabbar from "./layout/tabbar.vue";
+    // import tabbar from "./layout/tabbar.vue";
     import topnavbar from "./layout/topnavbar.vue";
     import watch from "./layout/watch.vue";
 
@@ -26,7 +26,7 @@
         components: {
             maincontent,
             staticcontent,
-            tabbar,
+            // tabbar,
             topnavbar,
             watch,
             mycontent
