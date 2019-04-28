@@ -1,18 +1,18 @@
 <template>
-    <nav id="my-top-navbar" class="navbar navbar_myself navbar-default navbar-fixed-top">
-        <calendar :dateStr=nowDateStr></calendar>
-        <img src='../img/logo.png' class="logo">
-        <!-- <div class='logo'></div> -->
-        <!-- <div class="navbar-header" id="my_navbar">
+  <nav id="my-top-navbar" class="navbar navbar_myself navbar-default navbar-fixed-top">
+    <calendar :dateStr="nowDateStr"></calendar>
+    <img src="../img/logo.png" class="logo">
+    <!-- <div class='logo'></div> -->
+    <!-- <div class="navbar-header" id="my_navbar">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse">
                 <span class="sr-only">Toggle navigation</span>
             </button>
             <a class="navbar-brand" href="#">预报中心九楼值班系统</a>
             <a class="navbar-brand" href="#">值班信息</a>
-        </div> -->
-        <!-- <div class="FlexInner">国家海洋环境预报中心</div>
-        <div class="FlexInner">值班信息</div> -->
-    </nav>
+    </div>-->
+    <!-- <div class="FlexInner">国家海洋环境预报中心</div>
+    <div class="FlexInner">值班信息</div>-->
+  </nav>
 </template>
 <script>
 import calendar from "./calendar.vue";
@@ -35,7 +35,7 @@ export default {
         //   this.nowDate.getFullYear() +
         //   this.nowDate.getMonth() +
         //   this.nowDate.getDate();
-        var dateStr= this.nowDate.format('YYYY-MM-DD')
+        var dateStr = this.nowDate.format("YYYY-MM-DD");
         return dateStr;
       }
     }
@@ -43,8 +43,8 @@ export default {
   created: function() {
     var myself = this;
     // 注意此处的事件总成，若写在computed事件中，则不会执行后面的钩子函数
-    bus.$on("on-reloadDate", (msg) => {
-        console.log(msg);
+    bus.$on("on-reloadDate", msg => {
+      // console.log(msg);
       myself.nowDate = msg;
     });
     // bus.$on("on-reloadDate", function(msg) {

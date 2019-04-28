@@ -1,11 +1,15 @@
 <template>
   <div id="content">
     <div class="background-line">
-      <centernavbar class="my-top-navbar" @loadUserList="loadUserList" @loadDepartment="loadDepartemtn"></centernavbar>
+      <centernavbar
+        class="my-top-navbar"
+        @loadUserList="loadUserList"
+        @loadDepartment="loadDepartemtn"
+      ></centernavbar>
       <div class="container my-box">
         <!-- <div class="col-md-4 my-row" v-for="user in users"> -->
         <div class="my-row" v-for="user in users">
-          <photoframe v-bind:person=user></photoframe>
+          <photoframe v-bind:person="user"></photoframe>
         </div>
         <!-- <phoneframe :department="departemtnTemp"></phoneframe> -->
       </div>
@@ -21,7 +25,7 @@ import centernavbar from "./center-navbar.vue";
 export default {
   components: {
     photoframe,
-    centernavbar,
+    centernavbar
     // phoneframe
   },
   props: {
@@ -30,26 +34,27 @@ export default {
       required: true
     }
   },
-  data () {
+  data() {
     return {
       users: [],
       selected_date: "",
       nowDate: null,
-      departemtnTemp:null
+      departemtnTemp: null
     };
   },
   methods: {
     //加载userlist
-    loadUserList: function (params) {
+    loadUserList: function(params) {
       var myself = this;
-
-      //为当前时间赋值
-      myself.selected_date = myself.nowDate.format('YYYY-MM-DD');
+      // 注意每次重新加载user时，要清空之前的
+      myself.users = [];
+      // TODO: 19-04-27 为当前时间赋值
+      myself.selected_date = myself.nowDate.format("YYYY-MM-DD");
       myself.users = [];
       var mid_model = new DepartmentMid(params.did, myself.selected_date);
       getUserListByDepartment(mid_model).then(res => {
         // console.log(res)
-        $.each(res.data, function (index, val) {
+        $.each(res.data, function(index, val) {
           var user_temp = new User(
             val.user.username,
             getLevel(val.user.level),
@@ -62,11 +67,18 @@ export default {
         });
       });
     },
-    loadDepartemtn:function(params){
-      console.log(params);
-      this.departemtnTemp=params;
+    loadDepartemtn: function(params) {
+      // console.log(params);
+      this.departemtnTemp = params;
     }
   },
+  watch: {
+    // TODO: 19-04-27 监听由父组件传入的时间，若时间发生变化时，重新请求人员
+    nowDate(val_new) {
+      this.loadUserList();
+      // console.log("static-conetn" + val_new.format());
+    }
+  }
   // mounted: function () {
   //   bus.$on("on-reloadDate", (msg) => {
   //       console.log(msg);
